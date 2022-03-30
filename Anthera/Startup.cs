@@ -13,6 +13,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Serilog;
+using Anthera_API.Service;
 
 namespace Anthera
 {
@@ -35,6 +36,8 @@ namespace Anthera
             services.AddDbContext<DataContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("db")));
 
+            //add custom services
+            services.AddScoped<IUserService, UserService>();
 
             services.AddControllers();
         }

@@ -1,4 +1,8 @@
-﻿using Anthera_API.Data;
+﻿using Anthera_API.Controllers.v1.Requests;
+using Anthera_API.Controllers.v1.Responses;
+using Anthera_API.Data;
+using Anthera_API.misc;
+using Anthera_API.Service;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -11,20 +15,24 @@ namespace Anthera_API.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
-        private readonly DataContext _dataContext;
         private readonly ILogger<UserController> _logger;
-        public UserController(DataContext dataContext, ILogger<UserController> logger)
+        private readonly IUserService _userService;
+        public UserController(DataContext dataContext, ILogger<UserController> logger, IUserService userService )
         {
-            _dataContext = dataContext;
             _logger = logger;
+            _userService = userService;
+            _userService.SetLogger( _logger );
         }
 
         [HttpPost]
-        public async Task<IActionResult> Test()
+        public async Task<IActionResult> CreateAsync(CreateUserRequest createUserRequest)
         {
-            _logger.LogError("ASSSSSSSSSSSSSSSSSSSSS");
-            _logger.LogInformation("sssssssssASSSSSSSSSSSSSSSSSSSSS");
-            return Ok("aa");
+            (var ecr, var createdUser) = await _userService.CreateAsync(createUserRequest.MapToModel());
+            if (ecr.IsSuccess)
+            {
+                return Ok(new UserDetailsResponse().MapToResponse(createdUser));
+            }
+            return BadRequest(ApiConstant.Errors.GenericError);
         }
     }
 }

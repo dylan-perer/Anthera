@@ -28,12 +28,18 @@ namespace Anthera_API.Models
         [Column("email_address")]
         [StringLength(255)]
         public string EmailAddress { get; set; }
+        [Required]
+        [Column("password")]
+        [StringLength(255)]
+        public string Password { get; set; }
         [Column("profile_picture_url", TypeName = "text")]
         public string ProfilePictureUrl { get; set; }
         [Column("last_online", TypeName = "datetime")]
         public DateTime LastOnline { get; set; }
         [Column("created_at", TypeName = "datetime")]
         public DateTime CreatedAt { get; set; }
+        [Column("is_info_completed")]
+        public bool IsInfoCompleted { get; set; }
 
         [InverseProperty("User")]
         public virtual ICollection<UserInfo> UserInfo { get; set; }
