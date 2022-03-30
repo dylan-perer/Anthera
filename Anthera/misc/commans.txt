@@ -1,0 +1,1 @@
+﻿Scaffold-DbContext "Data Source=.;Initial Catalog=Anthera;Integrated Security=True" Microsoft.EntityFrameWorkCore.SqlServer -outputdir Models -context DataContext -contextdir Data -DataAnnotations -Force
