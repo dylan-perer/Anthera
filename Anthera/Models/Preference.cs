@@ -12,18 +12,22 @@ namespace Anthera_API.Models
     [Table("preference")]
     public partial class Preference
     {
-        [Column("user_info_id")]
-        public int UserInfoId { get; set; }
-        [Column("age")]
-        public byte Age { get; set; }
+        [Key]
+        [Column("id")]
+        public int Id { get; set; }
+        [Column("age_min")]
+        public byte AgeMin { get; set; }
+        [Column("age_max")]
+        public byte AgeMax { get; set; }
         [Column("distance")]
         public byte Distance { get; set; }
-        [Column("show_preference_sex_id")]
-        public byte ShowPreferenceSexId { get; set; }
+        [Column("preference_sex_id")]
+        public byte PreferenceSexId { get; set; }
 
-        [ForeignKey(nameof(ShowPreferenceSexId))]
-        public virtual ShowPreferenceSex ShowPreferenceSex { get; set; }
-        [ForeignKey(nameof(UserInfoId))]
+        [ForeignKey(nameof(PreferenceSexId))]
+        [InverseProperty("Preference")]
+        public virtual PreferenceSex PreferenceSex { get; set; }
+        [InverseProperty("Preference")]
         public virtual UserInfo UserInfo { get; set; }
     }
 }

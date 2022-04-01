@@ -26,6 +26,8 @@ namespace Anthera_API.Models
         public int UserId { get; set; }
         [Column("gender_id")]
         public byte GenderId { get; set; }
+        [Column("preference_id")]
+        public int PreferenceId { get; set; }
         [Column("dob", TypeName = "datetime")]
         public DateTime Dob { get; set; }
         [Required]
@@ -37,12 +39,15 @@ namespace Anthera_API.Models
         public string IpAddress { get; set; }
         [Column("job_title_id")]
         public byte JobTitleId { get; set; }
+        [Required]
         [Column("company_name")]
         [StringLength(30)]
         public string CompanyName { get; set; }
+        [Required]
         [Column("school_university")]
         [StringLength(250)]
         public string SchoolUniversity { get; set; }
+        [Required]
         [Column("about_me")]
         [StringLength(500)]
         public string AboutMe { get; set; }
@@ -72,6 +77,12 @@ namespace Anthera_API.Models
         public byte HereToId { get; set; }
         [Column("photo_limit")]
         public byte PhotoLimit { get; set; }
+        [Column("religion_id")]
+        public int ReligionId { get; set; }
+        [Column("education_level_id")]
+        public byte EducationLevelId { get; set; }
+        [Column("personality_id")]
+        public int PersonalityId { get; set; }
 
         [ForeignKey(nameof(ChildrenId))]
         [InverseProperty("UserInfo")]
@@ -79,6 +90,9 @@ namespace Anthera_API.Models
         [ForeignKey(nameof(DrinkingId))]
         [InverseProperty("UserInfo")]
         public virtual Drinking Drinking { get; set; }
+        [ForeignKey(nameof(EducationLevelId))]
+        [InverseProperty("UserInfo")]
+        public virtual EducationLevel EducationLevel { get; set; }
         [ForeignKey(nameof(EyeColourId))]
         [InverseProperty("UserInfo")]
         public virtual EyeColour EyeColour { get; set; }
@@ -94,9 +108,18 @@ namespace Anthera_API.Models
         [ForeignKey(nameof(JobTitleId))]
         [InverseProperty("UserInfo")]
         public virtual JobTitle JobTitle { get; set; }
+        [ForeignKey(nameof(PersonalityId))]
+        [InverseProperty("UserInfo")]
+        public virtual Personality Personality { get; set; }
+        [ForeignKey(nameof(PreferenceId))]
+        [InverseProperty("UserInfo")]
+        public virtual Preference Preference { get; set; }
         [ForeignKey(nameof(RelationshipId))]
         [InverseProperty("UserInfo")]
         public virtual Relationship Relationship { get; set; }
+        [ForeignKey(nameof(ReligionId))]
+        [InverseProperty("UserInfo")]
+        public virtual Religion Religion { get; set; }
         [ForeignKey(nameof(SexualityId))]
         [InverseProperty("UserInfo")]
         public virtual Sexuality Sexuality { get; set; }

@@ -1,4 +1,5 @@
-﻿using Anthera_API.Controllers.v1.Requests;
+﻿using Anthera_API.Contracts.v1.Requests;
+using Anthera_API.Controllers.v1.Requests;
 using Anthera_API.Controllers.v1.Responses;
 using Anthera_API.Data;
 using Anthera_API.misc;
@@ -11,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace Anthera_API.Controllers
 {
-    [Route("api/v1/[controller]")]
+    [Route(ApiRoutes.User.ControllerV1)]
     [ApiController]
     public class UserController : ControllerBase
     {
@@ -21,17 +22,23 @@ namespace Anthera_API.Controllers
         {
             _logger = logger;
             _userService = userService;
-            _userService.SetLogger( _logger );
         }
 
-        [HttpPost]
-        public async Task<IActionResult> CreateAsync(CreateUserRequest createUserRequest)
+
+
+        [HttpPut("basicinfo")]
+        public async Task<IActionResult> UpdateBasicInfoAsync([FromBody]UpdateBasicInfoRequest updateBasicInfoRequest)
         {
-            (var ecr, var createdUser) = await _userService.CreateAsync(createUserRequest.MapToModel());
+            (var ecr, var updatedUser) = await _userService.UpdateByIdAsync(updateBasicInfoRequest);
             if (ecr.IsSuccess)
             {
-                return Ok(new UserDetailsResponse().MapToResponse(createdUser));
+                return Ok(new UserDetailsResponse().MapToResponse(updatedUser));
             }
+            else if (ecr.SendClientError)
+            {
+                return BadRequest(ecr.EndUserError);
+            }
+            _logger.LogError(ecr.CreateLog(ApiRoutes.User.ControllerV1, ApiRoutes.HTTP_ACTIONS.PUT, updateBasicInfoRequest));
             return BadRequest(ApiConstant.Errors.GenericError);
         }
     }

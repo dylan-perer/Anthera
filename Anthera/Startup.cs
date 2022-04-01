@@ -14,6 +14,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Serilog;
 using Anthera_API.Service;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 namespace Anthera
 {
@@ -32,11 +35,39 @@ namespace Anthera
             //add logging
             services.AddLogging();
 
+            //Jwt token
+            var tokenValidationParameters = new TokenValidationParameters
+            {
+                ValidateIssuerSigningKey = true,
+                IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Jwt:Key"])),
+                ValidateIssuer = false,
+                ValidateAudience = false,
+                ValidateLifetime = true,
+                RequireExpirationTime = true,
+                /*           ValidIssuer = configuration["Jwt:Issuer"],
+                           ValidAudience = configuration["Jwt:Audience"],*/
+            };
+            services.AddSingleton(tokenValidationParameters);
+
+            services.AddAuthentication(options =>
+            {
+                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+
+            }).AddJwtBearer(x => {
+                x.SaveToken = true;
+                x.TokenValidationParameters = tokenValidationParameters;
+            });
+
+
+
             //add db service
             services.AddDbContext<DataContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("db")));
 
             //add custom services
+            services.AddScoped<IIdentityService, IdentityService>();
             services.AddScoped<IUserService, UserService>();
 
             services.AddControllers();
@@ -53,6 +84,8 @@ namespace Anthera
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseAuthentication();
 
             app.UseAuthorization();
 

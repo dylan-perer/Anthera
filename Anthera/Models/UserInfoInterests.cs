@@ -18,6 +18,9 @@ namespace Anthera_API.Models
         [Key]
         [Column("interests_id")]
         public int InterestsId { get; set; }
+        [Key]
+        [Column("user_infouser_id")]
+        public int UserInfouserId { get; set; }
 
         [ForeignKey(nameof(InterestsId))]
         [InverseProperty("UserInfoInterests")]

@@ -12,11 +12,6 @@ namespace Anthera_API.Models
     [Table("user")]
     public partial class User
     {
-        public User()
-        {
-            UserInfo = new HashSet<UserInfo>();
-        }
-
         [Key]
         [Column("id")]
         public int Id { get; set; }
@@ -40,8 +35,13 @@ namespace Anthera_API.Models
         public DateTime CreatedAt { get; set; }
         [Column("is_info_completed")]
         public bool IsInfoCompleted { get; set; }
+        [Column("role_id")]
+        public byte RoleId { get; set; }
 
+        [ForeignKey(nameof(RoleId))]
         [InverseProperty("User")]
-        public virtual ICollection<UserInfo> UserInfo { get; set; }
+        public virtual Role Role { get; set; }
+        [InverseProperty("User")]
+        public virtual UserInfo UserInfo { get; set; }
     }
 }
