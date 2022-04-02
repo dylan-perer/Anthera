@@ -1,6 +1,8 @@
-﻿using Anthera_API.misc;
+﻿using Anthera_API.Data;
+using Anthera_API.misc;
 using Anthera_API.Models;
 using Anthera_API.Validation;
+using DatabaseLookups;
 using System;
 using System.ComponentModel.DataAnnotations;
 
@@ -18,8 +20,7 @@ namespace Anthera_API.Contracts.v1.Requests
         public User MapToModel(User user)
         {
             user.Name = Name;
-            user.UserInfo.Dob= Dob;
-            user.UserInfo.GenderId = (byte)StringToByte(Gender, ApiConstant.Requests.ValidValues.User.GENDERS);
+            user.UserInfo.GenderId = (byte)DatbaseConstants.StringToByte(Gender, DatbaseConstants.Values.gender);
             return user;
         }
     }

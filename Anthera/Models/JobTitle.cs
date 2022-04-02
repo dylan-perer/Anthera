@@ -19,7 +19,7 @@ namespace Anthera_API.Models
 
         [Key]
         [Column("id")]
-        public byte Id { get; set; }
+        public int Id { get; set; }
         [Required]
         [Column("title")]
         [StringLength(100)]

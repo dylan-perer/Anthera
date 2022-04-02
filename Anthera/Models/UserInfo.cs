@@ -38,7 +38,7 @@ namespace Anthera_API.Models
         [StringLength(150)]
         public string IpAddress { get; set; }
         [Column("job_title_id")]
-        public byte JobTitleId { get; set; }
+        public int JobTitleId { get; set; }
         [Required]
         [Column("company_name")]
         [StringLength(30)]

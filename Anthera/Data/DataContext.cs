@@ -37,6 +37,7 @@ namespace Anthera_API.Data
         public virtual DbSet<Photo> Photo { get; set; }
         public virtual DbSet<Preference> Preference { get; set; }
         public virtual DbSet<PreferenceSex> PreferenceSex { get; set; }
+        public virtual DbSet<RefreshToken> RefreshToken { get; set; }
         public virtual DbSet<Relationship> Relationship { get; set; }
         public virtual DbSet<Religion> Religion { get; set; }
         public virtual DbSet<Role> Role { get; set; }
@@ -60,7 +61,7 @@ namespace Anthera_API.Data
             modelBuilder.Entity<Children>(entity =>
             {
                 entity.HasIndex(e => e.ChildrenType)
-                    .HasName("UQ__children__0EABE7D43ABB44F1")
+                    .HasName("UQ__children__0EABE7D439249921")
                     .IsUnique();
 
                 entity.Property(e => e.Id).ValueGeneratedOnAdd();
@@ -71,7 +72,7 @@ namespace Anthera_API.Data
             modelBuilder.Entity<Drinking>(entity =>
             {
                 entity.HasIndex(e => e.DrinkingType)
-                    .HasName("UQ__drinking__9D739548ECB621B2")
+                    .HasName("UQ__drinking__9D739548D8CF50A8")
                     .IsUnique();
 
                 entity.Property(e => e.Id).ValueGeneratedOnAdd();
@@ -82,7 +83,7 @@ namespace Anthera_API.Data
             modelBuilder.Entity<EducationLevel>(entity =>
             {
                 entity.HasIndex(e => e.EducationLevelName)
-                    .HasName("UQ__educatio__24EB10605D8F6A7D")
+                    .HasName("UQ__educatio__24EB10603F035DD4")
                     .IsUnique();
 
                 entity.Property(e => e.Id).ValueGeneratedOnAdd();
@@ -93,7 +94,7 @@ namespace Anthera_API.Data
             modelBuilder.Entity<EyeColour>(entity =>
             {
                 entity.HasIndex(e => e.Colour)
-                    .HasName("UQ__eye_colo__03FE598654A26116")
+                    .HasName("UQ__eye_colo__03FE598678C2BECD")
                     .IsUnique();
 
                 entity.Property(e => e.Id).ValueGeneratedOnAdd();
@@ -104,7 +105,7 @@ namespace Anthera_API.Data
             modelBuilder.Entity<Gallery>(entity =>
             {
                 entity.HasKey(e => new { e.PhotoId, e.UserInfoId, e.UserInfouserId })
-                    .HasName("PK__gallery__29B5C7E5B584617E");
+                    .HasName("PK__gallery__29B5C7E5934049B6");
 
                 entity.HasOne(d => d.Photo)
                     .WithMany(p => p.Gallery)
@@ -122,7 +123,7 @@ namespace Anthera_API.Data
             modelBuilder.Entity<Gender>(entity =>
             {
                 entity.HasIndex(e => e.GenderName)
-                    .HasName("UQ__gender__2FB51D27BA5284D4")
+                    .HasName("UQ__gender__2FB51D2740F78CA4")
                     .IsUnique();
 
                 entity.Property(e => e.Id).ValueGeneratedOnAdd();
@@ -133,7 +134,7 @@ namespace Anthera_API.Data
             modelBuilder.Entity<HairColour>(entity =>
             {
                 entity.HasIndex(e => e.Colour)
-                    .HasName("UQ__hair_col__03FE59867586E5E7")
+                    .HasName("UQ__hair_col__03FE5986133AB4F5")
                     .IsUnique();
 
                 entity.Property(e => e.Id).ValueGeneratedOnAdd();
@@ -144,7 +145,7 @@ namespace Anthera_API.Data
             modelBuilder.Entity<HereTo>(entity =>
             {
                 entity.HasIndex(e => e.HereToType)
-                    .HasName("UQ__here_to__4A9F60ABB1892A92")
+                    .HasName("UQ__here_to__4A9F60AB33233E4E")
                     .IsUnique();
 
                 entity.Property(e => e.Id).ValueGeneratedOnAdd();
@@ -155,7 +156,7 @@ namespace Anthera_API.Data
             modelBuilder.Entity<Interests>(entity =>
             {
                 entity.HasIndex(e => e.InterestType)
-                    .HasName("UQ__interest__5D5CAFB67BD552D0")
+                    .HasName("UQ__interest__5D5CAFB64C9439E6")
                     .IsUnique();
 
                 entity.Property(e => e.InterestType).IsUnicode(false);
@@ -164,10 +165,8 @@ namespace Anthera_API.Data
             modelBuilder.Entity<JobTitle>(entity =>
             {
                 entity.HasIndex(e => e.Title)
-                    .HasName("UQ__job_titl__E52A1BB3BE561E66")
+                    .HasName("UQ__job_titl__E52A1BB3D27F2CBC")
                     .IsUnique();
-
-                entity.Property(e => e.Id).ValueGeneratedOnAdd();
 
                 entity.Property(e => e.Title).IsUnicode(false);
             });
@@ -175,7 +174,7 @@ namespace Anthera_API.Data
             modelBuilder.Entity<Language>(entity =>
             {
                 entity.HasIndex(e => e.LanguageName)
-                    .HasName("UQ__language__9CE8238313509B05")
+                    .HasName("UQ__language__9CE82383C6AE594F")
                     .IsUnique();
 
                 entity.Property(e => e.LanguageName).IsUnicode(false);
@@ -184,7 +183,7 @@ namespace Anthera_API.Data
             modelBuilder.Entity<LanguageUserInfo>(entity =>
             {
                 entity.HasKey(e => new { e.LanguageId, e.UserInfoId, e.UserInfouserId })
-                    .HasName("PK__language__62B1F96BA6146514");
+                    .HasName("PK__language__62B1F96BB0CEE489");
 
                 entity.HasOne(d => d.Language)
                     .WithMany(p => p.LanguageUserInfo)
@@ -202,7 +201,7 @@ namespace Anthera_API.Data
             modelBuilder.Entity<Personality>(entity =>
             {
                 entity.HasIndex(e => e.PersonalityName)
-                    .HasName("UQ__personal__D7AAAD8696962268")
+                    .HasName("UQ__personal__D7AAAD86739E3D06")
                     .IsUnique();
 
                 entity.Property(e => e.PersonalityName).IsUnicode(false);
@@ -220,7 +219,7 @@ namespace Anthera_API.Data
             modelBuilder.Entity<PreferenceSex>(entity =>
             {
                 entity.HasIndex(e => e.Sex)
-                    .HasName("UQ__preferen__DDDFBCA680DDFBFA")
+                    .HasName("UQ__preferen__DDDFBCA6429EADD4")
                     .IsUnique();
 
                 entity.Property(e => e.Id).ValueGeneratedOnAdd();
@@ -228,10 +227,21 @@ namespace Anthera_API.Data
                 entity.Property(e => e.Sex).IsUnicode(false);
             });
 
+            modelBuilder.Entity<RefreshToken>(entity =>
+            {
+                entity.Property(e => e.RefreshTokenValue).IsUnicode(false);
+
+                entity.HasOne(d => d.User)
+                    .WithMany(p => p.RefreshToken)
+                    .HasForeignKey(d => d.UserId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FKrefresh_to567261");
+            });
+
             modelBuilder.Entity<Relationship>(entity =>
             {
                 entity.HasIndex(e => e.RelationshipType)
-                    .HasName("UQ__relation__A286B4ADDAA014BC")
+                    .HasName("UQ__relation__A286B4ADAAB939C2")
                     .IsUnique();
 
                 entity.Property(e => e.Id).ValueGeneratedOnAdd();
@@ -242,7 +252,7 @@ namespace Anthera_API.Data
             modelBuilder.Entity<Religion>(entity =>
             {
                 entity.HasIndex(e => e.ReligionName)
-                    .HasName("UQ__religion__07872CE45F664E32")
+                    .HasName("UQ__religion__07872CE4F9855B9D")
                     .IsUnique();
 
                 entity.Property(e => e.ReligionName).IsUnicode(false);
@@ -251,7 +261,7 @@ namespace Anthera_API.Data
             modelBuilder.Entity<Role>(entity =>
             {
                 entity.HasIndex(e => e.RoleName)
-                    .HasName("UQ__role__783254B14971D262")
+                    .HasName("UQ__role__783254B14C13C8ED")
                     .IsUnique();
 
                 entity.Property(e => e.Id).ValueGeneratedOnAdd();
@@ -262,7 +272,7 @@ namespace Anthera_API.Data
             modelBuilder.Entity<Sexuality>(entity =>
             {
                 entity.HasIndex(e => e.SexualityType)
-                    .HasName("UQ__sexualit__BCE65079E969797A")
+                    .HasName("UQ__sexualit__BCE6507958F6382F")
                     .IsUnique();
 
                 entity.Property(e => e.Id).ValueGeneratedOnAdd();
@@ -273,7 +283,7 @@ namespace Anthera_API.Data
             modelBuilder.Entity<Smoking>(entity =>
             {
                 entity.HasIndex(e => e.SmokingType)
-                    .HasName("UQ__smoking__0BDBB7464313A7F2")
+                    .HasName("UQ__smoking__0BDBB74641097E2D")
                     .IsUnique();
 
                 entity.Property(e => e.Id).ValueGeneratedOnAdd();
@@ -284,7 +294,7 @@ namespace Anthera_API.Data
             modelBuilder.Entity<User>(entity =>
             {
                 entity.HasIndex(e => e.EmailAddress)
-                    .HasName("UQ__user__20C6DFF53BB5E87D")
+                    .HasName("UQ__user__20C6DFF5DBDE39B2")
                     .IsUnique();
 
                 entity.Property(e => e.EmailAddress).IsUnicode(false);
@@ -303,11 +313,11 @@ namespace Anthera_API.Data
             modelBuilder.Entity<UserInfo>(entity =>
             {
                 entity.HasIndex(e => e.PreferenceId)
-                    .HasName("UQ__user_inf__FB41DBCEBACC8EA2")
+                    .HasName("UQ__user_inf__FB41DBCE48D66BDA")
                     .IsUnique();
 
                 entity.HasIndex(e => e.UserId)
-                    .HasName("UQ__user_inf__B9BE370EB46D2BB5")
+                    .HasName("UQ__user_inf__B9BE370ED9D06EA3")
                     .IsUnique();
 
                 entity.Property(e => e.AboutMe).IsUnicode(false);
@@ -423,7 +433,7 @@ namespace Anthera_API.Data
             modelBuilder.Entity<UserInfoInterests>(entity =>
             {
                 entity.HasKey(e => new { e.UserInfoId, e.InterestsId, e.UserInfouserId })
-                    .HasName("PK__user_inf__A6F5C667CE3F2238");
+                    .HasName("PK__user_inf__A6F5C66765791702");
 
                 entity.HasOne(d => d.Interests)
                     .WithMany(p => p.UserInfoInterests)

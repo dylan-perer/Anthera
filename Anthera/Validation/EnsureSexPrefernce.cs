@@ -1,5 +1,6 @@
 ﻿using Anthera_API.Data;
 using Anthera_API.misc;
+using DatabaseLookups;
 using System.ComponentModel.DataAnnotations;
 
 namespace Anthera_API.Validation
@@ -22,7 +23,7 @@ namespace Anthera_API.Validation
         public override bool IsValid(object value)
         {
             string strValue = value as string;
-            foreach (var sexPref in ApiConstant.Requests.ValidValues.User.SEX_PREFERENCE)
+            foreach (var sexPref in DatbaseConstants.Values.preferenceSex)
             {
                 if (sexPref.ToLower().Equals(strValue.ToLower()))
                 {

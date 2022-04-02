@@ -4,21 +4,19 @@ namespace Anthera_API.Contracts.v1.Responses
 {
     public class AuthResponse : IAuthResponse
     {
-        public string Token { set; get; }
-        public DateTime CreatedAt { set; get; }
-        public DateTime ExpireAt { set; get; }
-        public string RefrehToken { set; get; }
-        public DateTime RefreshTokencreatedAt { set; get; }
-        public DateTime RefreshTokenexpireAt { set; get; }
 
-        public void Map(string token, DateTime createdAt, DateTime expireAt, string refrehToken, DateTime refreshTokencreatedAt, DateTime refreshTokenexpireAt)
+        public string AccessToken { set; get; }
+        public string RefrehToken { set; get; }
+
+        public string GetRefreshToken()
         {
-            Token = token;
-            CreatedAt = createdAt;
-            ExpireAt = expireAt;
-            RefrehToken = refrehToken;
-            RefreshTokencreatedAt = refreshTokencreatedAt;
-            RefreshTokenexpireAt = refreshTokenexpireAt;
+            return RefrehToken;
+        }
+
+        public void SetTokens(string acessToken, string refreshToken)
+        {
+            AccessToken = acessToken;
+            RefrehToken=refreshToken;
         }
     }
 }

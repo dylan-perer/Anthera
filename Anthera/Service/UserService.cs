@@ -37,9 +37,33 @@ namespace Anthera_API.Service
             return user;
         }
 
+        public async Task<(ErrorResult, User)> GetLoggedUserInfo(User user)
+        {
+            return (null, null);
+    /*        var er = new ErrorResult();
+
+            try
+            {
+                var userInfo = _dataContext.UserInfo.FirstOrDefault(r=>user.Id==user.Id);
+                user.UserInfo = userInfo;
+                
+                var gender = _dataContext.Gender.FirstOrDefault(r => userInfo.GenderId == r.Id);
+                user.UserInfo.Gender = gender;
+
+                var 
+
+                userInfo.EyeColour.Colour = ConstantMapper.ByteToString(userInfo.EyeColourId, ApiConstant.Requests.ValidValues.User.e);
+
+
+            }catch (Exception ex)
+            {
+                er.MapException(ex);
+            }*/
+        }
+
         public User InitializeUserInfo(User user)
         {
-            var ecr = new ECResult();
+            var ecr = new ErrorResult();
             try
             {
                 user.UserInfo.Preference.AgeMin = 18;
@@ -75,9 +99,9 @@ namespace Anthera_API.Service
             return user;
         }
 
-        public async Task<(ECResult, User)> UpdateByIdAsync(IUserRequest userRequest)
+        public async Task<(ErrorResult, User)> UpdateByIdAsync(IUserRequest userRequest)
         {
-            var ecr = new ECResult();
+            var ecr = new ErrorResult();
             User user = null;
             try
             {

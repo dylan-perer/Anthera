@@ -17,6 +17,11 @@
         public static class Identity
         {
             public const string ControllerV1 = ApiV1 + "/identity";
+            public const string Signup = "signup";
+            public const string Signin = "signin";
+            public const string Signout = "signout";
+            public const string RefreshToken = "refreshtoken";
+
         }
         public static class User
         {

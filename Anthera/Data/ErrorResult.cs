@@ -1,8 +1,8 @@
-﻿using System;
-
+﻿using Microsoft.AspNetCore.Mvc;
+using System;
 namespace Anthera_API.Data
 {
-    public class ECResult
+    public class ErrorResult
     {
         public bool IsSuccess { get; set; } = true;
         public bool SendClientError { get; set; } = false;
@@ -26,6 +26,11 @@ namespace Anthera_API.Data
         {
             SendClientError = true;
             EndUserError = endUserErrors;
+        }
+
+        public object ReturnEndUserError()
+        {
+            return new {Error = EndUserError};
         }
     }
 }

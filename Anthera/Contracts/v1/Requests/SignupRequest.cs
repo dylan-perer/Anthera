@@ -1,14 +1,14 @@
 ﻿using Anthera_API.Contracts.v1;
 using Anthera_API.Contracts.v1.Requests;
-using Anthera_API.misc;
 using Anthera_API.Models;
 using Anthera_API.Validation;
+using DatabaseLookups;
 using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace Anthera_API.Controllers.v1.Requests
 {
-    public class CreateUserRequest : Request, IUserRequest
+    public class SignupRequest : Request, IUserRequest
     {
         [Required]
         [MaxLength(14)]
@@ -36,23 +36,27 @@ namespace Anthera_API.Controllers.v1.Requests
         [MaxLength(255)]
         [MinLength(6)]
         public string Password { get; set; }
-        
+
+        [Required]
+        [MaxLength(255)]
+        [MinLength(6)]
+        public string ConfirmPassword { get; set; }
+
         [Required(AllowEmptyStrings =false)]
         public string ProfilePictureUrl { get; set; }
 
 
         public User MapToModel(User user)
         {
-            var genderId = (byte)StringToByte(Gender, ApiConstant.Requests.ValidValues.User.GENDERS);
+            var genderId = (byte)DatbaseConstants.StringToByte(Gender, DatbaseConstants.Values.gender);
 
-
-            var sexPreferenceId = (byte)StringToByte(SexPreference, ApiConstant.Requests.ValidValues.User.SEX_PREFERENCE);
+            var sexPreferenceId = (byte)DatbaseConstants.StringToByte(SexPreference, DatbaseConstants.Values.preferenceSex);
             var preference = new Preference
             {
                 PreferenceSexId = sexPreferenceId,
             };
 
-            var hereToId = (byte)StringToByte(HereTo, ApiConstant.Requests.ValidValues.User.HERE_TO);
+            var hereToId = (byte)DatbaseConstants.StringToByte(HereTo, DatbaseConstants.Values.hereTo);
 
             var userInfo = new UserInfo();
 

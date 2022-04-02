@@ -1,3 +1,4 @@
+using DatabaseLookups;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
@@ -18,6 +19,9 @@ namespace Anthera
                 .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true).Build();
 
             Log.Logger = new LoggerConfiguration().ReadFrom.Configuration(configuration).CreateLogger();
+
+
+            DatbaseConstants.Create();
 
             CreateHostBuilder(args).Build().Run();
         }

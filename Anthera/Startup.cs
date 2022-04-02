@@ -36,39 +36,52 @@ namespace Anthera
             services.AddLogging();
 
             //Jwt token
-            var tokenValidationParameters = new TokenValidationParameters
-            {
-                ValidateIssuerSigningKey = true,
-                IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Jwt:Key"])),
-                ValidateIssuer = false,
-                ValidateAudience = false,
-                ValidateLifetime = true,
-                RequireExpirationTime = true,
-                /*           ValidIssuer = configuration["Jwt:Issuer"],
-                           ValidAudience = configuration["Jwt:Audience"],*/
-            };
-            services.AddSingleton(tokenValidationParameters);
+            /*            var tokenValidationParameters = new TokenValidationParameters
+                        {
+                            ValidateIssuerSigningKey = true,
+                            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Jwt:Key"])),
+                            ValidateIssuer = false,
+                            ValidateAudience = false,
+                            ValidateLifetime = true,
+                            RequireExpirationTime = true,
+                            *//*           ValidIssuer = configuration["Jwt:Issuer"],
+                                       ValidAudience = configuration["Jwt:Audience"],*//*
+                        };
+                        services.AddSingleton(tokenValidationParameters);
 
-            services.AddAuthentication(options =>
-            {
-                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
-                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+                        */
 
-            }).AddJwtBearer(x => {
-                x.SaveToken = true;
-                x.TokenValidationParameters = tokenValidationParameters;
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(o =>
+            {
+                o.TokenValidationParameters = new TokenValidationParameters()
+                {
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Authentication:AccessTokenSecret"])),
+                    
+                    ValidIssuer = Configuration["Authentication:Issuer"],
+                    ValidAudience = Configuration["Authentication:Audience"],
+
+                    ValidateIssuerSigningKey = true,
+                    ValidateIssuer = true,
+                    ValidateAudience = true,
+
+                    ClockSkew = TimeSpan.Zero //makes sure token expires on set time.
+                };
             });
 
 
+            //injecting database context
+            services.AddDbContext<DataContext>(options => options.UseSqlServer(Configuration.GetConnectionString("db")));
 
-            //add db service
-            services.AddDbContext<DataContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("db")));
 
-            //add custom services
+            //injecting jwt
+            services.AddSingleton<JwtTokenService>();
+
+            //injecting custom services
             services.AddScoped<IIdentityService, IdentityService>();
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IPasswordHasher, BCryptPasswordHasher>();
+
+
 
             services.AddControllers();
         }

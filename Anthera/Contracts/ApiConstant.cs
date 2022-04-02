@@ -25,20 +25,22 @@
                 public const string InvalidMinDob = "Sorry, you need to be atleast 18 years old to join.";
                 public const string DobIsRequired = "Dob is required.";
 
+
+                public const string EmailOrPasswordInvalid = "Sorry, email or password is incorrect. Pleas try again.";
+                public const string ConfirmPasswordIsInvalid = "Sorry, passwords don't match. Pleas try again.";
+
+                public const string RefreshTokenIsInvalid = "Refresh token is invalid.";
+
             }
         }
 
         public static class Requests
         {
-            public static class ValidValues
+            public static class User
             {
-                public static class User
-                {
-                    public static readonly string[] GENDERS = { "Female", "Male", "Trans-woman", "Trans-man", "Other" };
-                    public static readonly string[] HERE_TO = { "I'm here to date", "I'm here to chat", "I'm here to chat"};
-                    public static readonly string[] SEX_PREFERENCE = { "Women", "Men", "Both"};
-                }
+                public const string SignedoutSuccessfully = "You are signed out."; 
             }
+           
         }
 
         public static class Db
