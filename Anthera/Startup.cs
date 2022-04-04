@@ -17,6 +17,9 @@ using Anthera_API.Service;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.Extensions.FileProviders;
+using System.IO;
+using Microsoft.OpenApi.Models;
 
 namespace Anthera
 {
@@ -35,28 +38,38 @@ namespace Anthera
             //add logging
             services.AddLogging();
 
-            //Jwt token
-            /*            var tokenValidationParameters = new TokenValidationParameters
-                        {
-                            ValidateIssuerSigningKey = true,
-                            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Jwt:Key"])),
-                            ValidateIssuer = false,
-                            ValidateAudience = false,
-                            ValidateLifetime = true,
-                            RequireExpirationTime = true,
-                            *//*           ValidIssuer = configuration["Jwt:Issuer"],
-                                       ValidAudience = configuration["Jwt:Audience"],*//*
-                        };
-                        services.AddSingleton(tokenValidationParameters);
+            //adding swagger
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Anthera", Version = "V1" });
+                c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+                {
+                    In = ParameterLocation.Header,
+                    Description = "Please insert JWT with Bearer into field",
+                    Name = "Authorization",
+                    Type = SecuritySchemeType.ApiKey
+                });
+                c.AddSecurityRequirement(new OpenApiSecurityRequirement {
+                    {
+                      new OpenApiSecurityScheme {
+                        Reference = new OpenApiReference {
+                          Type = ReferenceType.SecurityScheme,
+                            Id = "Bearer"
+                        }
+                      },
+                      new string[] {}
+                    } });
+            });
 
-                        */
+
+
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(o =>
             {
                 o.TokenValidationParameters = new TokenValidationParameters()
                 {
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Authentication:AccessTokenSecret"])),
-                    
+
                     ValidIssuer = Configuration["Authentication:Issuer"],
                     ValidAudience = Configuration["Authentication:Audience"],
 
@@ -92,7 +105,17 @@ namespace Anthera
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseSwagger();
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Anthera v1"));
+
             }
+
+            app.UseFileServer(new FileServerOptions
+            {
+                FileProvider = new PhysicalFileProvider(
+                    Path.Combine(Directory.GetCurrentDirectory(), @"UploadedFiles/img")),
+                RequestPath = "/UploadedFiles/img"
+            });
 
             app.UseHttpsRedirection();
 

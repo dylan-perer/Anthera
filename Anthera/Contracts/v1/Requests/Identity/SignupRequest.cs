@@ -8,7 +8,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Anthera_API.Controllers.v1.Requests
 {
-    public class SignupRequest : Request, IUserRequest
+    public class SignupRequest : IUserRequest
     {
         [Required]
         [MaxLength(14)]
@@ -42,21 +42,17 @@ namespace Anthera_API.Controllers.v1.Requests
         [MinLength(6)]
         public string ConfirmPassword { get; set; }
 
-        [Required(AllowEmptyStrings =false)]
-        public string ProfilePictureUrl { get; set; }
-
-
         public User MapToModel(User user)
         {
-            var genderId = (byte)DatbaseConstants.StringToByte(Gender, DatbaseConstants.Values.gender);
+            var genderId = (byte)DbConstant.ConstantStringToIndex(Gender, DbConstant.Values.gender);
 
-            var sexPreferenceId = (byte)DatbaseConstants.StringToByte(SexPreference, DatbaseConstants.Values.preferenceSex);
+            var sexPreferenceId = (byte)DbConstant.ConstantStringToIndex(SexPreference, DbConstant.Values.preferenceSex);
             var preference = new Preference
             {
                 PreferenceSexId = sexPreferenceId,
             };
 
-            var hereToId = (byte)DatbaseConstants.StringToByte(HereTo, DatbaseConstants.Values.hereTo);
+            var hereToId = (byte)DbConstant.ConstantStringToIndex(HereTo, DbConstant.Values.hereTo);
 
             var userInfo = new UserInfo();
 
@@ -67,7 +63,7 @@ namespace Anthera_API.Controllers.v1.Requests
             userInfo.Dob = Dob;
             user.EmailAddress = EmailAddress;
             user.Password = Password;
-            user.ProfilePictureUrl = ProfilePictureUrl;
+            user.ProfilePictureUrl = null;
             user.RoleId = 1;
 
             user.UserInfo = userInfo;
@@ -76,7 +72,7 @@ namespace Anthera_API.Controllers.v1.Requests
 
         public override string ToString()
         {
-            return $"Name: {Name}, EmailAddress: {EmailAddress}, Password: {Password}, ProfilePictureUrl: {ProfilePictureUrl}";
+            return $"Name: {Name}, EmailAddress: {EmailAddress}, Password: {Password}";
         }
 
     }

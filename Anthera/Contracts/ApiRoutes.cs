@@ -26,6 +26,22 @@
         public static class User
         {
             public const string ControllerV1 = ApiV1 + "/user";
+            public const string Profile = "profile";
+            public const string Basicinfo = "basicinfo";
+            public const string WorkAndEducation = "workandeducation";
+            public const string Children = "children";
+            public const string Weight = "weight";
+            public const string Height = "height";
+            public const string Religion = "religion";
+            public const string Personality = "personality";
+            public const string Drinking = "drinking";
+            public const string Smoking = "smoking";
+            public const string HereTo = "hereto";
+            public const string AboutMe = "aboutme";
+            public const string Relationship = "relationship"; 
+            public const string ProfilePicture = "profilePicture";
+            public const string Gallery = "gallery";
+            public const string EducationLevel = "educationlevel";
         }
     }
 }

@@ -7,19 +7,19 @@ using System.Text;
 
 namespace DatabaseLookups
 {
-    public static class DatbaseConstants
+    public static class DbConstant
     {
         public static void Main(string[] args)
         {
-            
         }
+
 
         private static string[] GetDataFromFile(string path)
         {
             var reader = new StreamReader(path);
 
             List<string> listA = new List<string>();
-            listA.Add(Values.PreferNotToSay);
+            listA.Add(Values.PREFER_NOT_TO_SAY_DFAULT);
             while (!reader.EndOfStream)
             {
                 var line = reader.ReadLine();
@@ -54,6 +54,23 @@ namespace DatabaseLookups
             catch (Exception e)
             {
                 Debug.WriteLine("Error: " + e.Message);
+            }
+            finally
+            {
+                Unscape(new List<string[]> {
+                Values.children,
+                Values.eyeColour,
+                Values.hairColour,
+                Values.hereTo,
+                Values.gender,
+                Values.jobTitle,
+                Values.relationship,
+                Values.smoking,
+                Values.preferenceSex,
+                Values.religion,
+                Values.educationLevel,
+                Values.personality,
+                Values.role});
             }
 
         }
@@ -104,6 +121,9 @@ namespace DatabaseLookups
 
             rowsEffected = Insert(Tables.role, ColumnName.role, Values.role, conn);
             Debug.WriteLine($"{Tables.role} | {rowsEffected}");
+
+
+           
         }
         public static int Insert(string tableName, string insertValues, string[] values, SqlConnection sqlConnection)
         {
@@ -188,22 +208,26 @@ namespace DatabaseLookups
         }
         public static class Values
         {
-            public static readonly string PreferNotToSay = "I'd perfer not to say";
+            public static readonly string PREFER_NOT_TO_SAY_DFAULT = "I'd perfer not to say";
+            public static readonly string ABOUT_ME_DEFAULT = "Write something about your self...";
+            public static readonly string HEIGHT_DEFAULT = "163 cm";
+            public static readonly string WEIGHT_DEFAULT = "60 kg";
+            public static readonly int DEFAULT_PHOTO_LIMIT = 6;
 
-            public static readonly string[] children = new string[] { Children.Someday, Children.AlreadyHave, Children.NoNever, Children.GrownUp, PreferNotToSay };
-            public static readonly string[] drinking = new string[] { Drinking.DrinkSocialy, Drinking.Never, Drinking.DrinkOften, Drinking.NoImSober, PreferNotToSay };
-            public static readonly string[] eyeColour = new string[] { EyeColour.Blue, EyeColour.Brown, EyeColour.Green, EyeColour.Hazel, EyeColour.Amber, EyeColour.CosmeticIris, PreferNotToSay };
-            public static readonly string[] hairColour = new string[] { HairColour.Black, HairColour.Brown, HairColour.Blonde, HairColour.Red, HairColour.Dyed, HairColour.Shaved, HairColour.Bald, PreferNotToSay };
-            public static readonly string[] hereTo = new string[] { HereTo.Date, HereTo.Chat, HereTo.Relationship, PreferNotToSay};
+            public static readonly string[] children = new string[] { Children.Someday, Children.AlreadyHave, Children.NoNever, Children.GrownUp, PREFER_NOT_TO_SAY_DFAULT };
+            public static readonly string[] drinking = new string[] { Drinking.DrinkSocialy, Drinking.Never, Drinking.DrinkOften, Drinking.NoImSober, PREFER_NOT_TO_SAY_DFAULT };
+            public static readonly string[] eyeColour = new string[] { EyeColour.Blue, EyeColour.Brown, EyeColour.Green, EyeColour.Hazel, EyeColour.Amber, EyeColour.CosmeticIris, PREFER_NOT_TO_SAY_DFAULT };
+            public static readonly string[] hairColour = new string[] { HairColour.Black, HairColour.Brown, HairColour.Blonde, HairColour.Red, HairColour.Dyed, HairColour.Shaved, HairColour.Bald, PREFER_NOT_TO_SAY_DFAULT };
+            public static readonly string[] hereTo = new string[] { HereTo.Date, HereTo.Chat, HereTo.Relationship};
             public static readonly string[] gender = new string[] { Gender.Female, Gender.Male, Gender.TransWoman, Gender.TransMan };
             public static readonly string[] jobTitle = GetDataFromFile(@"W:\projects\TheOneMaybe\Anthera\DbInitailizer\data\job_titles.csv");//need to add more
-            public static readonly string[] relationship = new string[] { Relationship.ImSingle, Relationship.ItsComplicated, Relationship.ImTaken, PreferNotToSay };
-            public static readonly string[] sexuality = new string[] { Sexuality.ImStraight, Sexuality.ImBisexual, Sexuality.ImGay, Sexuality.AskMe, PreferNotToSay };
-            public static readonly string[] smoking = new string[] { Smoking.IdontSmoke, Smoking.SmokeOccasionally, Smoking.HateSmoking, Smoking.HeavySmoker, PreferNotToSay };
+            public static readonly string[] relationship = new string[] { Relationship.ImSingle, Relationship.ItsComplicated, Relationship.ImTaken, PREFER_NOT_TO_SAY_DFAULT };
+            public static readonly string[] sexuality = new string[] { Sexuality.ImStraight, Sexuality.ImBisexual, Sexuality.ImGay, Sexuality.AskMe, PREFER_NOT_TO_SAY_DFAULT };
+            public static readonly string[] smoking = new string[] { Smoking.IdontSmoke, Smoking.SmokeOccasionally, Smoking.HateSmoking, Smoking.HeavySmoker, PREFER_NOT_TO_SAY_DFAULT };
             public static readonly string[] preferenceSex = new string[] { PreferenceSex.Female, PreferenceSex.Male, PreferenceSex.Both };
             public static readonly string[] religion = GetDataFromFile(@"W:\projects\TheOneMaybe\Anthera\DbInitailizer\data\religions.csv");//need to add more
-            public static readonly string[] educationLevel = new string[] { EducationLevel.HighSchool, EducationLevel.Diploma, EducationLevel.Bachelors, EducationLevel.Masters, EducationLevel.Doctors, PreferNotToSay };
-            public static readonly string[] personality = new string[] { Personality.Extrovert, Personality.Introvert, Personality.SomewhereInBetween, PreferNotToSay };
+            public static readonly string[] educationLevel = new string[] { EducationLevel.HighSchool, EducationLevel.Diploma, EducationLevel.Bachelors, EducationLevel.Masters, EducationLevel.Doctors, PREFER_NOT_TO_SAY_DFAULT };
+            public static readonly string[] personality = new string[] { Personality.Extrovert, Personality.Introvert, Personality.SomewhereInBetween, PREFER_NOT_TO_SAY_DFAULT };
             public static readonly string[] role = new string[] { Role.ANTHER_USER, Role.ANTHERA_ADMIN };
 
             public static class Personality
@@ -314,11 +338,11 @@ namespace DatabaseLookups
 
         
 
-        public static byte GetDefaultValue(string[] array)
+        public static byte DefaultValue(string[] array)
         {
             for (int i = 0; i < array.Length; i++)
             {
-                if (array[i].Equals(Values.PreferNotToSay))
+                if (array[i].Equals(Values.PREFER_NOT_TO_SAY_DFAULT))
                 {
                     return (byte)(i + 1);
                 }
@@ -326,11 +350,22 @@ namespace DatabaseLookups
             return 1;
         }
 
-        public static int StringToByte(string value, string[] array)
+        public static byte ConstantStringToIndexByte(string value, string[] array)
         {
             for (int i = 0; i < array.Length; i++)
             {
-                array[i]=array[i].Replace("''", "'");
+                if (value.ToLower().Equals(array[i].ToLower()))
+                {
+                    return (byte)(i+1);
+                }
+            }
+            return 1;
+        }
+
+        public static int ConstantStringToIndex(string value, string[] array)
+        {
+            for (int i = 0; i < array.Length; i++)
+            {
                 if (value.ToLower().Equals(array[i].ToLower()))
                 {
                     return i + 1;
@@ -339,12 +374,17 @@ namespace DatabaseLookups
             return 1;
         }
 
-        public static string ByteToString(byte value, string[] array)
+        public static string ConstantIndexToString(byte value, string[] array)
         {
-            return array[value];
+            return array[value-1];
         }
 
-        public static string FirstLetterToUpper(string str)
+        public static string ConstantIndexToString(int value, string[] array)
+        {
+            return array[value - 1];
+        }
+
+        private static string FirstLetterToUpper(string str)
         {
             if (str == null)
                 return null;
@@ -355,6 +395,15 @@ namespace DatabaseLookups
             return str.ToUpper();
         }
 
-
+        private static void Unscape(List<string[]> arrays)
+        {
+            foreach (var item in arrays)
+            {
+                for(int i = 0; i < item.Length; i++)
+                {
+                    item[i] = item[i].Replace("''", "'");
+                }
+            }
+        }
     }
 }

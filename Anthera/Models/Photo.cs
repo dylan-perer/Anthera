@@ -19,7 +19,7 @@ namespace Anthera_API.Models
 
         [Key]
         [Column("id")]
-        public int Id { get; set; }
+        public byte Id { get; set; }
         [Required]
         [Column("photo_url", TypeName = "text")]
         public string PhotoUrl { get; set; }

@@ -14,13 +14,10 @@ namespace Anthera_API.Models
     {
         [Key]
         [Column("photo_id")]
-        public int PhotoId { get; set; }
+        public byte PhotoId { get; set; }
         [Key]
         [Column("user_info_id")]
         public int UserInfoId { get; set; }
-        [Key]
-        [Column("user_infouser_id")]
-        public int UserInfouserId { get; set; }
 
         [ForeignKey(nameof(PhotoId))]
         [InverseProperty("Gallery")]

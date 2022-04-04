@@ -21,7 +21,7 @@ namespace Anthera
             Log.Logger = new LoggerConfiguration().ReadFrom.Configuration(configuration).CreateLogger();
 
 
-            DatbaseConstants.Create();
+            DbConstant.Create();
 
             CreateHostBuilder(args).Build().Run();
         }

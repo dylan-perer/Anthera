@@ -18,9 +18,6 @@ namespace Anthera_API.Models
         [Key]
         [Column("user_info_id")]
         public int UserInfoId { get; set; }
-        [Key]
-        [Column("user_infouser_id")]
-        public int UserInfouserId { get; set; }
 
         [ForeignKey(nameof(LanguageId))]
         [InverseProperty("LanguageUserInfo")]

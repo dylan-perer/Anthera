@@ -17,9 +17,9 @@ namespace Anthera_API.Data
             InnerException = ex.InnerException?.Message;
         }
 
-        public string CreateLog(string apiRoute, string httpAction, object input)
+        public string CreateLog(string apiRoute, string actionName,  string httpAction, object input)
         {
-            return $"API_ROUTE:: {apiRoute} | HTTP_ACTION:: {httpAction} | USER_INPUT:: {input} | EXCEPTION:: {Exception} | INNER_EXCEPTION:: {InnerException}";
+            return $"API_ROUTE:: {apiRoute}/{actionName} | HTTP_ACTION:: {httpAction} | USER_INPUT:: {input} | EXCEPTION:: {Exception} | INNER_EXCEPTION:: {InnerException}";
         }
 
         public void SetEndUserError(string endUserErrors)
@@ -30,7 +30,7 @@ namespace Anthera_API.Data
 
         public object ReturnEndUserError()
         {
-            return new {Error = EndUserError};
+            return new {erorrs = EndUserError};
         }
     }
 }

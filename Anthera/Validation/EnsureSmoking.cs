@@ -5,17 +5,17 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Anthera_API.Validation
 {
-    public class EnsureSexPrefernce : ValidationAttribute
+    public class EnsureSmoking : ValidationAttribute
     {
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)
         {
             if (value == null)
             {
-                return new ValidationResult(ApiConstant.Errors.Requests.SexPreferenceRequired);
+                return new ValidationResult(ApiConstant.Errors.Requests.ChildrenIsRequired);
             }
             else if (!IsValid(value))
             {
-                return new ValidationResult(ApiConstant.Errors.Requests.InvalidSexPreference);
+                return new ValidationResult(ApiConstant.Errors.Requests.InvalidChildren);
             }
             return ValidationResult.Success;
         }
@@ -23,14 +23,15 @@ namespace Anthera_API.Validation
         public override bool IsValid(object value)
         {
             string strValue = value as string;
-            foreach (var sexPref in DbConstant.Values.preferenceSex)
+            foreach (var smoking in DbConstant.Values.smoking)
             {
-                if (sexPref.ToLower().Equals(strValue.ToLower()))
+                if (smoking.ToLower().Equals(strValue.ToLower()))
                 {
                     return true;
                 }
             }
             return false;
         }
+
     }
 }

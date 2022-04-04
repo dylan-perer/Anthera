@@ -40,6 +40,8 @@ namespace Anthera_API.Models
         public DateTime CreatedAt { get; set; }
         [Column("is_info_completed")]
         public bool IsInfoCompleted { get; set; }
+        [Column("is_deactivated")]
+        public bool IsDeactivated { get; set; }
         [Column("role_id")]
         public byte RoleId { get; set; }
 

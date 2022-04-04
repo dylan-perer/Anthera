@@ -26,7 +26,6 @@ namespace Anthera_API.Service
             {
                 new Claim("id", user.Id.ToString()),
                 new Claim(ClaimTypes.Email, user.EmailAddress),
-                new Claim(ClaimTypes.Name, user.Name),
                 new Claim(ClaimTypes.Role, roleName),
             };
 

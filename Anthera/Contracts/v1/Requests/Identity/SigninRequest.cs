@@ -1,9 +1,14 @@
-﻿using Anthera_API.Models;
+﻿using Anthera_API.Contracts.v1;
+using Anthera_API.Contracts.v1.Requests;
+using Anthera_API.Models;
+using Anthera_API.Validation;
+using DatabaseLookups;
+using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace Anthera_API.Contracts.v1.Requests
+namespace Anthera_API.Controllers.v1.Requests
 {
-    public class SigninRequest : Request, IUserRequest
+    public class SigninRequest : IUserRequest
     {
         [MaxLength(255)]
         [EmailAddress]
@@ -19,6 +24,11 @@ namespace Anthera_API.Contracts.v1.Requests
             user.EmailAddress = EmailAddress;
             user.Password = Password;
             return user;
+        }
+
+        public override string ToString()
+        {
+            return $"EmailAddress: {EmailAddress}, Password: {Password}";
         }
     }
 }

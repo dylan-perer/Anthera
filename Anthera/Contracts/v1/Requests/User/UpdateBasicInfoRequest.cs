@@ -1,14 +1,14 @@
-﻿using Anthera_API.Data;
-using Anthera_API.misc;
+﻿using Anthera_API.Contracts.v1;
+using Anthera_API.Contracts.v1.Requests;
 using Anthera_API.Models;
 using Anthera_API.Validation;
 using DatabaseLookups;
 using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace Anthera_API.Contracts.v1.Requests
+namespace Anthera_API.Controllers.v1.Requests
 {
-    public class UpdateBasicInfoRequest : Request, IUserRequest
+    public class UpdateBasicInfoRequest : IUserRequest
     {
         [Required]
         public string Name { get; set; }
@@ -20,8 +20,15 @@ namespace Anthera_API.Contracts.v1.Requests
         public User MapToModel(User user)
         {
             user.Name = Name;
-            user.UserInfo.GenderId = (byte)DatbaseConstants.StringToByte(Gender, DatbaseConstants.Values.gender);
+            user.UserInfo.Dob = Dob;
+            user.UserInfo.GenderId = (byte)DbConstant.ConstantStringToIndex(Gender, DbConstant.Values.gender);
             return user;
         }
+
+        public override string ToString()
+        {
+            return $"Name: {Name}, Dob: {Dob}, Gender: {Gender}";
+        }
+
     }
 }

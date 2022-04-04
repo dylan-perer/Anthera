@@ -57,11 +57,11 @@ namespace Anthera_API.Models
         public byte SexualityId { get; set; }
         [Required]
         [Column("height")]
-        [StringLength(40)]
+        [StringLength(10)]
         public string Height { get; set; }
         [Required]
         [Column("weight")]
-        [StringLength(40)]
+        [StringLength(10)]
         public string Weight { get; set; }
         [Column("eye_colour_id")]
         public byte EyeColourId { get; set; }

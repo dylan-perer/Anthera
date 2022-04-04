@@ -3,8 +3,8 @@ using Anthera_API.Models;
 
 namespace Anthera_API.Contracts.v1
 {
-    public interface IUserRequest
+    public interface IUserResponse
     {
-        public User MapToModel(User user);
+        public IUserResponse MapToResponse(User user);
     }
 }

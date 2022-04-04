@@ -2,9 +2,14 @@
 {
     public static class ApiConstant
     {
+        public static string ERROR = "ERROR";
+        public static string DEV_ERROR = "DEV_ERROR";
+
         public static class Errors
         {
-            public const string GenericError = "Sorry, something went wrong. Please try again.";
+            public static object GenericErrorObj = new { errors = "Sorry, something went wrong. Please try again." };
+            public static string GenericError = "Sorry, something went wrong. Please try again.";
+
 
             public static class Requests
             {
@@ -31,6 +36,12 @@
 
                 public const string RefreshTokenIsInvalid = "Refresh token is invalid.";
 
+                public const string InvalidJobTitle = "Job Title to value is invalid.";
+                public const string JobTitleIsRequired = "Job Title to value is required.";
+
+                public const string InvalidChildren = "Children to value is invalid.";
+                public const string ChildrenIsRequired = "Children to value is required.";
+
             }
         }
 
@@ -39,6 +50,7 @@
             public static class User
             {
                 public const string SignedoutSuccessfully = "You are signed out."; 
+                public const int FileSize = 5000001; 
             }
            
         }

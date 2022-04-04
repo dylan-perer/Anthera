@@ -1,8 +1,10 @@
-﻿using Anthera_API.Contracts.v1.Requests;
+﻿using Anthera_API.Contracts.v1;
+using Anthera_API.Contracts.v1.Requests;
 using Anthera_API.Contracts.v1.Responses;
 using Anthera_API.Controllers.v1.Requests;
 using Anthera_API.Controllers.v1.Responses;
 using Anthera_API.Data;
+using Anthera_API.Extension;
 using Anthera_API.misc;
 using Anthera_API.Models;
 using Anthera_API.Models.Enums;
@@ -11,6 +13,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using System;
 using System.Threading.Tasks;
 
 namespace Anthera_API.Controllers.v1
@@ -33,95 +36,90 @@ namespace Anthera_API.Controllers.v1
             //check if password confirmation is valid.
             if (signupRequest.Password != signupRequest.ConfirmPassword)
             {
-                var _er = new ErrorResult
-                {
-                    EndUserError = ApiConstant.Errors.Requests.ConfirmPasswordIsInvalid
-                };
-
-                return BadRequest(_er.ReturnEndUserError());
+                return BadRequest(new { errors = ApiConstant.Errors.Requests.ConfirmPasswordIsInvalid });
             }
 
-            //do signup and generate jwt token and return it with IAuthResponse object.
-            (var er, var populatedAuthRes, var createdUser) = await _identityService.SignupAsync(signupRequest, new AuthResponse());
-            if (er.IsSuccess)
+            try
             {
-                return Ok(new { user = new UserDetailsResponse().MapToResponse(createdUser), token = (AuthResponse)populatedAuthRes });
-            }
+                //do signup and generate jwt token and return it with IAuthResponse object.
+                (var populatedAuthRes, var createdUser) = await _identityService.SignupAsync(signupRequest, new AuthResponse());
+                IUserResponse res = new UserDetailsResponse().MapToResponse(createdUser);
+                return Ok(new { user = (UserDetailsResponse)res, token = (AuthResponse)populatedAuthRes });
 
-            //send client errors if present.
-            if (er.SendClientError)
+            }
+            catch (Exception ex)
             {
-                return BadRequest(er.ReturnEndUserError());
-            }
+                new AntheraException().Error(ex, _logger, ApiRoutes.Identity.ControllerV1, ApiRoutes.Identity.Signup, ApiRoutes.HTTP_ACTIONS.POST, signupRequest,
+                                    out int statusCode,
+                                    out object msg);
 
-            //log error to database.
-            _logger.LogError(er.CreateLog(ApiRoutes.User.ControllerV1, ApiRoutes.HTTP_ACTIONS.POST, signupRequest));
-            return BadRequest(ApiConstant.Errors.GenericError);
+                return StatusCode(statusCode, msg);
+            }
         }
 
         [HttpPost(ApiRoutes.Identity.Signin)]
-        public async Task<IActionResult> SignupAsync([FromBody] SigninRequest signinRequest)
+        public async Task<IActionResult> SigninAsync([FromBody] SigninRequest signinRequest)
         {
-            //check if user exists, if so, generate jwt token and return it with IAuthResponse object.
-            (var er, var populatedAuthRes, var existingUser) = await _identityService.signinAsync(signinRequest, new AuthResponse());
-            if (er.IsSuccess)
+            try
             {
-                return Ok(new { user = new UserDetailsResponse().MapToResponse(existingUser), tokenData = (AuthResponse)populatedAuthRes });
-            }
+                //check if user exists, if so, generate jwt token and return it with IAuthResponse object.
+                (var populatedAuthRes, var existingUser) = await _identityService.signinAsync(signinRequest, new AuthResponse());
 
-            //send client errors if present.
-            else if (er.SendClientError)
+                IUserResponse res = new UserDetailsResponse().MapToResponse(existingUser);
+                return Ok(new { user = (UserDetailsResponse)res, token = (AuthResponse)populatedAuthRes });
+            }
+            catch (Exception ex)
             {
-                return BadRequest(er.ReturnEndUserError());
-            }
+                new AntheraException().Error(ex, _logger, ApiRoutes.Identity.ControllerV1, ApiRoutes.Identity.Signin, ApiRoutes.HTTP_ACTIONS.POST, signinRequest,
+                                    out int statusCode,
+                                    out object msg);
 
-            //log error to database.
-            _logger.LogError(er.CreateLog(ApiRoutes.User.ControllerV1, ApiRoutes.HTTP_ACTIONS.POST, signinRequest));
-            return BadRequest(ApiConstant.Errors.GenericError);
+                return StatusCode(statusCode, msg);
+            }
         }
 
         [Authorize]
         [HttpPost(ApiRoutes.Identity.Signout)]
         public async Task<IActionResult> SignoutAsync([FromBody] SignoutRequest signoutRequest)
         {
-            _identityService.GetLoggedUser(User, out User loggedUser, out RoleEnum role);
-            var er = await _identityService.SignoutAsync(loggedUser, signoutRequest.RefreshToken);
-            if (er.IsSuccess)
+            try
             {
-                return Ok(ApiConstant.Requests.User.SignedoutSuccessfully);
+                _identityService.GetLoggedUser(User, out User loggedUser, out RoleEnum role);
+                await _identityService.SignoutAsync(loggedUser, signoutRequest.RefreshToken);
+                return Ok(new { mesage = ApiConstant.Requests.User.SignedoutSuccessfully });
+            }
+            catch (Exception ex)
+            {
+                new AntheraException().Error(ex, _logger, ApiRoutes.Identity.ControllerV1, ApiRoutes.Identity.Signout, ApiRoutes.HTTP_ACTIONS.POST, signoutRequest,
+                                    out int statusCode,
+                                    out object msg);
+
+                return StatusCode(statusCode, msg);
             }
 
-            //log error to database.
-            _logger.LogError(er.CreateLog(ApiRoutes.User.ControllerV1, ApiRoutes.HTTP_ACTIONS.POST, signoutRequest));
-            return BadRequest(ApiConstant.Errors.GenericError);
         }
 
         [HttpPost(ApiRoutes.Identity.RefreshToken)]
         public async Task<ActionResult> RefreshTokenAsync([FromBody] RefreshTokenRequest refreshTokenRequest)
         {
-            (var er, var res) = await _identityService.ValidateRefreshTokenAsync(refreshTokenRequest.RefreshToken, new AuthResponse());
-
-            //on valid.
-            if (er.IsSuccess)
+            try
             {
+                var res = await _identityService.ValidateRefreshTokenAsync(refreshTokenRequest.RefreshToken, new AuthResponse());
+
+                //send urer new token.
                 return Ok(res);
             }
-            var _er = new ErrorResult
+            catch (Exception ex)
             {
-                EndUserError = ApiConstant.Errors.Requests.RefreshTokenIsInvalid
-            };
-            return BadRequest(_er.ReturnEndUserError());
+                new AntheraException().Error(ex, _logger, ApiRoutes.Identity.ControllerV1, ApiRoutes.Identity.RefreshToken, ApiRoutes.HTTP_ACTIONS.POST, 
+                                    refreshTokenRequest,
+                                    out int statusCode,
+                                    out object msg);
+
+                return StatusCode(statusCode, msg);
+            }
+
         }
 
-
-        [Authorize]
-        [HttpGet]
-        public async Task<IActionResult> bb()
-        {
-            _identityService.GetLoggedUser(User, out User loggedUser, out RoleEnum role);
-
-            var a = new UserDetailsResponse().MapToResponse(loggedUser);
-            return Ok(new { user = a, role = role });
-        }
     }
 }
