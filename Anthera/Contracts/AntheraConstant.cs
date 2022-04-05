@@ -1,9 +1,11 @@
 ﻿namespace Anthera_API.misc
 {
-    public static class ApiConstant
+    public static class AntheraConstant
     {
         public static string ERROR = "ERROR";
         public static string DEV_ERROR = "DEV_ERROR";
+
+        
 
         public static class Errors
         {
@@ -50,19 +52,11 @@
             public static class User
             {
                 public const string SignedoutSuccessfully = "You are signed out."; 
-                public const int FileSize = 5000001; 
+                public const int FileSize = 5000001;
+                public const int InterestMax = 25;
             }
            
         }
 
-        public static class Db
-        {
-            public const string ID_PREFER_NOT_TO_SAY = "I'd prefer not to say";
-            public const string ABOUT_ME_DEFAULT = "Write something about yourself...";
-            public const string HEIGHT_DEFAULT = "163 cm";
-            public const string WEIGHT_DEFAULT = "60 kg";
-            public const int DEFAULT_PHOTO_LIMIT = 6;
-
-        }
     }
 }

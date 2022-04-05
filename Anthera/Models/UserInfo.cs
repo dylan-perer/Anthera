@@ -14,9 +14,9 @@ namespace Anthera_API.Models
     {
         public UserInfo()
         {
-            Gallery = new HashSet<Gallery>();
-            LanguageUserInfo = new HashSet<LanguageUserInfo>();
             UserInfoInterests = new HashSet<UserInfoInterests>();
+            UserInfoLanguage = new HashSet<UserInfoLanguage>();
+            UserInfoPhoto = new HashSet<UserInfoPhoto>();
         }
 
         [Key]
@@ -130,10 +130,10 @@ namespace Anthera_API.Models
         [InverseProperty("UserInfo")]
         public virtual User User { get; set; }
         [InverseProperty("UserInfo")]
-        public virtual ICollection<Gallery> Gallery { get; set; }
-        [InverseProperty("UserInfo")]
-        public virtual ICollection<LanguageUserInfo> LanguageUserInfo { get; set; }
-        [InverseProperty("UserInfo")]
         public virtual ICollection<UserInfoInterests> UserInfoInterests { get; set; }
+        [InverseProperty("UserInfo")]
+        public virtual ICollection<UserInfoLanguage> UserInfoLanguage { get; set; }
+        [InverseProperty("UserInfo")]
+        public virtual ICollection<UserInfoPhoto> UserInfoPhoto { get; set; }
     }
 }

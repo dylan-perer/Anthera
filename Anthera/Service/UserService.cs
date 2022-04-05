@@ -186,7 +186,7 @@ namespace Anthera_API.Service
             user.UserInfo.ChildrenId = DbConstant.DefaultValue(DbConstant.Values.children);
             user.UserInfo.SmokingId = DbConstant.DefaultValue(DbConstant.Values.smoking);
             user.UserInfo.DrinkingId = DbConstant.DefaultValue(DbConstant.Values.drinking);
-            user.UserInfo.PhotoLimit = ApiConstant.Db.DEFAULT_PHOTO_LIMIT;
+            user.UserInfo.PhotoLimit = DbConstant.Values.DEFAULT_PHOTO_LIMIT;
             user.UserInfo.EducationLevelId = DbConstant.DefaultValue(DbConstant.Values.educationLevel);
             user.UserInfo.PersonalityId = DbConstant.DefaultValue(DbConstant.Values.personality);
             user.UserInfo.ReligionId = DbConstant.DefaultValue(DbConstant.Values.religion);
@@ -233,14 +233,14 @@ namespace Anthera_API.Service
             }
         }
 
-        public async Task AddToGallery(User user, string[] urls)
+        public async Task AddPhotosAsync(User user, string[] urls)
         {
             user = GetUserById(user.Id);
             var userInfo = GetUserInfo(user);
 
-            var gallery = await _dataContext.Gallery.Where(r => r.UserInfoId == userInfo.Id).ToListAsync();
+            var userInfoPhotos = await _dataContext.UserInfoPhoto.Where(r => r.UserInfoId == userInfo.Id).ToListAsync();
 
-            if (gallery.Count >= userInfo.PhotoLimit)
+            if (userInfoPhotos.Count >= userInfo.PhotoLimit)
             {
                 throw new AntheraException().Throw("Sorry, you have reached your photo limt. To add more please upgrade subscription.", 402);
             }
@@ -255,8 +255,8 @@ namespace Anthera_API.Service
                     await _dataContext.Photo.AddAsync(photo);
                     await _dataContext.SaveChangesAsync();
 
-                    var galleryItem = new Gallery { UserInfoId = userInfo.Id, PhotoId = photo.Id };
-                    await _dataContext.Gallery.AddAsync(galleryItem);
+                    var userInfoPhoto = new UserInfoPhoto { UserInfoId = userInfo.Id, PhotoId = photo.Id };
+                    await _dataContext.UserInfoPhoto.AddAsync(userInfoPhoto);
                     await _dataContext.SaveChangesAsync();
                 }
 
@@ -268,7 +268,7 @@ namespace Anthera_API.Service
             }
 
         }
-        public async Task<string> RemoveFromGallery(User user, int photoId)
+        public async Task<string> RemovePhotosAsync(User user, int photoId)
         {
             user = GetUserById(user.Id);
             var userInfo = GetUserInfo(user);
@@ -279,19 +279,19 @@ namespace Anthera_API.Service
                 throw new AntheraException().Throw("Photo does not exist.", 400);
             }
 
-            var gallery = await _dataContext.Gallery.Where(r => r.UserInfoId == userInfo.Id).ToListAsync();
-            if (gallery.Count == 0)
+            var userInfoPhotos = await _dataContext.UserInfoPhoto.Where(r => r.UserInfoId == userInfo.Id).ToListAsync();
+            if (userInfoPhotos.Count == 0)
             {
                 throw new AntheraException().Throw("You don't have any photos to delete.", 400);
             }
 
             try
             {
-                foreach (var item in gallery)
+                foreach (var item in userInfoPhotos)
                 {
                     if (item.PhotoId == photoId)
                     {
-                        _dataContext.Gallery.Remove(item);
+                        _dataContext.UserInfoPhoto.Remove(item);
                         _dataContext.Photo.Remove(photo);
                         break;
                     }
@@ -305,13 +305,13 @@ namespace Anthera_API.Service
             }
 
         }
-        public async Task<List<string>> GetUserGalleryAsync(User user)
+        public async Task<List<string>> GetPhotosAsync(User user)
         {
             GetUserById(user.Id);
             var userInfo = GetUserInfo(user);
 
-            var gallery = await _dataContext.Gallery.Where(r => r.UserInfoId == userInfo.Id).ToListAsync();
-            if (gallery.Count == 0)
+            var userInfoPhotos = await _dataContext.UserInfoPhoto.Where(r => r.UserInfoId == userInfo.Id).ToListAsync();
+            if (userInfoPhotos.Count == 0)
             {
                 throw new AntheraException().Throw("You have no photos.");
 
@@ -321,7 +321,7 @@ namespace Anthera_API.Service
             {
                 var list = new List<string>();
 
-                foreach (var x in gallery)
+                foreach (var x in userInfoPhotos)
                 {
                     list.Add(_dataContext.Photo.FirstOrDefault(r => r.Id == x.PhotoId).PhotoUrl);
                 }
@@ -329,9 +329,228 @@ namespace Anthera_API.Service
             }
             catch
             {
-                throw new AntheraException().Throw("Sorry, something went wrong retrieving you photos. Please try again.");
+                throw new AntheraException().Throw("Sorry, something went wrong retrieving your photos. Please try again.");
             }
         }
 
+
+        public async Task AddInterestAsync(User user, string[] interests)
+        {
+            user = GetUserById(user.Id);
+            var userInfo = GetUserInfo(user);
+
+            var userInfoInterests = await _dataContext.UserInfoInterests.Where(r => r.UserInfoId == userInfo.Id).ToListAsync();
+
+            if (userInfoInterests.Count >= DbConstant.Values.INTEREST_LIMIT)
+            {
+                throw new AntheraException().Throw("Sorry, you can only have 25 interest at a time. Please remove some to add more.");
+            }
+
+            try
+            {
+                await _dataContext.Database.BeginTransactionAsync();
+
+                foreach (var interestType in interests)
+                {
+                    var interest = new Interests { InterestType = interestType };
+                    await _dataContext.Interests.AddAsync(interest);
+                    await _dataContext.SaveChangesAsync();
+
+                    var userInfoIntrest = new UserInfoInterests { UserInfoId = userInfo.Id, InterestsId = interest.Id };
+                    await _dataContext.UserInfoInterests.AddAsync(userInfoIntrest);
+                    await _dataContext.SaveChangesAsync();
+                }
+
+                _dataContext.Database.CommitTransaction();
+            }
+            catch
+            {
+                throw new AntheraException().Throw("Sorry, something went wrong adding your interests. Please try again.");
+            }
+
+        }
+        public async Task RemoveInterestAsync(User user, int interestId)
+        {
+            user = GetUserById(user.Id);
+            var userInfo = GetUserInfo(user);
+
+            var interest = _dataContext.Interests.FirstOrDefault(r => r.Id == interestId);
+            if (interest is null)
+            {
+                throw new AntheraException().Throw("Interest does not exist.", 400);
+            }
+
+            var userInfoInterests = await _dataContext.UserInfoInterests.Where(r => r.UserInfoId == userInfo.Id).ToListAsync();
+            if (userInfoInterests.Count == 0)
+            {
+                throw new AntheraException().Throw("You don't have any interests to remove.", 400);
+            }
+
+            try
+            {
+                foreach (var item in userInfoInterests)
+                {
+                    if (item.InterestsId == interestId)
+                    {
+                        _dataContext.UserInfoInterests.Remove(item);
+                        _dataContext.Interests.Remove(interest);
+                        break;
+                    }
+                }
+                await _dataContext.SaveChangesAsync();
+            }
+            catch
+            {
+                throw new AntheraException().Throw("Sorry, something went wrong removing your interest. Please try again.");
+            }
+
+        }
+        public async Task<List<string>> GetInterestsAsync(User user)
+        {
+            GetUserById(user.Id);
+            var userInfo = GetUserInfo(user);
+
+            var userInfoInterests = await _dataContext.UserInfoInterests.Where(r => r.UserInfoId == userInfo.Id).ToListAsync();
+            if (userInfoInterests.Count == 0)
+            {
+                throw new AntheraException().Throw("You have no interests.");
+
+            }
+
+            try
+            {
+                var list = new List<string>();
+
+                foreach (var x in userInfoInterests)
+                {
+                    list.Add(_dataContext.Interests.FirstOrDefault(r => r.Id == x.InterestsId).InterestType);
+                }
+                return list;
+            }
+            catch
+            {
+                throw new AntheraException().Throw("Sorry, something went wrong retrieving your interests. Please try again.");
+            }
+        }
+
+
+        public async Task AddLanguagesAsync(User user, string[] languages)
+        {
+            user = GetUserById(user.Id);
+            var userInfo = GetUserInfo(user);
+
+            var userInfoLanguages = await _dataContext.UserInfoLanguage.Where(r => r.UserInfoId == userInfo.Id).ToListAsync();
+
+            if (userInfoLanguages.Count >= 8)
+            {
+                throw new AntheraException().Throw("Sorry, you can't add any more languages. Please remove some to add more.");
+            }
+
+            try
+            {
+                await _dataContext.Database.BeginTransactionAsync();
+
+                foreach (var languageName in languages)
+                {
+                    var language = new Language { LanguageName = languageName };
+                    await _dataContext.Language.AddAsync(language);
+                    await _dataContext.SaveChangesAsync();
+
+                    var userInfoLanguage = new UserInfoLanguage { UserInfoId = userInfo.Id, LanguageId = language.Id };
+                    await _dataContext.UserInfoLanguage.AddAsync(userInfoLanguage);
+                    await _dataContext.SaveChangesAsync();
+                }
+
+                _dataContext.Database.CommitTransaction();
+            }
+            catch
+            {
+                throw new AntheraException().Throw("Sorry, something went wrong adding your langauge. Please try again.");
+            }
+
+        }
+        public async Task RemoveLanguageAsync(User user, int langaugeNameId)
+        {
+            user = GetUserById(user.Id);
+            var userInfo = GetUserInfo(user);
+
+            var langauge = _dataContext.Language.FirstOrDefault(r => r.Id == langaugeNameId);
+            if (langauge is null)
+            {
+                throw new AntheraException().Throw("Language does not exist.", 400);
+            }
+
+            var userInfoLanguage = await _dataContext.UserInfoLanguage.Where(r => r.UserInfoId == userInfo.Id).ToListAsync();
+            if (userInfoLanguage.Count == 0)
+            {
+                throw new AntheraException().Throw("You don't have any langauges to remove.", 400);
+            }
+
+            try
+            {
+                foreach (var item in userInfoLanguage)
+                {
+                    if (item.LanguageId == langaugeNameId)
+                    {
+                        _dataContext.UserInfoLanguage.Remove(item);
+                        _dataContext.Language.Remove(langauge);
+                        break;
+                    }
+                }
+                await _dataContext.SaveChangesAsync();
+            }
+            catch
+            {
+                throw new AntheraException().Throw("Sorry, something went wrong removing langauge. Please try again.");
+            }
+
+        }
+        public async Task<List<string>> GetLanguagesAsync(User user)
+        {
+            GetUserById(user.Id);
+            var userInfo = GetUserInfo(user);
+
+            var userInfoLanguage = await _dataContext.UserInfoLanguage.Where(r => r.UserInfoId == userInfo.Id).ToListAsync();
+            if (userInfoLanguage.Count == 0)
+            {
+                throw new AntheraException().Throw("You dont have any langauges added.");
+
+            }
+
+            try
+            {
+                var list = new List<string>();
+
+                foreach (var x in userInfoLanguage)
+                {
+                    list.Add(_dataContext.Language.FirstOrDefault(r => r.Id == x.LanguageId).LanguageName);
+                }
+                return list;
+            }
+            catch
+            {
+                throw new AntheraException().Throw("Sorry, something went wrong retrieving your interests. Please try again.");
+            }
+        }
+
+        public async Task DeactivateAccount(User user, bool isToDeactivate)
+        {
+            user = GetUserById(user.Id);
+
+            try
+            {
+                user.IsDeactivated = !user.IsDeactivated;
+                _dataContext.User.Update(user);
+                await _dataContext.SaveChangesAsync();
+            }
+            catch
+            {
+                if (isToDeactivate)
+                    throw new AntheraException().Throw("Sorry, soemthing went wrong deactivating your account.");
+                throw new AntheraException().Throw("Sorry, soemthing went wrong reactivating your account account.");
+            }
+
+
+        }
     }
 }

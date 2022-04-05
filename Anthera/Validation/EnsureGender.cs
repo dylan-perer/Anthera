@@ -10,11 +10,11 @@ namespace Anthera_API.Validation
         {
             if(value == null)
             {
-                return new ValidationResult(ApiConstant.Errors.Requests.GenderIsRequired);
+                return new ValidationResult(AntheraConstant.Errors.Requests.GenderIsRequired);
             }
             else if (!IsValid(value))
             {
-                return new ValidationResult(ApiConstant.Errors.Requests.InvalidGender);
+                return new ValidationResult(AntheraConstant.Errors.Requests.InvalidGender);
             }
             return ValidationResult.Success;
         }

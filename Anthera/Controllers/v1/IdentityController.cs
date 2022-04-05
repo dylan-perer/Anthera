@@ -31,12 +31,12 @@ namespace Anthera_API.Controllers.v1
         }
 
         [HttpPost(ApiRoutes.Identity.Signup)]
-        public async Task<IActionResult> SignupAsync([FromBody] SignupRequest signupRequest)
+        public async Task<IActionResult> SignupAsync2([FromBody] SignupRequest signupRequest)
         {
             //check if password confirmation is valid.
             if (signupRequest.Password != signupRequest.ConfirmPassword)
             {
-                return BadRequest(new { errors = ApiConstant.Errors.Requests.ConfirmPasswordIsInvalid });
+                return BadRequest(new { errors = AntheraConstant.Errors.Requests.ConfirmPasswordIsInvalid });
             }
 
             try
@@ -86,7 +86,7 @@ namespace Anthera_API.Controllers.v1
             {
                 _identityService.GetLoggedUser(User, out User loggedUser, out RoleEnum role);
                 await _identityService.SignoutAsync(loggedUser, signoutRequest.RefreshToken);
-                return Ok(new { mesage = ApiConstant.Requests.User.SignedoutSuccessfully });
+                return Ok(new { mesage = AntheraConstant.Requests.User.SignedoutSuccessfully });
             }
             catch (Exception ex)
             {

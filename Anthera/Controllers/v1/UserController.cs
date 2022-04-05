@@ -329,7 +329,7 @@ namespace Anthera_API.Controllers
 
         [Authorize]
         [HttpPost(ApiRoutes.User.Gallery)]
-        public async Task<IActionResult> UploadToGallery(List<IFormFile> files)
+        public async Task<IActionResult> AddToPhotosAsync(List<IFormFile> files)
         {
             if (files.Count == 0)
             {
@@ -347,7 +347,7 @@ namespace Anthera_API.Controllers
                     var fileName = SaveFileOnServer(file);
                     urls.Add(fileName);
                 }
-                await _userService.AddToGallery(user, urls.ToArray());
+                await _userService.AddPhotosAsync(user, urls.ToArray());
                 return Ok(new { message = "Upload successful." });
             }
             catch (Exception ex)
@@ -363,7 +363,7 @@ namespace Anthera_API.Controllers
 
         [Authorize]
         [HttpPost(ApiRoutes.User.ProfilePicture)]
-        public async Task<IActionResult> UpdateProfilePicture(IFormFile file)
+        public async Task<IActionResult> UpdateProfilePictureAsync(IFormFile file)
         {
             if (file is null)
             {
@@ -394,12 +394,12 @@ namespace Anthera_API.Controllers
         }
         [Authorize]
         [HttpGet(ApiRoutes.User.Gallery)]
-        public async Task<IActionResult> GetPhotos()
+        public async Task<IActionResult> GetPhotosAsync()
         {
             try
             {
                 _identityService.GetLoggedUser(User, out User user, out RoleEnum role);
-                return Ok(await _userService.GetUserGalleryAsync(user));
+                return Ok(await _userService.GetPhotosAsync(user));
 
             }
             catch (Exception ex)
@@ -415,12 +415,136 @@ namespace Anthera_API.Controllers
 
         [Authorize]
         [HttpDelete(ApiRoutes.User.Gallery+"/{photoId}")]
-        public async Task<IActionResult> DeletePhoto([FromRoute]int photoId)
+        public async Task<IActionResult> DeletePhotoAsync([FromRoute]int photoId)
         {
             try
             {
                 _identityService.GetLoggedUser(User, out User user, out RoleEnum role);
-                DeleteFileFromServer(await _userService.RemoveFromGallery(user, photoId));
+                DeleteFileFromServer(await _userService.RemovePhotosAsync(user, photoId));
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                new AntheraException().Error(ex, _logger, ApiRoutes.User.ControllerV1, ApiRoutes.User.AboutMe, ApiRoutes.HTTP_ACTIONS.PUT,
+                    null,
+                    out int statusCode,
+                    out object msg);
+
+                return StatusCode(statusCode, msg);
+            }
+        }
+
+        [Authorize]
+        [HttpPost("interest")]
+        public async Task<IActionResult> AddInterestAsync([FromRoute] string[] interests)
+        {
+            try
+            {
+                _identityService.GetLoggedUser(User, out User user, out RoleEnum role);
+                await _userService.AddInterestAsync(user, interests);
+                return Ok(interests);
+            }
+            catch (Exception ex)
+            {
+                new AntheraException().Error(ex, _logger, ApiRoutes.User.ControllerV1, ApiRoutes.User.AboutMe, ApiRoutes.HTTP_ACTIONS.PUT,
+                    null,
+                    out int statusCode,
+                    out object msg);
+
+                return StatusCode(statusCode, msg);
+            }
+        }
+
+        [Authorize]
+        [HttpGet("interest")]
+        public async Task<IActionResult> GetInterestsAsync()
+        {
+            try
+            {
+                _identityService.GetLoggedUser(User, out User user, out RoleEnum role);
+                return Ok(await _userService.GetInterestsAsync(user));
+            }
+            catch (Exception ex)
+            {
+                new AntheraException().Error(ex, _logger, ApiRoutes.User.ControllerV1, ApiRoutes.User.AboutMe, ApiRoutes.HTTP_ACTIONS.PUT,
+                    null,
+                    out int statusCode,
+                    out object msg);
+
+                return StatusCode(statusCode, msg);
+            }
+        }
+
+        [Authorize]
+        [HttpDelete("interest")]
+        public async Task<IActionResult> RemoveInterest([FromRoute] int interestId)
+        {
+            try
+            {
+                _identityService.GetLoggedUser(User, out User user, out RoleEnum role);
+                await _userService.RemoveInterestAsync(user, interestId);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                new AntheraException().Error(ex, _logger, ApiRoutes.User.ControllerV1, ApiRoutes.User.AboutMe, ApiRoutes.HTTP_ACTIONS.PUT,
+                    null,
+                    out int statusCode,
+                    out object msg);
+
+                return StatusCode(statusCode, msg);
+            }
+        }
+
+        [Authorize]
+        [HttpPost("language")]
+        public async Task<IActionResult> AddLangugeAsync([FromRoute] string[] langauges)
+        {
+            try
+            {
+                _identityService.GetLoggedUser(User, out User user, out RoleEnum role);
+                await _userService.AddLanguagesAsync(user, langauges);
+                return Ok(langauges);
+            }
+            catch (Exception ex)
+            {
+                new AntheraException().Error(ex, _logger, ApiRoutes.User.ControllerV1, ApiRoutes.User.AboutMe, ApiRoutes.HTTP_ACTIONS.PUT,
+                    null,
+                    out int statusCode,
+                    out object msg);
+
+                return StatusCode(statusCode, msg);
+            }
+        }
+
+        [Authorize]
+        [HttpGet("language")]
+        public async Task<IActionResult> GetLangugesAsync()
+        {
+            try
+            {
+                _identityService.GetLoggedUser(User, out User user, out RoleEnum role);
+                return Ok(await _userService.GetLanguagesAsync(user));
+            }
+            catch (Exception ex)
+            {
+                new AntheraException().Error(ex, _logger, ApiRoutes.User.ControllerV1, ApiRoutes.User.AboutMe, ApiRoutes.HTTP_ACTIONS.PUT,
+                    null,
+                    out int statusCode,
+                    out object msg);
+
+                return StatusCode(statusCode, msg);
+            }
+        }
+
+        [Authorize]
+        [HttpDelete("language")]
+        public async Task<IActionResult> RemoveLanguageAsync([FromRoute] int languageNameId)
+        {
+            try
+            {
+                _identityService.GetLoggedUser(User, out User user, out RoleEnum role);
+                await _userService.RemoveLanguageAsync(user, languageNameId);
                 return Ok();
             }
             catch (Exception ex)
@@ -473,5 +597,6 @@ namespace Anthera_API.Controllers
             return fileName;
         }
 
+        
     }
 }

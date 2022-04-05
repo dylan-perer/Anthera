@@ -212,7 +212,9 @@ namespace DatabaseLookups
             public static readonly string ABOUT_ME_DEFAULT = "Write something about your self...";
             public static readonly string HEIGHT_DEFAULT = "163 cm";
             public static readonly string WEIGHT_DEFAULT = "60 kg";
-            public static readonly int DEFAULT_PHOTO_LIMIT = 6;
+            public static readonly byte DEFAULT_PHOTO_LIMIT = 6;
+            public static readonly int INTEREST_LIMIT = 25;
+
 
             public static readonly string[] children = new string[] { Children.Someday, Children.AlreadyHave, Children.NoNever, Children.GrownUp, PREFER_NOT_TO_SAY_DFAULT };
             public static readonly string[] drinking = new string[] { Drinking.DrinkSocialy, Drinking.Never, Drinking.DrinkOften, Drinking.NoImSober, PREFER_NOT_TO_SAY_DFAULT };
@@ -229,6 +231,7 @@ namespace DatabaseLookups
             public static readonly string[] educationLevel = new string[] { EducationLevel.HighSchool, EducationLevel.Diploma, EducationLevel.Bachelors, EducationLevel.Masters, EducationLevel.Doctors, PREFER_NOT_TO_SAY_DFAULT };
             public static readonly string[] personality = new string[] { Personality.Extrovert, Personality.Introvert, Personality.SomewhereInBetween, PREFER_NOT_TO_SAY_DFAULT };
             public static readonly string[] role = new string[] { Role.ANTHER_USER, Role.ANTHERA_ADMIN };
+
 
             public static class Personality
             {

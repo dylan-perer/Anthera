@@ -11,11 +11,11 @@ namespace Anthera_API.Validation
         {
             if (value == null)
             {
-                return new ValidationResult(ApiConstant.Errors.Requests.SexPreferenceRequired);
+                return new ValidationResult(AntheraConstant.Errors.Requests.SexPreferenceRequired);
             }
             else if (!IsValid(value))
             {
-                return new ValidationResult(ApiConstant.Errors.Requests.InvalidSexPreference);
+                return new ValidationResult(AntheraConstant.Errors.Requests.InvalidSexPreference);
             }
             return ValidationResult.Success;
         }

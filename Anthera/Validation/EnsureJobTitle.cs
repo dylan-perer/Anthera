@@ -10,11 +10,11 @@ namespace Anthera_API.Validation
         {
             if(value == null)
             {
-                return new ValidationResult(ApiConstant.Errors.Requests.JobTitleIsRequired);
+                return new ValidationResult(AntheraConstant.Errors.Requests.JobTitleIsRequired);
             }
             else if (!IsValid(value))
             {
-                return new ValidationResult(ApiConstant.Errors.Requests.InvalidJobTitle);
+                return new ValidationResult(AntheraConstant.Errors.Requests.InvalidJobTitle);
             }
             return ValidationResult.Success;
         }

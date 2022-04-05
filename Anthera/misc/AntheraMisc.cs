@@ -23,7 +23,7 @@ namespace Anthera_API.misc
             }
 
             //check for file size.
-            if (file.Length > ApiConstant.Requests.User.FileSize)
+            if (file.Length > AntheraConstant.Requests.User.FileSize)
             {
                 throw new AntheraException().Throw("Sorry, image must be less than 5mb.");
             }

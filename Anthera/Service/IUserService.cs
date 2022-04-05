@@ -18,8 +18,15 @@ namespace Anthera_API.Service
         public Task<User> UpdateUser(IUserRequest userRequest, User loggedUser);
         public User GetProfileDetails(User user);
         public Task UpdateProfilePicture(int id, string url);
-        public Task AddToGallery(User user, string[] urls);
-        public Task<List<string>> GetUserGalleryAsync(User user);
-        public Task<string> RemoveFromGallery(User user, int photoId);
+        public Task AddPhotosAsync(User user, string[] urls);
+        public Task<List<string>> GetPhotosAsync(User user);
+        public Task<string> RemovePhotosAsync(User user, int photoId);
+        public Task AddInterestAsync(User user, string[] interests);
+        public Task RemoveInterestAsync(User user, int interestId);
+        public Task<List<string>> GetInterestsAsync(User user);
+        public Task AddLanguagesAsync(User user, string[] languages);
+        public Task RemoveLanguageAsync(User user, int langaugeNameId);
+        public Task<List<string>> GetLanguagesAsync(User user);
+        public Task DeactivateAccount(User user, bool isToDeactivate);
     }
 }

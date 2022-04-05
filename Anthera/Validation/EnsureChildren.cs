@@ -11,11 +11,11 @@ namespace Anthera_API.Validation
         {
             if (value == null)
             {
-                return new ValidationResult(ApiConstant.Errors.Requests.ChildrenIsRequired);
+                return new ValidationResult(AntheraConstant.Errors.Requests.ChildrenIsRequired);
             }
             else if (!IsValid(value))
             {
-                return new ValidationResult(ApiConstant.Errors.Requests.InvalidChildren);
+                return new ValidationResult(AntheraConstant.Errors.Requests.InvalidChildren);
             }
             return ValidationResult.Success;
         }

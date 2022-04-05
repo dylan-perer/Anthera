@@ -9,8 +9,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Anthera_API.Models
 {
-    [Table("gallery")]
-    public partial class Gallery
+    [Table("user_info_photo")]
+    public partial class UserInfoPhoto
     {
         [Key]
         [Column("photo_id")]
@@ -20,10 +20,10 @@ namespace Anthera_API.Models
         public int UserInfoId { get; set; }
 
         [ForeignKey(nameof(PhotoId))]
-        [InverseProperty("Gallery")]
+        [InverseProperty("UserInfoPhoto")]
         public virtual Photo Photo { get; set; }
         [ForeignKey(nameof(UserInfoId))]
-        [InverseProperty("Gallery")]
+        [InverseProperty("UserInfoPhoto")]
         public virtual UserInfo UserInfo { get; set; }
     }
 }

@@ -9,8 +9,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Anthera_API.Models
 {
-    [Table("language_user_info")]
-    public partial class LanguageUserInfo
+    [Table("user_info_language")]
+    public partial class UserInfoLanguage
     {
         [Key]
         [Column("language_id")]
@@ -20,10 +20,10 @@ namespace Anthera_API.Models
         public int UserInfoId { get; set; }
 
         [ForeignKey(nameof(LanguageId))]
-        [InverseProperty("LanguageUserInfo")]
+        [InverseProperty("UserInfoLanguage")]
         public virtual Language Language { get; set; }
         [ForeignKey(nameof(UserInfoId))]
-        [InverseProperty("LanguageUserInfo")]
+        [InverseProperty("UserInfoLanguage")]
         public virtual UserInfo UserInfo { get; set; }
     }
 }

@@ -14,7 +14,7 @@ namespace Anthera_API.Models
     {
         public Language()
         {
-            LanguageUserInfo = new HashSet<LanguageUserInfo>();
+            UserInfoLanguage = new HashSet<UserInfoLanguage>();
         }
 
         [Key]
@@ -26,6 +26,6 @@ namespace Anthera_API.Models
         public string LanguageName { get; set; }
 
         [InverseProperty("Language")]
-        public virtual ICollection<LanguageUserInfo> LanguageUserInfo { get; set; }
+        public virtual ICollection<UserInfoLanguage> UserInfoLanguage { get; set; }
     }
 }

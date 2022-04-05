@@ -11,7 +11,7 @@ namespace Anthera_API.Validation
         {
             if (value == null)
             {
-                return new ValidationResult(ApiConstant.Errors.Requests.DobIsRequired);
+                return new ValidationResult(AntheraConstant.Errors.Requests.DobIsRequired);
             }
             try
             {
@@ -20,18 +20,18 @@ namespace Anthera_API.Validation
                 var oldestDob = DateTime.Now.AddYears(-99);
                 if(oldestDob > dob)
                 {
-                    return new ValidationResult(ApiConstant.Errors.Requests.InvalidMaxDob);
+                    return new ValidationResult(AntheraConstant.Errors.Requests.InvalidMaxDob);
                 }
                 if (dob <= DateTime.UtcNow.AddYears(-18))
                 {
                     return ValidationResult.Success;
                 }
-                return new ValidationResult(ApiConstant.Errors.Requests.InvalidMinDob);
+                return new ValidationResult(AntheraConstant.Errors.Requests.InvalidMinDob);
 
             }
             catch (FormatException)
             {
-                return new ValidationResult(ApiConstant.Errors.Requests.InvalidDate);
+                return new ValidationResult(AntheraConstant.Errors.Requests.InvalidDate);
             }
         }
 

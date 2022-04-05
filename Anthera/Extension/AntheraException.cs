@@ -39,7 +39,7 @@ namespace Anthera_API.Extension
             }
             if (ex.Data["ERROR"] is null)
             {
-                msg = new { errors = ApiConstant.Errors.GenericError };
+                msg = new { errors = AntheraConstant.Errors.GenericError };
                 return;
             }
             msg = new { errors = ex.Data["ERROR"] as string };

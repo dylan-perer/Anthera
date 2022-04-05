@@ -14,10 +14,10 @@ namespace Anthera_API.Validation
 
             if (value == null)
             {
-                return new ValidationResult(ApiConstant.Errors.Requests.EmailAdressIsRequired);
+                return new ValidationResult(AntheraConstant.Errors.Requests.EmailAdressIsRequired);
             }
             var email = dataContext.User.FirstOrDefault(r => r.EmailAddress == value.ToString());
-            return email == null ? ValidationResult.Success : new ValidationResult(ApiConstant.Errors.Requests.NonUniqueEmailAddress);
+            return email == null ? ValidationResult.Success : new ValidationResult(AntheraConstant.Errors.Requests.NonUniqueEmailAddress);
         }
 
     }

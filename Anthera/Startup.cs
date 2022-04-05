@@ -20,6 +20,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.FileProviders;
 using System.IO;
 using Microsoft.OpenApi.Models;
+using Anthera_API.Websocket.Chat;
 
 namespace Anthera
 {
@@ -63,7 +64,7 @@ namespace Anthera
 
 
 
-
+            //set jwt as default authentication.
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(o =>
             {
                 o.TokenValidationParameters = new TokenValidationParameters()
@@ -95,8 +96,10 @@ namespace Anthera
             services.AddScoped<IPasswordHasher, BCryptPasswordHasher>();
 
 
-
             services.AddControllers();
+
+            //signal r
+            services.AddSignalR();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -128,6 +131,7 @@ namespace Anthera
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapHub<AntheraChat>("/chat");
             });
         }
     }

@@ -14,7 +14,7 @@ namespace Anthera_API.Models
     {
         public Photo()
         {
-            Gallery = new HashSet<Gallery>();
+            UserInfoPhoto = new HashSet<UserInfoPhoto>();
         }
 
         [Key]
@@ -25,6 +25,6 @@ namespace Anthera_API.Models
         public string PhotoUrl { get; set; }
 
         [InverseProperty("Photo")]
-        public virtual ICollection<Gallery> Gallery { get; set; }
+        public virtual ICollection<UserInfoPhoto> UserInfoPhoto { get; set; }
     }
 }
