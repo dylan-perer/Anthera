@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Anthera_API.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20220406080111_dataseed")]
+    [Migration("20220406085243_dataseed")]
     partial class dataseed
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -64,6 +64,11 @@ namespace Anthera_API.Migrations
                         {
                             Id = (byte)4,
                             ChildrenType = "Someday"
+                        },
+                        new
+                        {
+                            Id = (byte)5,
+                            ChildrenType = "I'd perfer not to say"
                         });
                 });
 
@@ -110,6 +115,11 @@ namespace Anthera_API.Migrations
                         {
                             Id = (byte)4,
                             DrinkingType = "No, I'm sober"
+                        },
+                        new
+                        {
+                            Id = (byte)5,
+                            DrinkingType = "I'd perfer not to say"
                         });
                 });
 
@@ -161,6 +171,11 @@ namespace Anthera_API.Migrations
                         {
                             Id = (byte)5,
                             EducationLevelName = "High school"
+                        },
+                        new
+                        {
+                            Id = (byte)6,
+                            EducationLevelName = "I'd perfer not to say"
                         });
                 });
 
@@ -217,6 +232,11 @@ namespace Anthera_API.Migrations
                         {
                             Id = (byte)6,
                             Colour = "Cosmetic Iris"
+                        },
+                        new
+                        {
+                            Id = (byte)7,
+                            Colour = "I'd perfer not to say"
                         });
                 });
 
@@ -324,6 +344,11 @@ namespace Anthera_API.Migrations
                         {
                             Id = (byte)7,
                             Colour = "Bald"
+                        },
+                        new
+                        {
+                            Id = (byte)8,
+                            Colour = "I'd perfer not to say"
                         });
                 });
 
@@ -4810,6 +4835,11 @@ namespace Anthera_API.Migrations
                         {
                             Id = 3,
                             PersonalityName = "Somewhere in between"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            PersonalityName = "I'd perfer not to say"
                         });
                 });
 
@@ -4975,6 +5005,11 @@ namespace Anthera_API.Migrations
                         {
                             Id = (byte)3,
                             RelationshipType = "I'm single"
+                        },
+                        new
+                        {
+                            Id = (byte)4,
+                            RelationshipType = "I'd perfer not to say"
                         });
                 });
 
@@ -7144,6 +7179,11 @@ namespace Anthera_API.Migrations
                         {
                             Id = (byte)4,
                             SmokingType = "I don't smoke"
+                        },
+                        new
+                        {
+                            Id = (byte)5,
+                            SmokingType = "I'd perfer not to say"
                         });
                 });
 

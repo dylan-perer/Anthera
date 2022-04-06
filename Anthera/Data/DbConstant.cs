@@ -140,7 +140,7 @@ namespace Anthera_API.Data
             public static readonly string ANTHER_USER = "ANTHERA_USER";
             public static readonly string ANTHERA_ADMIN = "ANTHERA_ADMIN";
 
-            public static readonly string[] AllRoles = ToArray(typeof(Gender));
+            public static readonly string[] AllRoles = ToArray(typeof(Role));
         }
 
 
@@ -151,19 +151,37 @@ namespace Anthera_API.Data
 
             foreach (FieldInfo fi in fields)
             {
-                list.Add(fi.Name);
+                list.Add(fi.GetValue(null) as string);
             }
 
             return list.ToArray();
         }
 
-        public static int DefaultValue(string[] array)
+        public static int DefaultValueInt(string[] array)
         {
             for (int i = 0; i < array.Length; i++)
             {
-                if (array[i].Equals(Default.PREFER_NOT_TO_SAY_DFAULT))
+                if (array[i] != null)
                 {
-                    return (i + 1);
+                    if (array[i].Equals(Default.PREFER_NOT_TO_SAY_DFAULT))
+                    {
+                        return (i + 1);
+                    }
+                }
+            }
+            return 1;
+        }
+
+        public static byte DefaultValueByte(string[] array)
+        {
+            for (int i = 0; i < array.Length; i++)
+            {
+                if (array[i] != null)
+                {
+                    if (array[i].Equals(Default.PREFER_NOT_TO_SAY_DFAULT))
+                    {
+                        return (byte)(i + 1);
+                    }
                 }
             }
             return 1;
@@ -207,7 +225,7 @@ namespace Anthera_API.Data
         public static class Religion
         {
             public static readonly string[] Religions = new string[] {
-
+                Default.PREFER_NOT_TO_SAY_DFAULT,
                 "Atheist",
                 "Catholic",
                 "Evangelical",
@@ -619,6 +637,7 @@ namespace Anthera_API.Data
         public static class JobTitle
         {
             public static readonly string[] JobTitiles = new string[] {
+                Default.PREFER_NOT_TO_SAY_DFAULT,
                 "Accountant",
                 "Auditor",
                 "Actor",

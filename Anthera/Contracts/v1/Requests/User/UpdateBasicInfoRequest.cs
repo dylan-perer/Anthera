@@ -1,8 +1,9 @@
 ﻿using Anthera_API.Contracts.v1;
 using Anthera_API.Contracts.v1.Requests;
+using Anthera_API.Data;
 using Anthera_API.Models;
 using Anthera_API.Validation;
-using DatabaseLookups;
+
 using System;
 using System.ComponentModel.DataAnnotations;
 
@@ -21,7 +22,7 @@ namespace Anthera_API.Controllers.v1.Requests
         {
             user.Name = Name;
             user.UserInfo.Dob = Dob;
-            user.UserInfo.GenderId = (byte)DbInitializer.StringToInt(Gender, DbInitializer.Values.gender);
+            user.UserInfo.GenderId = (byte)DbConstant.StringToInt(Gender, DbConstant.Gender.AllGenders);
             return user;
         }
 

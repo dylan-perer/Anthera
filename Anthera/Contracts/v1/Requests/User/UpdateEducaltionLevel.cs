@@ -1,6 +1,7 @@
-﻿using Anthera_API.Models;
+﻿using Anthera_API.Data;
+using Anthera_API.Models;
 using Anthera_API.Validation;
-using DatabaseLookups;
+
 using System.ComponentModel.DataAnnotations;
 
 namespace Anthera_API.Contracts.v1.Requests
@@ -13,7 +14,7 @@ namespace Anthera_API.Contracts.v1.Requests
         
         public User MapToModel(User user)
         {
-            user.UserInfo.EducationLevelId = DbInitializer.StringToByte(EducaltionLevel, DbInitializer.Values.educationLevel);
+            user.UserInfo.EducationLevelId = DbConstant.StringToByte(EducaltionLevel, DbConstant.EducationLevel.AllEducationLevels);
             return user;
         }
     }

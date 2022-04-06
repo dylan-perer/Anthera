@@ -37,7 +37,7 @@ namespace Anthera_API.Controllers.v1
             return Ok("FUK U");
         }
         [HttpPost(ApiRoutes.Identity.Signup)]
-        public async Task<IActionResult> SignupAsync2([FromBody] SignupRequest signupRequest)
+        public async Task<IActionResult> SignupAsync([FromBody] SignupRequest signupRequest)
         {
             //check if password confirmation is valid.
             if (signupRequest.Password != signupRequest.ConfirmPassword)

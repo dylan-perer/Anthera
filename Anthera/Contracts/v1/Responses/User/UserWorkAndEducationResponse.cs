@@ -1,5 +1,6 @@
-﻿using Anthera_API.Models;
-using DatabaseLookups;
+﻿using Anthera_API.Data;
+using Anthera_API.Models;
+
 using System;
 
 namespace Anthera_API.Contracts.v1.Responses
@@ -12,7 +13,7 @@ namespace Anthera_API.Contracts.v1.Responses
 
         public IUserResponse MapToResponse(User user)
         {
-            JobTitle = DbInitializer.KeyToValueInt(user.UserInfo.JobTitleId, DbInitializer.Values.jobTitle);
+            JobTitle = DbConstant.KeyToValueInt(user.UserInfo.JobTitleId, DbConstant.JobTitle.JobTitiles);
             CompanyName = user.UserInfo.CompanyName;
             SchoolOrUniversity = user.UserInfo.SchoolUniversity;
             return this;

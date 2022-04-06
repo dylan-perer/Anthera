@@ -21,7 +21,7 @@ using Microsoft.Extensions.FileProviders;
 using System.IO;
 using Microsoft.OpenApi.Models;
 using Anthera_API.Websocket.Chat;
-using DatabaseLookups;
+
 
 namespace Anthera
 {
@@ -106,7 +106,7 @@ namespace Anthera
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-         /*   DbInitializer.Create(env);*/
+         /*   DbConstant.Create(env);*/
 
             if (env.IsDevelopment())
             {

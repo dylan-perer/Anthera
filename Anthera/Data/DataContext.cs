@@ -448,7 +448,7 @@ namespace Anthera_API.Data
             });
 
             OnModelCreatingPartial(modelBuilder);
-            var x = new DbInit();
+            var x = new DbInitializer();
             x.AddData(modelBuilder);
         }
 

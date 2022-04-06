@@ -1,6 +1,7 @@
-﻿using Anthera_API.Models;
+﻿using Anthera_API.Data;
+using Anthera_API.Models;
 using Anthera_API.Validation;
-using DatabaseLookups;
+
 using System.ComponentModel.DataAnnotations;
 
 namespace Anthera_API.Contracts.v1.Requests
@@ -13,7 +14,7 @@ namespace Anthera_API.Contracts.v1.Requests
         
         public User MapToModel(User user)
         {
-            user.UserInfo.SmokingId = DbInitializer.StringToByte(Smoking, DbInitializer.Values.smoking);
+            user.UserInfo.SmokingId = DbConstant.StringToByte(Smoking, DbConstant.Smoking.AllSmokingTypes);
             return user;
         }
     }

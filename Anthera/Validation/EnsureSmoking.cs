@@ -1,6 +1,6 @@
 ﻿using Anthera_API.Data;
 using Anthera_API.misc;
-using DatabaseLookups;
+
 using System.ComponentModel.DataAnnotations;
 
 namespace Anthera_API.Validation
@@ -23,7 +23,7 @@ namespace Anthera_API.Validation
         public override bool IsValid(object value)
         {
             string strValue = value as string;
-            foreach (var smoking in DbInitializer.Values.smoking)
+            foreach (var smoking in DbConstant.Smoking.AllSmokingTypes)
             {
                 if (smoking.ToLower().Equals(strValue.ToLower()))
                 {

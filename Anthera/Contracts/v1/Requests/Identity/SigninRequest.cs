@@ -2,7 +2,7 @@
 using Anthera_API.Contracts.v1.Requests;
 using Anthera_API.Models;
 using Anthera_API.Validation;
-using DatabaseLookups;
+
 using System;
 using System.ComponentModel.DataAnnotations;
 

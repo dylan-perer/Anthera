@@ -1,6 +1,6 @@
 ﻿using Anthera_API.Models;
 using Anthera_API.Validation;
-using DatabaseLookups;
+
 using System.ComponentModel.DataAnnotations;
 
 namespace Anthera_API.Contracts.v1.Requests

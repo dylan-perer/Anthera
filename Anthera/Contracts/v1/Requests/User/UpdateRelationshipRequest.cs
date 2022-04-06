@@ -1,6 +1,7 @@
-﻿using Anthera_API.Models;
+﻿using Anthera_API.Data;
+using Anthera_API.Models;
 using Anthera_API.Validation;
-using DatabaseLookups;
+
 using System.ComponentModel.DataAnnotations;
 
 namespace Anthera_API.Contracts.v1.Requests
@@ -13,7 +14,7 @@ namespace Anthera_API.Contracts.v1.Requests
         
         public User MapToModel(User user)
         {
-            user.UserInfo.RelationshipId = DbInitializer.StringToByte(Relationship, DbInitializer.Values.relationship);
+            user.UserInfo.RelationshipId = DbConstant.StringToByte(Relationship, DbConstant.Relationship.AllRelationshipTypes);
             return user;
         }
     }

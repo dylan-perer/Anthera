@@ -5,7 +5,7 @@ using Anthera_API.Extension;
 using Anthera_API.misc;
 using Anthera_API.Models;
 using Anthera_API.Models.Enums;
-using DatabaseLookups;
+
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
@@ -137,9 +137,9 @@ namespace Anthera_API.Service
 
                 //map role
                 var _roleName = claimsPrincipal.FindFirstValue(ClaimTypes.Role);
-                user.RoleId = DbInitializer.StringToByte(_roleName, DbInitializer.Values.role);
+                user.RoleId = DbConstant.StringToByte(_roleName, DbConstant.Role.AllRoles);
 
-                if (_roleName.Equals(DbInitializer.Values.Role.ANTHER_USER))
+                if (_roleName.Equals(DbConstant.Role.ANTHER_USER))
                 {
                     role = RoleEnum.ANTHERA_ADMIN;
                     return;

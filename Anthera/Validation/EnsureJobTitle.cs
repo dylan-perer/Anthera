@@ -1,5 +1,6 @@
-﻿using Anthera_API.misc;
-using DatabaseLookups;
+﻿using Anthera_API.Data;
+using Anthera_API.misc;
+
 using System.ComponentModel.DataAnnotations;
 
 namespace Anthera_API.Validation
@@ -22,7 +23,7 @@ namespace Anthera_API.Validation
         public override bool IsValid(object value)
         {
             string strValue = value as string;
-            foreach (var jobTitle in DbInitializer.Values.jobTitle)
+            foreach (var jobTitle in DbConstant.JobTitle.JobTitiles)
             {
                 if (jobTitle.ToLower().Equals(strValue.ToLower()))
                 {

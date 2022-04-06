@@ -1,8 +1,9 @@
 ﻿using Anthera_API.Contracts.v1;
 using Anthera_API.Contracts.v1.Requests;
+using Anthera_API.Data;
 using Anthera_API.Models;
 using Anthera_API.Validation;
-using DatabaseLookups;
+
 using System;
 using System.ComponentModel.DataAnnotations;
 
@@ -44,15 +45,15 @@ namespace Anthera_API.Controllers.v1.Requests
 
         public User MapToModel(User user)
         {
-            var genderId = (byte)DbInitializer.StringToInt(Gender, DbInitializer.Values.gender);
+            var genderId = (byte)DbConstant.StringToInt(Gender, DbConstant.Gender.AllGenders);
 
-            var sexPreferenceId = (byte)DbInitializer.StringToInt(SexPreference, DbInitializer.Values.preferenceSex);
+            var sexPreferenceId = (byte)DbConstant.StringToInt(SexPreference, DbConstant.PreferenceSex.AllPreferenceSexes);
             var preference = new Preference
             {
                 PreferenceSexId = sexPreferenceId,
             };
 
-            var hereToId = (byte)DbInitializer.StringToInt(HereTo, DbInitializer.Values.hereTo);
+            var hereToId = (byte)DbConstant.StringToInt(HereTo, DbConstant.HereTo.AllHereTotypes);
 
             var userInfo = new UserInfo();
 

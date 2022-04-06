@@ -1,5 +1,6 @@
-﻿using Anthera_API.Models;
-using DatabaseLookups;
+﻿using Anthera_API.Data;
+using Anthera_API.Models;
+
 using System;
 
 namespace Anthera_API.Contracts.v1.Responses
@@ -15,7 +16,7 @@ namespace Anthera_API.Contracts.v1.Responses
         {
             Name = user.Name;
             Dob = user.UserInfo.Dob;
-            Gender = DbInitializer.KeyToValueByte(user.UserInfo.GenderId, DbInitializer.Values.gender); 
+            Gender = DbConstant.KeyToValueByte(user.UserInfo.GenderId, DbConstant.Gender.AllGenders); 
             City = user.UserInfo.City;
             return this;
         }

@@ -1,6 +1,6 @@
 ﻿using Anthera_API.Data;
 using Anthera_API.misc;
-using DatabaseLookups;
+
 using System.ComponentModel.DataAnnotations;
 
 namespace Anthera_API.Validation
@@ -23,7 +23,7 @@ namespace Anthera_API.Validation
         public override bool IsValid(object value)
         {
             string strValue = value as string;
-            foreach (var children in DbInitializer.Values.children)
+            foreach (var children in DbConstant.Children.AllChildrenTypes)
             {
                 if (children.ToLower().Equals(strValue.ToLower()))
                 {
