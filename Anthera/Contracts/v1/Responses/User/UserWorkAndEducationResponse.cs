@@ -12,7 +12,7 @@ namespace Anthera_API.Contracts.v1.Responses
 
         public IUserResponse MapToResponse(User user)
         {
-            JobTitle = DbInitializer.ConstantIndexToString(user.UserInfo.JobTitleId, DbInitializer.Values.jobTitle);
+            JobTitle = DbInitializer.KeyToValueInt(user.UserInfo.JobTitleId, DbInitializer.Values.jobTitle);
             CompanyName = user.UserInfo.CompanyName;
             SchoolOrUniversity = user.UserInfo.SchoolUniversity;
             return this;

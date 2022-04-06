@@ -8,11 +8,21 @@ namespace Anthera_API.Data
 {
     public static class DbConstant
     {
+        public static class Default
+        {
+            public static readonly string PREFER_NOT_TO_SAY_DFAULT = "I'd perfer not to say";
+            public static readonly string ABOUT_ME_DEFAULT = "Write something about your self...";
+            public static readonly string HEIGHT_DEFAULT = "163 cm";
+            public static readonly string WEIGHT_DEFAULT = "60 kg";
+            public static readonly byte DEFAULT_PHOTO_LIMIT = 6;
+            public static readonly int INTEREST_LIMIT = 25;
+        }
         public static class Personality
         {
             public static readonly string Extrovert = "Extrovert";
             public static readonly string Introvert = "Introvert";
             public static readonly string SomewhereInBetween = "Somewhere in between";
+            public static readonly string PreferNotToSay = Default.PREFER_NOT_TO_SAY_DFAULT;
 
             public static readonly string[] AllPersonalities = ToArray(typeof(Personality));
         }
@@ -23,6 +33,7 @@ namespace Anthera_API.Data
             public static readonly string Bachelors = "Bachelors";
             public static readonly string Diploma = "Diploma";
             public static readonly string HighSchool = "High school";
+            public static readonly string PreferNotToSay = Default.PREFER_NOT_TO_SAY_DFAULT;
 
             public static readonly string[] AllEducationLevels = ToArray(typeof(EducationLevel));
         }
@@ -40,6 +51,7 @@ namespace Anthera_API.Data
             public static readonly string HateSmoking = "I hate smoking";
             public static readonly string SmokeOccasionally = "I smoke occasionally";
             public static readonly string IdontSmoke = "I don't smoke";
+            public static readonly string PreferNotToSay = Default.PREFER_NOT_TO_SAY_DFAULT;
 
             public static readonly string[] AllSmokingTypes = ToArray(typeof(Smoking));
         }
@@ -57,6 +69,7 @@ namespace Anthera_API.Data
             public static readonly string ImTaken = "I'm taken";
             public static readonly string ItsComplicated = "It's complicated";
             public static readonly string ImSingle = "I'm single";
+            public static readonly string PreferNotToSay = Default.PREFER_NOT_TO_SAY_DFAULT;
 
             public static readonly string[] AllRelationshipTypes = ToArray(typeof(Relationship));
         }
@@ -66,6 +79,7 @@ namespace Anthera_API.Data
             public static readonly string AlreadyHave = "Already have";
             public static readonly string NoNever = "No, never";
             public static readonly string Someday = "Someday";
+            public static readonly string PreferNotToSay = Default.PREFER_NOT_TO_SAY_DFAULT;
 
             public static readonly string[] AllChildrenTypes = ToArray(typeof(Children));
         }
@@ -75,6 +89,7 @@ namespace Anthera_API.Data
             public static readonly string Never = "Never";
             public static readonly string DrinkOften = "I drink often";
             public static readonly string NoImSober = "No, I'm sober";
+            public static readonly string PreferNotToSay = Default.PREFER_NOT_TO_SAY_DFAULT;
 
             public static readonly string[] AllDrinkingTypes = ToArray(typeof(Drinking));
         }
@@ -86,6 +101,7 @@ namespace Anthera_API.Data
             public static readonly string Hazel = "Hazel";
             public static readonly string Amber = "Amber";
             public static readonly string CosmeticIris = "Cosmetic Iris";
+            public static readonly string PreferNotToSay = Default.PREFER_NOT_TO_SAY_DFAULT;
 
             public static readonly string[] AllEyeColours = ToArray(typeof(EyeColour));
         }
@@ -98,6 +114,7 @@ namespace Anthera_API.Data
             public static readonly string Dyed = "Dyed";
             public static readonly string Shaved = "Shaved";
             public static readonly string Bald = "Bald";
+            public static readonly string PreferNotToSay = Default.PREFER_NOT_TO_SAY_DFAULT;
 
             public static readonly string[] AllHairColours = ToArray(typeof(EyeColour));
         }
@@ -140,6 +157,51 @@ namespace Anthera_API.Data
             return list.ToArray();
         }
 
+        public static int DefaultValue(string[] array)
+        {
+            for (int i = 0; i < array.Length; i++)
+            {
+                if (array[i].Equals(Default.PREFER_NOT_TO_SAY_DFAULT))
+                {
+                    return (i + 1);
+                }
+            }
+            return 1;
+        }
+
+        public static byte StringToByte(string value, string[] array)
+        {
+            for (int i = 0; i < array.Length; i++)
+            {
+                if (value.ToLower().Equals(array[i].ToLower()))
+                {
+                    return (byte)(i + 1);
+                }
+            }
+            return 1;
+        }
+
+        public static int StringToInt(string value, string[] array)
+        {
+            for (int i = 0; i < array.Length; i++)
+            {
+                if (value.ToLower().Equals(array[i].ToLower()))
+                {
+                    return i + 1;
+                }
+            }
+            return 1;
+        }
+
+        public static string KeyToValueByte(byte value, string[] array)
+        {
+            return array[value - 1];
+        }
+
+        public static string KeyToValueInt(int value, string[] array)
+        {
+            return array[value - 1];
+        }
 
 
         public static class Religion

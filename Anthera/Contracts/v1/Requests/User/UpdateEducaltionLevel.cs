@@ -13,7 +13,7 @@ namespace Anthera_API.Contracts.v1.Requests
         
         public User MapToModel(User user)
         {
-            user.UserInfo.EducationLevelId = DbInitializer.ConstantStringToIndexByte(EducaltionLevel, DbInitializer.Values.educationLevel);
+            user.UserInfo.EducationLevelId = DbInitializer.StringToByte(EducaltionLevel, DbInitializer.Values.educationLevel);
             return user;
         }
     }

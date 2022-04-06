@@ -137,7 +137,7 @@ namespace Anthera_API.Service
 
                 //map role
                 var _roleName = claimsPrincipal.FindFirstValue(ClaimTypes.Role);
-                user.RoleId = DbInitializer.ConstantStringToIndexByte(_roleName, DbInitializer.Values.role);
+                user.RoleId = DbInitializer.StringToByte(_roleName, DbInitializer.Values.role);
 
                 if (_roleName.Equals(DbInitializer.Values.Role.ANTHER_USER))
                 {

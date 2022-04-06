@@ -342,19 +342,19 @@ namespace DatabaseLookups
 
         
 
-        public static byte DefaultValue(string[] array)
+        public static int DefaultValue(string[] array)
         {
             for (int i = 0; i < array.Length; i++)
             {
                 if (array[i].Equals(Values.PREFER_NOT_TO_SAY_DFAULT))
                 {
-                    return (byte)(i + 1);
+                    return (i + 1);
                 }
             }
             return 1;
         }
 
-        public static byte ConstantStringToIndexByte(string value, string[] array)
+        public static byte StringToByte(string value, string[] array)
         {
             for (int i = 0; i < array.Length; i++)
             {
@@ -366,7 +366,7 @@ namespace DatabaseLookups
             return 1;
         }
 
-        public static int ConstantStringToIndex(string value, string[] array)
+        public static int StringToInt(string value, string[] array)
         {
             for (int i = 0; i < array.Length; i++)
             {
@@ -378,12 +378,12 @@ namespace DatabaseLookups
             return 1;
         }
 
-        public static string ConstantIndexToString(byte value, string[] array)
+        public static string KeyToValueByte(byte value, string[] array)
         {
             return array[value-1];
         }
 
-        public static string ConstantIndexToString(int value, string[] array)
+        public static string KeyToValueInt(int value, string[] array)
         {
             return array[value - 1];
         }

@@ -13,7 +13,7 @@ namespace Anthera_API.Contracts.v1.Requests
         
         public User MapToModel(User user)
         {
-            user.UserInfo.HereToId = DbInitializer.ConstantStringToIndexByte(HereTo, DbInitializer.Values.hereTo);
+            user.UserInfo.HereToId = DbInitializer.StringToByte(HereTo, DbInitializer.Values.hereTo);
             return user;
         }
     }

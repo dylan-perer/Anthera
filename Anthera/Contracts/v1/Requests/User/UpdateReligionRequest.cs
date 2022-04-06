@@ -13,7 +13,7 @@ namespace Anthera_API.Contracts.v1.Requests
         
         public User MapToModel(User user)
         {
-            user.UserInfo.ReligionId = DbInitializer.ConstantStringToIndexByte(Religion, DbInitializer.Values.religion);
+            user.UserInfo.ReligionId = DbInitializer.StringToByte(Religion, DbInitializer.Values.religion);
             return user;
         }
     }

@@ -19,7 +19,7 @@ namespace Anthera_API.Controllers.v1.Requests
 
         public User MapToModel(User user)
         {
-            user.UserInfo.JobTitleId = DbInitializer.ConstantStringToIndex(JobTitle, DbInitializer.Values.jobTitle);
+            user.UserInfo.JobTitleId = DbInitializer.StringToInt(JobTitle, DbInitializer.Values.jobTitle);
             user.UserInfo.CompanyName = CompanyName;
             user.UserInfo.SchoolUniversity = SchoolOrUniversity;
 
