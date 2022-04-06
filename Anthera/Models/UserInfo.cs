@@ -14,7 +14,7 @@ namespace Anthera_API.Models
     {
         public UserInfo()
         {
-            UserInfoInterests = new HashSet<UserInfoInterests>();
+            UserInfoInterest = new HashSet<UserInfoInterest>();
             UserInfoLanguage = new HashSet<UserInfoLanguage>();
             UserInfoPhoto = new HashSet<UserInfoPhoto>();
         }
@@ -57,11 +57,11 @@ namespace Anthera_API.Models
         public byte SexualityId { get; set; }
         [Required]
         [Column("height")]
-        [StringLength(10)]
+        [StringLength(40)]
         public string Height { get; set; }
         [Required]
         [Column("weight")]
-        [StringLength(10)]
+        [StringLength(40)]
         public string Weight { get; set; }
         [Column("eye_colour_id")]
         public byte EyeColourId { get; set; }
@@ -130,7 +130,7 @@ namespace Anthera_API.Models
         [InverseProperty("UserInfo")]
         public virtual User User { get; set; }
         [InverseProperty("UserInfo")]
-        public virtual ICollection<UserInfoInterests> UserInfoInterests { get; set; }
+        public virtual ICollection<UserInfoInterest> UserInfoInterest { get; set; }
         [InverseProperty("UserInfo")]
         public virtual ICollection<UserInfoLanguage> UserInfoLanguage { get; set; }
         [InverseProperty("UserInfo")]

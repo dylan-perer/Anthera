@@ -9,8 +9,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Anthera_API.Models
 {
-    [Table("user_info_interests")]
-    public partial class UserInfoInterests
+    [Table("user_info_interest")]
+    public partial class UserInfoInterest
     {
         [Key]
         [Column("user_info_id")]
@@ -18,12 +18,15 @@ namespace Anthera_API.Models
         [Key]
         [Column("interests_id")]
         public int InterestsId { get; set; }
+        [Key]
+        [Column("user_infouser_id")]
+        public int UserInfouserId { get; set; }
 
         [ForeignKey(nameof(InterestsId))]
-        [InverseProperty("UserInfoInterests")]
+        [InverseProperty("UserInfoInterest")]
         public virtual Interests Interests { get; set; }
         [ForeignKey(nameof(UserInfoId))]
-        [InverseProperty("UserInfoInterests")]
+        [InverseProperty("UserInfoInterest")]
         public virtual UserInfo UserInfo { get; set; }
     }
 }

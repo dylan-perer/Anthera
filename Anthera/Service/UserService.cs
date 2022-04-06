@@ -339,7 +339,7 @@ namespace Anthera_API.Service
             user = GetUserById(user.Id);
             var userInfo = GetUserInfo(user);
 
-            var userInfoInterests = await _dataContext.UserInfoInterests.Where(r => r.UserInfoId == userInfo.Id).ToListAsync();
+            var userInfoInterests = await _dataContext.UserInfoInterest.Where(r => r.UserInfoId == userInfo.Id).ToListAsync();
 
             if (userInfoInterests.Count >= DbInitializer.Values.INTEREST_LIMIT)
             {
@@ -356,8 +356,8 @@ namespace Anthera_API.Service
                     await _dataContext.Interests.AddAsync(interest);
                     await _dataContext.SaveChangesAsync();
 
-                    var userInfoIntrest = new UserInfoInterests { UserInfoId = userInfo.Id, InterestsId = interest.Id };
-                    await _dataContext.UserInfoInterests.AddAsync(userInfoIntrest);
+                    var userInfoIntrest = new UserInfoInterest { UserInfoId = userInfo.Id, InterestsId = interest.Id };
+                    await _dataContext.UserInfoInterest.AddAsync(userInfoIntrest);
                     await _dataContext.SaveChangesAsync();
                 }
 
@@ -380,7 +380,7 @@ namespace Anthera_API.Service
                 throw new AntheraException().Throw("Interest does not exist.", 400);
             }
 
-            var userInfoInterests = await _dataContext.UserInfoInterests.Where(r => r.UserInfoId == userInfo.Id).ToListAsync();
+            var userInfoInterests = await _dataContext.UserInfoInterest.Where(r => r.UserInfoId == userInfo.Id).ToListAsync();
             if (userInfoInterests.Count == 0)
             {
                 throw new AntheraException().Throw("You don't have any interests to remove.", 400);
@@ -392,7 +392,7 @@ namespace Anthera_API.Service
                 {
                     if (item.InterestsId == interestId)
                     {
-                        _dataContext.UserInfoInterests.Remove(item);
+                        _dataContext.UserInfoInterest.Remove(item);
                         _dataContext.Interests.Remove(interest);
                         break;
                     }
@@ -410,7 +410,7 @@ namespace Anthera_API.Service
             GetUserById(user.Id);
             var userInfo = GetUserInfo(user);
 
-            var userInfoInterests = await _dataContext.UserInfoInterests.Where(r => r.UserInfoId == userInfo.Id).ToListAsync();
+            var userInfoInterests = await _dataContext.UserInfoInterest.Where(r => r.UserInfoId == userInfo.Id).ToListAsync();
             if (userInfoInterests.Count == 0)
             {
                 throw new AntheraException().Throw("You have no interests.");

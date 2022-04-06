@@ -19,12 +19,12 @@ namespace Anthera_API.Models
         [Column("refresh_token_value")]
         [StringLength(255)]
         public string RefreshTokenValue { get; set; }
-        [Column("user_id")]
-        public int UserId { get; set; }
         [Column("is_invalidated")]
         public bool IsInvalidated { get; set; }
         [Column("issued_at", TypeName = "datetime")]
         public DateTime IssuedAt { get; set; }
+        [Column("user_id")]
+        public int UserId { get; set; }
 
         [ForeignKey(nameof(UserId))]
         [InverseProperty("RefreshToken")]

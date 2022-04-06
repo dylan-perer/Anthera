@@ -14,7 +14,7 @@ namespace Anthera_API.Models
     {
         public Interests()
         {
-            UserInfoInterests = new HashSet<UserInfoInterests>();
+            UserInfoInterest = new HashSet<UserInfoInterest>();
         }
 
         [Key]
@@ -26,6 +26,6 @@ namespace Anthera_API.Models
         public string InterestType { get; set; }
 
         [InverseProperty("Interests")]
-        public virtual ICollection<UserInfoInterests> UserInfoInterests { get; set; }
+        public virtual ICollection<UserInfoInterest> UserInfoInterest { get; set; }
     }
 }
