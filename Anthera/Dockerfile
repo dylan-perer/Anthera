@@ -1,22 +1,22 @@
 #See https://aka.ms/containerfastmode to understand how Visual Studio uses this Dockerfile to build your images for faster debugging.
 
 #Get sdk image from mircosoft
-FROM mcr.microsoft.com/dotnet/sdk:3.1 AS build-env
-WORKDIR /src
-
-#Copy project and restore dependecies.
-COPY *.csproj ./
-RUN dotnet restore
-
-#Copy the project files and build our container
-COPY ../
-RUN dotnet publish -c Realease -o out
-
-
-#Generate runtime image
-FROM mcr.microsoft.com/dotnet/aspnet:3.1
-WORKDIR /src
+FROM mcr.microsoft.com/dotnet/core/aspnet:3.1 AS base
+WORKDIR /app
 EXPOSE 80
-COPY --from=publish /app/out .
-ENTRYPOINT ["dotnet", "Anthera.dll"]
+
+FROM mcr.microsoft.com/dotnet/core/sdk:3.1 AS build
+WORKDIR /src
+COPY ["Anthera_API.csproj", "./"]
+RUN dotnet restore "./Anthera_API.csproj"
+COPY . .
+RUN dotnet build "Anthera_API.csproj" -c Release -o /app
+
+FROM build AS publish
+RUN dotnet publish "Anthera_API.csproj" -c Release -o /app
+
+FROM base AS final
+WORKDIR /app
+COPY --from=publish /app .
+ENTRYPOINT ["dotnet", "Anthera_API.dll"]
 

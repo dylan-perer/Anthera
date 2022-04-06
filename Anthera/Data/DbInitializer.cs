@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Hosting;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Diagnostics;
@@ -9,9 +10,13 @@ namespace DatabaseLookups
 {
     public static class DbInitializer
     {
-        private static string[] GetDataFromFile(string path)
+        private static IWebHostEnvironment _env;
+        private static string[] GetDataFromFile(string fileName)
         {
-            var reader = new StreamReader(path);
+            string directoryPath = Path.Combine(_env.ContentRootPath, @"data/csv");
+
+            var filePath = Path.Combine(directoryPath, fileName);
+            var reader = new StreamReader(filePath);
 
             List<string> listA = new List<string>();
             listA.Add(Values.PREFER_NOT_TO_SAY_DFAULT);
@@ -26,8 +31,9 @@ namespace DatabaseLookups
 
             return listA.ToArray();
         }
-        public static void Create()
+        public static void Create(IWebHostEnvironment env)
         {
+            _env = env;
             Debug.WriteLine("Getting Connection ...");
 
             //your connection string 
@@ -217,12 +223,12 @@ namespace DatabaseLookups
             public static readonly string[] hairColour = new string[] { HairColour.Black, HairColour.Brown, HairColour.Blonde, HairColour.Red, HairColour.Dyed, HairColour.Shaved, HairColour.Bald, PREFER_NOT_TO_SAY_DFAULT };
             public static readonly string[] hereTo = new string[] { HereTo.Date, HereTo.Chat, HereTo.Relationship};
             public static readonly string[] gender = new string[] { Gender.Female, Gender.Male, Gender.TransWoman, Gender.TransMan };
-            public static readonly string[] jobTitle = GetDataFromFile(@"W:\projects\TheOneMaybe\Anthera\DbInitailizer\data\job_titles.csv");//need to add more
+            public static readonly string[] jobTitle = GetDataFromFile("job_titles.csv");//need to add more
             public static readonly string[] relationship = new string[] { Relationship.ImSingle, Relationship.ItsComplicated, Relationship.ImTaken, PREFER_NOT_TO_SAY_DFAULT };
             public static readonly string[] sexuality = new string[] { Sexuality.ImStraight, Sexuality.ImBisexual, Sexuality.ImGay, Sexuality.AskMe, PREFER_NOT_TO_SAY_DFAULT };
             public static readonly string[] smoking = new string[] { Smoking.IdontSmoke, Smoking.SmokeOccasionally, Smoking.HateSmoking, Smoking.HeavySmoker, PREFER_NOT_TO_SAY_DFAULT };
             public static readonly string[] preferenceSex = new string[] { PreferenceSex.Female, PreferenceSex.Male, PreferenceSex.Both };
-            public static readonly string[] religion = GetDataFromFile(@"W:\projects\TheOneMaybe\Anthera\DbInitailizer\data\religions.csv");//need to add more
+            public static readonly string[] religion = GetDataFromFile("religions.csv");//need to add more
             public static readonly string[] educationLevel = new string[] { EducationLevel.HighSchool, EducationLevel.Diploma, EducationLevel.Bachelors, EducationLevel.Masters, EducationLevel.Doctors, PREFER_NOT_TO_SAY_DFAULT };
             public static readonly string[] personality = new string[] { Personality.Extrovert, Personality.Introvert, Personality.SomewhereInBetween, PREFER_NOT_TO_SAY_DFAULT };
             public static readonly string[] role = new string[] { Role.ANTHER_USER, Role.ANTHERA_ADMIN };

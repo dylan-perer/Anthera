@@ -30,6 +30,12 @@ namespace Anthera_API.Controllers.v1
             _identityService = identityService;
         }
 
+
+        [HttpGet("ASS")]
+        public  IActionResult fuck()
+        {
+            return Ok("FUK U");
+        }
         [HttpPost(ApiRoutes.Identity.Signup)]
         public async Task<IActionResult> SignupAsync2([FromBody] SignupRequest signupRequest)
         {
