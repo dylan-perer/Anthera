@@ -22,7 +22,7 @@ namespace Anthera_API.Validation
         public override bool IsValid(object value)
         {
             string strValue = value as string;
-            foreach (var jobTitle in DbConstant.Values.jobTitle)
+            foreach (var jobTitle in DbInitializer.Values.jobTitle)
             {
                 if (jobTitle.ToLower().Equals(strValue.ToLower()))
                 {

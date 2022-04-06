@@ -21,7 +21,7 @@ namespace Anthera_API.Controllers.v1.Requests
         {
             user.Name = Name;
             user.UserInfo.Dob = Dob;
-            user.UserInfo.GenderId = (byte)DbConstant.ConstantStringToIndex(Gender, DbConstant.Values.gender);
+            user.UserInfo.GenderId = (byte)DbInitializer.ConstantStringToIndex(Gender, DbInitializer.Values.gender);
             return user;
         }
 

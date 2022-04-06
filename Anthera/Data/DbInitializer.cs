@@ -9,11 +9,6 @@ namespace DatabaseLookups
 {
     public static class DbInitializer
     {
-        public static void Main(string[] args)
-        {
-        }
-
-
         private static string[] GetDataFromFile(string path)
         {
             var reader = new StreamReader(path);

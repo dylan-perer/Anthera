@@ -15,7 +15,7 @@ namespace Anthera_API.Contracts.v1.Responses
         {
             Name = user.Name;
             Dob = user.UserInfo.Dob;
-            Gender = DbConstant.ConstantIndexToString(user.UserInfo.GenderId, DbConstant.Values.gender); 
+            Gender = DbInitializer.ConstantIndexToString(user.UserInfo.GenderId, DbInitializer.Values.gender); 
             City = user.UserInfo.City;
             return this;
         }

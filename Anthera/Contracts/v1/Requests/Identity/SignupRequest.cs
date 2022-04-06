@@ -44,15 +44,15 @@ namespace Anthera_API.Controllers.v1.Requests
 
         public User MapToModel(User user)
         {
-            var genderId = (byte)DbConstant.ConstantStringToIndex(Gender, DbConstant.Values.gender);
+            var genderId = (byte)DbInitializer.ConstantStringToIndex(Gender, DbInitializer.Values.gender);
 
-            var sexPreferenceId = (byte)DbConstant.ConstantStringToIndex(SexPreference, DbConstant.Values.preferenceSex);
+            var sexPreferenceId = (byte)DbInitializer.ConstantStringToIndex(SexPreference, DbInitializer.Values.preferenceSex);
             var preference = new Preference
             {
                 PreferenceSexId = sexPreferenceId,
             };
 
-            var hereToId = (byte)DbConstant.ConstantStringToIndex(HereTo, DbConstant.Values.hereTo);
+            var hereToId = (byte)DbInitializer.ConstantStringToIndex(HereTo, DbInitializer.Values.hereTo);
 
             var userInfo = new UserInfo();
 

@@ -23,7 +23,7 @@ namespace Anthera_API.Validation
         public override bool IsValid(object value)
         {
             string strValue = value as string;
-            foreach (var sexPref in DbConstant.Values.preferenceSex)
+            foreach (var sexPref in DbInitializer.Values.preferenceSex)
             {
                 if (sexPref.ToLower().Equals(strValue.ToLower()))
                 {

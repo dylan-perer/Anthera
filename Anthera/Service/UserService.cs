@@ -89,7 +89,7 @@ namespace Anthera_API.Service
 
             user.Role = new Role
             {
-                RoleName = DbConstant.ConstantIndexToString(user.RoleId, DbConstant.Values.role)
+                RoleName = DbInitializer.ConstantIndexToString(user.RoleId, DbInitializer.Values.role)
             };
 
             var userInfo = GetUserInfo(user);
@@ -98,67 +98,67 @@ namespace Anthera_API.Service
 
             user.UserInfo.Gender = new Gender
             {
-                GenderName = DbConstant.ConstantIndexToString(userInfo.GenderId, DbConstant.Values.gender)
+                GenderName = DbInitializer.ConstantIndexToString(userInfo.GenderId, DbInitializer.Values.gender)
             };
 
             user.UserInfo.JobTitle = new JobTitle
             {
-                Title = DbConstant.ConstantIndexToString(userInfo.JobTitleId, DbConstant.Values.jobTitle)
+                Title = DbInitializer.ConstantIndexToString(userInfo.JobTitleId, DbInitializer.Values.jobTitle)
             };
 
             user.UserInfo.Relationship = new Relationship
             {
-                RelationshipType = DbConstant.ConstantIndexToString(userInfo.RelationshipId, DbConstant.Values.relationship)
+                RelationshipType = DbInitializer.ConstantIndexToString(userInfo.RelationshipId, DbInitializer.Values.relationship)
             };
 
             user.UserInfo.Sexuality = new Sexuality
             {
-                SexualityType = DbConstant.ConstantIndexToString(userInfo.SexualityId, DbConstant.Values.sexuality)
+                SexualityType = DbInitializer.ConstantIndexToString(userInfo.SexualityId, DbInitializer.Values.sexuality)
             };
 
             user.UserInfo.EyeColour = new EyeColour
             {
-                Colour = DbConstant.ConstantIndexToString(userInfo.EyeColourId, DbConstant.Values.eyeColour)
+                Colour = DbInitializer.ConstantIndexToString(userInfo.EyeColourId, DbInitializer.Values.eyeColour)
             };
 
             user.UserInfo.HairColour = new HairColour
             {
-                Colour = DbConstant.ConstantIndexToString(userInfo.HairColourId, DbConstant.Values.hairColour)
+                Colour = DbInitializer.ConstantIndexToString(userInfo.HairColourId, DbInitializer.Values.hairColour)
             };
 
             user.UserInfo.Children = new Children
             {
-                ChildrenType = DbConstant.ConstantIndexToString(userInfo.ChildrenId, DbConstant.Values.children)
+                ChildrenType = DbInitializer.ConstantIndexToString(userInfo.ChildrenId, DbInitializer.Values.children)
             };
 
             user.UserInfo.Smoking = new Smoking
             {
-                SmokingType = DbConstant.ConstantIndexToString(userInfo.SmokingId, DbConstant.Values.smoking)
+                SmokingType = DbInitializer.ConstantIndexToString(userInfo.SmokingId, DbInitializer.Values.smoking)
             };
 
             user.UserInfo.Drinking = new Drinking
             {
-                DrinkingType = DbConstant.ConstantIndexToString(userInfo.DrinkingId, DbConstant.Values.drinking)
+                DrinkingType = DbInitializer.ConstantIndexToString(userInfo.DrinkingId, DbInitializer.Values.drinking)
             };
 
             user.UserInfo.HereTo = new HereTo
             {
-                HereToType = DbConstant.ConstantIndexToString(userInfo.HereToId, DbConstant.Values.hereTo)
+                HereToType = DbInitializer.ConstantIndexToString(userInfo.HereToId, DbInitializer.Values.hereTo)
             };
 
             user.UserInfo.Religion = new Religion
             {
-                ReligionName = DbConstant.ConstantIndexToString(userInfo.ReligionId, DbConstant.Values.religion)
+                ReligionName = DbInitializer.ConstantIndexToString(userInfo.ReligionId, DbInitializer.Values.religion)
             };
 
             user.UserInfo.EducationLevel = new EducationLevel
             {
-                EducationLevelName = DbConstant.ConstantIndexToString(userInfo.EducationLevelId, DbConstant.Values.educationLevel)
+                EducationLevelName = DbInitializer.ConstantIndexToString(userInfo.EducationLevelId, DbInitializer.Values.educationLevel)
             };
 
             user.UserInfo.Personality = new Personality
             {
-                PersonalityName = DbConstant.ConstantIndexToString(userInfo.PersonalityId, DbConstant.Values.personality)
+                PersonalityName = DbInitializer.ConstantIndexToString(userInfo.PersonalityId, DbInitializer.Values.personality)
             };
             return user;
         }
@@ -169,27 +169,27 @@ namespace Anthera_API.Service
             user.UserInfo.Preference.AgeMax = 69;
             user.UserInfo.Preference.Distance = 160;
 
-            user.RoleId = DbConstant.ConstantStringToIndexByte(DbConstant.Values.Role.ANTHER_USER, DbConstant.Values.role);
+            user.RoleId = DbInitializer.ConstantStringToIndexByte(DbInitializer.Values.Role.ANTHER_USER, DbInitializer.Values.role);
             user.UserInfo.UserId = user.Id;
             user.UserInfo.City = "Auckland";
             user.UserInfo.IpAddress = null;
-            user.UserInfo.JobTitleId = DbConstant.DefaultValue(DbConstant.Values.jobTitle);
-            user.UserInfo.CompanyName = DbConstant.Values.PREFER_NOT_TO_SAY_DFAULT;
-            user.UserInfo.SchoolUniversity = DbConstant.Values.PREFER_NOT_TO_SAY_DFAULT;
-            user.UserInfo.AboutMe = DbConstant.Values.ABOUT_ME_DEFAULT;
-            user.UserInfo.RelationshipId = DbConstant.DefaultValue(DbConstant.Values.relationship);
-            user.UserInfo.SexualityId = DbConstant.DefaultValue(DbConstant.Values.sexuality);
-            user.UserInfo.Height = DbConstant.Values.HEIGHT_DEFAULT;
-            user.UserInfo.Weight = DbConstant.Values.WEIGHT_DEFAULT;
-            user.UserInfo.EyeColourId = DbConstant.DefaultValue(DbConstant.Values.eyeColour);
-            user.UserInfo.HairColourId = DbConstant.DefaultValue(DbConstant.Values.hairColour);
-            user.UserInfo.ChildrenId = DbConstant.DefaultValue(DbConstant.Values.children);
-            user.UserInfo.SmokingId = DbConstant.DefaultValue(DbConstant.Values.smoking);
-            user.UserInfo.DrinkingId = DbConstant.DefaultValue(DbConstant.Values.drinking);
-            user.UserInfo.PhotoLimit = DbConstant.Values.DEFAULT_PHOTO_LIMIT;
-            user.UserInfo.EducationLevelId = DbConstant.DefaultValue(DbConstant.Values.educationLevel);
-            user.UserInfo.PersonalityId = DbConstant.DefaultValue(DbConstant.Values.personality);
-            user.UserInfo.ReligionId = DbConstant.DefaultValue(DbConstant.Values.religion);
+            user.UserInfo.JobTitleId = DbInitializer.DefaultValue(DbInitializer.Values.jobTitle);
+            user.UserInfo.CompanyName = DbInitializer.Values.PREFER_NOT_TO_SAY_DFAULT;
+            user.UserInfo.SchoolUniversity = DbInitializer.Values.PREFER_NOT_TO_SAY_DFAULT;
+            user.UserInfo.AboutMe = DbInitializer.Values.ABOUT_ME_DEFAULT;
+            user.UserInfo.RelationshipId = DbInitializer.DefaultValue(DbInitializer.Values.relationship);
+            user.UserInfo.SexualityId = DbInitializer.DefaultValue(DbInitializer.Values.sexuality);
+            user.UserInfo.Height = DbInitializer.Values.HEIGHT_DEFAULT;
+            user.UserInfo.Weight = DbInitializer.Values.WEIGHT_DEFAULT;
+            user.UserInfo.EyeColourId = DbInitializer.DefaultValue(DbInitializer.Values.eyeColour);
+            user.UserInfo.HairColourId = DbInitializer.DefaultValue(DbInitializer.Values.hairColour);
+            user.UserInfo.ChildrenId = DbInitializer.DefaultValue(DbInitializer.Values.children);
+            user.UserInfo.SmokingId = DbInitializer.DefaultValue(DbInitializer.Values.smoking);
+            user.UserInfo.DrinkingId = DbInitializer.DefaultValue(DbInitializer.Values.drinking);
+            user.UserInfo.PhotoLimit = DbInitializer.Values.DEFAULT_PHOTO_LIMIT;
+            user.UserInfo.EducationLevelId = DbInitializer.DefaultValue(DbInitializer.Values.educationLevel);
+            user.UserInfo.PersonalityId = DbInitializer.DefaultValue(DbInitializer.Values.personality);
+            user.UserInfo.ReligionId = DbInitializer.DefaultValue(DbInitializer.Values.religion);
 
             return user;
         }
@@ -341,7 +341,7 @@ namespace Anthera_API.Service
 
             var userInfoInterests = await _dataContext.UserInfoInterests.Where(r => r.UserInfoId == userInfo.Id).ToListAsync();
 
-            if (userInfoInterests.Count >= DbConstant.Values.INTEREST_LIMIT)
+            if (userInfoInterests.Count >= DbInitializer.Values.INTEREST_LIMIT)
             {
                 throw new AntheraException().Throw("Sorry, you can only have 25 interest at a time. Please remove some to add more.");
             }

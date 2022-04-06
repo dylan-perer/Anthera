@@ -13,7 +13,7 @@ namespace Anthera_API.Contracts.v1.Requests
         
         public User MapToModel(User user)
         {
-            user.UserInfo.SmokingId = DbConstant.ConstantStringToIndexByte(Smoking, DbConstant.Values.smoking);
+            user.UserInfo.SmokingId = DbInitializer.ConstantStringToIndexByte(Smoking, DbInitializer.Values.smoking);
             return user;
         }
     }
