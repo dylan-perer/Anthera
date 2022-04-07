@@ -35,12 +35,12 @@ namespace Anthera_API.Models_NEW
         public DateTime LastOnline { get; set; }
         [Column("created_at", TypeName = "timestamp")]
         public DateTime CreatedAt { get; set; }
-        [Column("is_info_completed", TypeName = "bit(1)")]
-        public ulong IsInfoCompleted { get; set; }
-        [Column("is_deactivated", TypeName = "bit(1)")]
-        public ulong IsDeactivated { get; set; }
+        [Column("is_info_completed")]
+        public bool IsInfoCompleted { get; set; }
+        [Column("is_deactivated")]
+        public bool IsDeactivated { get; set; }
         [Column("role_id")]
-        public sbyte RoleId { get; set; }
+        public byte RoleId { get; set; }
 
         [ForeignKey(nameof(RoleId))]
         [InverseProperty("User")]

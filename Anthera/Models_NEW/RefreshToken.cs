@@ -18,8 +18,8 @@ namespace Anthera_API.Models_NEW
         [Required]
         [Column("refresh_token_value", TypeName = "varchar(255)")]
         public string RefreshTokenValue { get; set; }
-        [Column("is_invalidated", TypeName = "bit(1)")]
-        public ulong IsInvalidated { get; set; }
+        [Column("is_invalidated")]
+        public bool IsInvalidated { get; set; }
         [Column("issued_at", TypeName = "datetime")]
         public DateTime IssuedAt { get; set; }
         [Column("user_id")]

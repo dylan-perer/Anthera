@@ -1,4 +1,4 @@
-using Anthera_API.DELETE_Data;
+using Anthera_API.DataContext_NEW;
 using Anthera_API.Service;
 using Anthera_API.Websocket.Chat;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -78,7 +78,7 @@ namespace Anthera
 
 
             //injecting database context
-            services.AddDbContext<DataContext>(options => options.UseSqlServer(Configuration.GetConnectionString("db")));
+            services.AddDbContext<DataContext>(options => options.UseMySql(Configuration.GetConnectionString("mysql")));
 
 
             //injecting jwt

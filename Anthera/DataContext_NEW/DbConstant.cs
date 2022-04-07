@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using System.Reflection;
 
-namespace Anthera_API.DELETE_Data
+
+namespace Anthera_API.DataContext_NEW
 {
     public static class DbConstant
     {
@@ -244,7 +245,7 @@ namespace Anthera_API.DELETE_Data
                 "Jewish",
                 "Methodist",
                 "Pentecostal",
-                "Presbyterian",
+                "Prebyterian",
                 "Rastafarian",
                 "Roman Catholic",
                 "Seventh Day Adventist",
@@ -279,7 +280,7 @@ namespace Anthera_API.DELETE_Data
                 "Jehovah's Witnesses",
                 "Christian nfd",
                 "Chinese Religions",
-                "Presbyterian and Reformed",
+                "Prebyterian and Reformed",
                 "Japanese Religions",
                 "Nature and earth based religions",
                 "Australian Aboriginal Traditional Religion",
@@ -431,7 +432,7 @@ namespace Anthera_API.DELETE_Data
                 "International Church of the Foursquare Gospel",
                 "Te Ran",
                 "All Nations Baptist",
-                "Kempsville Presbyterian Church",
+                "Kempsville Prebyterian Church",
                 "Te koaua",
                 "Arya Samajist",
                 "Bengali",
@@ -563,7 +564,7 @@ namespace Anthera_API.DELETE_Data
                 "Taejong-gyo",
                 "Daesoonjillihoi",
                 "Christian of Old Rite",
-                "Evangelic Synodal Presbyterian",
+                "Evangelic Synodal Prebyterian",
                 "Christian by Gospel",
                 "Mosaic",
                 "Worship Centre",
@@ -603,7 +604,7 @@ namespace Anthera_API.DELETE_Data
                 "Other Charismatic Churches",
                 "Other Congregational Churches",
                 "Other Pentecostal Churches",
-                "Other Presbyterian Churches",
+                "Other Prebyterian Churches",
                 "St. Engenas Zion Christian Church",
                 "St. John's Apostolic Church",
                 "Full Gospel Church of God",
@@ -616,7 +617,7 @@ namespace Anthera_API.DELETE_Data
                 "Constitutional Church of Tonga",
                 "Orisha",
                 "Pentecostal Evangelical Full Gospel",
-                "Presbyterian Congregational",
+                "Prebyterian Congregational",
                 "Brethren Assembly",
                 "Ekalesia Kelisiano Tuvalu",
                 "New Testament Church",

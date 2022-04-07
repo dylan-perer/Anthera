@@ -3,11 +3,11 @@ using Anthera_API.Contracts.v1.Requests;
 using Anthera_API.Contracts.v1.Responses;
 using Anthera_API.Controllers.v1.Requests;
 using Anthera_API.Controllers.v1.Responses;
-using Anthera_API.DELETE_Data;
+using Anthera_API.DataContext_NEW;
 using Anthera_API.Extension;
 using Anthera_API.misc;
-using Anthera_API.DELETE_Models;
-using Anthera_API.DELETE_Models.Enums;
+using Anthera_API.Models_NEW;
+
 using Anthera_API.Service;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;

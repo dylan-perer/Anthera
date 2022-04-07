@@ -1,4 +1,4 @@
-﻿namespace Anthera_API.DELETE_Models.Enums
+﻿namespace Anthera_API.Models_NEW
 {
     public enum RoleEnum
     {

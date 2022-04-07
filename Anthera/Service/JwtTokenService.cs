@@ -1,4 +1,4 @@
-﻿using Anthera_API.DELETE_Models;
+﻿using Anthera_API.Models_NEW;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System;

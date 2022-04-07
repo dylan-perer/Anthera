@@ -9,13 +9,13 @@ using Anthera_API.Models_NEW;
 
 namespace Anthera_API.DataContext_NEW
 {
-    public partial class dataContext : DbContext
+    public partial class DataContext : DbContext
     {
-        public dataContext()
+        public DataContext()
         {
         }
 
-        public dataContext(DbContextOptions<dataContext> options)
+        public DataContext(DbContextOptions<DataContext> options)
             : base(options)
         {
         }
@@ -524,6 +524,8 @@ namespace Anthera_API.DataContext_NEW
                     .HasForeignKey(d => d.UserInfoId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FKuser_info_837564");
+
+                new DbInitializer().AddData(modelBuilder);
             });
 
             modelBuilder.Entity<UserInfoPhoto>(entity =>

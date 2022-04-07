@@ -25,7 +25,7 @@ namespace Anthera_API.Models_NEW
         [Column("user_id")]
         public int UserId { get; set; }
         [Column("gender_id")]
-        public sbyte GenderId { get; set; }
+        public byte GenderId { get; set; }
         [Column("preference_id")]
         public int PreferenceId { get; set; }
         [Column("dob", TypeName = "datetime")]
@@ -47,9 +47,9 @@ namespace Anthera_API.Models_NEW
         [Column("about_me", TypeName = "varchar(500)")]
         public string AboutMe { get; set; }
         [Column("relationship_id")]
-        public sbyte RelationshipId { get; set; }
+        public byte RelationshipId { get; set; }
         [Column("sexuality_id")]
-        public sbyte SexualityId { get; set; }
+        public byte SexualityId { get; set; }
         [Required]
         [Column("height", TypeName = "varchar(40)")]
         public string Height { get; set; }
@@ -57,23 +57,23 @@ namespace Anthera_API.Models_NEW
         [Column("weight", TypeName = "varchar(40)")]
         public string Weight { get; set; }
         [Column("eye_colour_id")]
-        public sbyte EyeColourId { get; set; }
+        public byte EyeColourId { get; set; }
         [Column("hair_colour_id")]
-        public sbyte HairColourId { get; set; }
+        public byte HairColourId { get; set; }
         [Column("children_id")]
-        public sbyte ChildrenId { get; set; }
+        public byte ChildrenId { get; set; }
         [Column("smoking_id")]
-        public sbyte SmokingId { get; set; }
+        public byte SmokingId { get; set; }
         [Column("drinking_id")]
-        public sbyte DrinkingId { get; set; }
+        public byte DrinkingId { get; set; }
         [Column("here_to_id")]
-        public sbyte HereToId { get; set; }
+        public byte HereToId { get; set; }
         [Column("photo_limit")]
-        public sbyte PhotoLimit { get; set; }
+        public byte PhotoLimit { get; set; }
         [Column("religion_id")]
         public int ReligionId { get; set; }
         [Column("education_level_id")]
-        public sbyte EducationLevelId { get; set; }
+        public byte EducationLevelId { get; set; }
         [Column("personality_id")]
         public int PersonalityId { get; set; }
 

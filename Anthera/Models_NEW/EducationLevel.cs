@@ -19,7 +19,7 @@ namespace Anthera_API.Models_NEW
 
         [Key]
         [Column("id")]
-        public sbyte Id { get; set; }
+        public byte Id { get; set; }
         [Required]
         [Column("education_level_name", TypeName = "varchar(100)")]
         public string EducationLevelName { get; set; }

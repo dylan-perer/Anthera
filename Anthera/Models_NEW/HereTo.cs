@@ -19,7 +19,7 @@ namespace Anthera_API.Models_NEW
 
         [Key]
         [Column("id")]
-        public sbyte Id { get; set; }
+        public byte Id { get; set; }
         [Required]
         [Column("here_to_type", TypeName = "varchar(40)")]
         public string HereToType { get; set; }

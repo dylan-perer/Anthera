@@ -1,6 +1,6 @@
 ﻿using Anthera_API.Contracts.v1;
-using Anthera_API.DELETE_Models;
-using Anthera_API.DELETE_Models.Enums;
+using Anthera_API.Models_NEW;
+
 using System.Collections.Generic;
 using System.Threading.Tasks;
 

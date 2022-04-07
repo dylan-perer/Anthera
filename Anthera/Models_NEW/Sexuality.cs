@@ -19,7 +19,7 @@ namespace Anthera_API.Models_NEW
 
         [Key]
         [Column("id")]
-        public sbyte Id { get; set; }
+        public byte Id { get; set; }
         [Required]
         [Column("sexuality_type", TypeName = "varchar(50)")]
         public string SexualityType { get; set; }

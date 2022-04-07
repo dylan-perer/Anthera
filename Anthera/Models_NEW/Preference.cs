@@ -16,13 +16,13 @@ namespace Anthera_API.Models_NEW
         [Column("id")]
         public int Id { get; set; }
         [Column("age_min")]
-        public sbyte AgeMin { get; set; }
+        public byte AgeMin { get; set; }
         [Column("age_max")]
-        public sbyte AgeMax { get; set; }
+        public byte AgeMax { get; set; }
         [Column("distance")]
-        public sbyte Distance { get; set; }
+        public byte Distance { get; set; }
         [Column("preference_sex_id")]
-        public sbyte PreferenceSexId { get; set; }
+        public byte PreferenceSexId { get; set; }
 
         [ForeignKey(nameof(PreferenceSexId))]
         [InverseProperty("Preference")]
