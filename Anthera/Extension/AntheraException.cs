@@ -1,5 +1,4 @@
 ﻿using Anthera_API.misc;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
 
@@ -25,7 +24,7 @@ namespace Anthera_API.Extension
             return e;
         }
 
-        public void Error(Exception ex, ILogger logger, string apiRoute, string actionName, string httpAction, object input, out int statusCode, out object msg )
+        public void Error(Exception ex, ILogger logger, string apiRoute, string actionName, string httpAction, object input, out int statusCode, out object msg)
         {
             statusCode = Int32.Parse(ex.Data["STATUS_CODE"].ToString());
             if (IsInDevMode)
@@ -45,7 +44,7 @@ namespace Anthera_API.Extension
             msg = new { errors = ex.Data["ERROR"] as string };
         }
 
-        private string CreateLog(Exception ex, string apiRoute, string actionName, string httpAction, object input=null)
+        private string CreateLog(Exception ex, string apiRoute, string actionName, string httpAction, object input = null)
         {
             return $"API_ROUTE:: {apiRoute}/{actionName} | HTTP_ACTION:: {httpAction} | USER_INPUT:: {input} | EXCEPTION:: {ex.Data["DEV_ERROR"].ToString()}";
         }

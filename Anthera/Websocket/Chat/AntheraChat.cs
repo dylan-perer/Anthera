@@ -16,7 +16,7 @@ namespace Anthera_API.Websocket.Chat
         public async Task JoinRoom(UserConnection userConnection)
         {
             await Groups.AddToGroupAsync(Context.ConnectionId, userConnection.Channel);
-           
+
             await Clients.Group(userConnection.Channel)
                 .SendAsync("RecieveMessage", _antheraChatbot, $"{userConnection.User} has joined {userConnection.Channel}");
         }

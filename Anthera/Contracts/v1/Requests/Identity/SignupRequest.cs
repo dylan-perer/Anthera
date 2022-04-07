@@ -1,5 +1,4 @@
 ﻿using Anthera_API.Contracts.v1;
-using Anthera_API.Contracts.v1.Requests;
 using Anthera_API.Data;
 using Anthera_API.Models;
 using Anthera_API.Validation;
@@ -27,12 +26,12 @@ namespace Anthera_API.Controllers.v1.Requests
 
         [EnusreDob]
         public DateTime Dob { get; set; }
-        
+
         [MaxLength(255)]
         [EmailAddress]
         [EnsureUniqueEmail]
         public string EmailAddress { get; set; }
-        
+
         [Required]
         [MaxLength(255)]
         [MinLength(6)]

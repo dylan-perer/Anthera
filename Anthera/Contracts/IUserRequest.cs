@@ -1,5 +1,4 @@
-﻿using Anthera_API.Controllers.v1;
-using Anthera_API.Models;
+﻿using Anthera_API.Models;
 
 namespace Anthera_API.Contracts.v1
 {

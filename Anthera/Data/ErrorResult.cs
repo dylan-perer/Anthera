@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System;
+﻿using System;
 namespace Anthera_API.Data
 {
     public class ErrorResult
@@ -17,7 +16,7 @@ namespace Anthera_API.Data
             InnerException = ex.InnerException?.Message;
         }
 
-        public string CreateLog(string apiRoute, string actionName,  string httpAction, object input)
+        public string CreateLog(string apiRoute, string actionName, string httpAction, object input)
         {
             return $"API_ROUTE:: {apiRoute}/{actionName} | HTTP_ACTION:: {httpAction} | USER_INPUT:: {input} | EXCEPTION:: {Exception} | INNER_EXCEPTION:: {InnerException}";
         }
@@ -30,7 +29,7 @@ namespace Anthera_API.Data
 
         public object ReturnEndUserError()
         {
-            return new {erorrs = EndUserError};
+            return new { erorrs = EndUserError };
         }
     }
 }

@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Anthera_API.Contracts.v1.Responses
+﻿namespace Anthera_API.Contracts.v1.Responses
 {
     public class AuthResponse : IAuthResponse
     {
@@ -16,7 +14,7 @@ namespace Anthera_API.Contracts.v1.Responses
         public void SetTokens(string acessToken, string refreshToken)
         {
             AccessToken = acessToken;
-            RefrehToken=refreshToken;
+            RefrehToken = refreshToken;
         }
     }
 }

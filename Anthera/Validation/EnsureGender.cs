@@ -9,7 +9,7 @@ namespace Anthera_API.Validation
     {
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)
         {
-            if(value == null)
+            if (value == null)
             {
                 return new ValidationResult(AntheraConstant.Errors.Requests.GenderIsRequired);
             }

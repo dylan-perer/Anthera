@@ -1,5 +1,4 @@
 ﻿using Anthera_API.Service;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Anthera_API.Controllers.v1

@@ -1,6 +1,5 @@
 ﻿using Anthera_API.Contracts;
 using Anthera_API.Contracts.v1;
-using Anthera_API.Data;
 using Anthera_API.Models;
 using Anthera_API.Models.Enums;
 using System.Security.Claims;

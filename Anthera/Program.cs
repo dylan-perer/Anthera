@@ -1,14 +1,8 @@
-using Anthera_API.Data;
 
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Serilog;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Anthera
 {
@@ -16,16 +10,16 @@ namespace Anthera
     {
         public static void Main(string[] args)
         {
-             IConfigurationRoot configuration = new ConfigurationBuilder()
-                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true).Build();
+            IConfigurationRoot configuration = new ConfigurationBuilder()
+               .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true).Build();
 
             Log.Logger = new LoggerConfiguration().ReadFrom.Configuration(configuration).CreateLogger();
 
-/*            var a = new DbInit();
-            a.AddData(null);
+            /*            var a = new DbInit();
+                        a.AddData(null);
 
-            var aa = DbConstant.Personality.AllPersonalities;*/
-
+                        var aa = DbConstant.Personality.AllPersonalities;*/
+            
             CreateHostBuilder(args).Build().Run();
         }
 
@@ -33,7 +27,8 @@ namespace Anthera
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
-                    webBuilder.UseStartup<Startup>().UseSerilog();
+                    webBuilder.UseStartup<Startup>();//.UseSerilog();
+                    webBuilder.UseUrls("http://localhost:5000", "http://128.199.134.4:5024");
                 });
     }
 }

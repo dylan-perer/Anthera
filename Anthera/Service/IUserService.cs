@@ -1,10 +1,7 @@
 ﻿using Anthera_API.Contracts.v1;
-using Anthera_API.Data;
 using Anthera_API.Models;
 using Anthera_API.Models.Enums;
-using Microsoft.Extensions.Logging;
 using System.Collections.Generic;
-using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace Anthera_API.Service

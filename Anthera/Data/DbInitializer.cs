@@ -2,7 +2,6 @@
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Reflection;
 
 namespace Anthera_API.Data
@@ -136,13 +135,13 @@ namespace Anthera_API.Data
             });
             modelBuilder.Entity<HereTo>().HasData(HereTotypes);
 
-      
+
             var Jobtitles = new List<JobTitle>();
-            for(int i =0;i<DbConstant.JobTitle.JobTitiles.Length;i++)
+            for (int i = 0; i < DbConstant.JobTitle.JobTitiles.Length; i++)
             {
                 Jobtitles.Add(new JobTitle
                 {
-                    Id = i+1,
+                    Id = i + 1,
                     Title = DbConstant.JobTitle.JobTitiles[i]
                 });
             }
@@ -170,18 +169,16 @@ namespace Anthera_API.Data
             modelBuilder.Entity<Role>().HasData(Roles);
         }
 
-
-
         public object[] createRows(Type t, Func<int, string, object> function)
         {
             FieldInfo[] fields = t.GetFields(BindingFlags.Static | BindingFlags.Public);
             List<object> list = new List<object>();
 
-            for(int i = 0; i < fields.Length; i++)
+            for (int i = 0; i < fields.Length; i++)
             {
                 if (i != fields.Length - 1)
                 {
-                    list.Add(function(i+1,fields[i].GetValue(null) as string));
+                    list.Add(function(i + 1, fields[i].GetValue(null) as string));
                 }
             }
 

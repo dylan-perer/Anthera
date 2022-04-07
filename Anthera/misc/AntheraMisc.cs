@@ -4,20 +4,20 @@ using System;
 
 namespace Anthera_API.misc
 {
-    public  static class AntheraMisc
+    public static class AntheraMisc
     {
         public static void ValidateFile(IFormFile file)
         {
-            if( file.FileName.Contains(".asp", StringComparison.OrdinalIgnoreCase) ||
+            if (file.FileName.Contains(".asp", StringComparison.OrdinalIgnoreCase) ||
                 file.FileName.Contains(".exe", StringComparison.OrdinalIgnoreCase) ||
                 file.FileName.Contains(".bat", StringComparison.OrdinalIgnoreCase) ||
-                file.FileName.Contains(".py", StringComparison.OrdinalIgnoreCase)  ||
+                file.FileName.Contains(".py", StringComparison.OrdinalIgnoreCase) ||
                 file.FileName.Contains(".msi", StringComparison.OrdinalIgnoreCase) ||
                 file.FileName.Contains(".vbs", StringComparison.OrdinalIgnoreCase) ||
                 file.FileName.Contains(".deb", StringComparison.OrdinalIgnoreCase) ||
-                file.FileName.Contains(".sh", StringComparison.OrdinalIgnoreCase)  ||
+                file.FileName.Contains(".sh", StringComparison.OrdinalIgnoreCase) ||
                 file.FileName.Contains(".sql", StringComparison.OrdinalIgnoreCase) ||
-                file.FileName.Contains(".php", StringComparison.OrdinalIgnoreCase)) 
+                file.FileName.Contains(".php", StringComparison.OrdinalIgnoreCase))
             {
                 throw new AntheraException().Throw("Sorry, you image name contains a unwanted file extension(s).");
             }

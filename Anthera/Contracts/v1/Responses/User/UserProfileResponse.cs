@@ -1,8 +1,7 @@
-﻿using Anthera_API.Contracts.v1.Requests;
-using Anthera_API.Models;
+﻿using Anthera_API.Models;
 using System;
 
-namespace Anthera_API.Contracts.v1.Responses 
+namespace Anthera_API.Contracts.v1.Responses
 {
     public class UserProfileResponse : IUserResponse
     {

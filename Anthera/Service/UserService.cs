@@ -1,17 +1,13 @@
 ﻿using Anthera_API.Contracts.v1;
-using Anthera_API.Contracts.v1.Requests;
 using Anthera_API.Data;
 using Anthera_API.Extension;
-using Anthera_API.misc;
 using Anthera_API.Models;
 using Anthera_API.Models.Enums;
 
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace Anthera_API.Service
@@ -178,7 +174,7 @@ namespace Anthera_API.Service
             user.UserInfo.SchoolUniversity = DbConstant.Default.PREFER_NOT_TO_SAY_DFAULT;
             user.UserInfo.AboutMe = DbConstant.Default.ABOUT_ME_DEFAULT;
             user.UserInfo.RelationshipId = DbConstant.DefaultValueByte(DbConstant.Relationship.AllRelationshipTypes);
-            user.UserInfo.SexualityId = DbConstant.StringToByte( DbConstant.Sexuality.AskMe, DbConstant.Sexuality.AllSexualityTypes);
+            user.UserInfo.SexualityId = DbConstant.StringToByte(DbConstant.Sexuality.AskMe, DbConstant.Sexuality.AllSexualityTypes);
             user.UserInfo.Height = DbConstant.Default.HEIGHT_DEFAULT;
             user.UserInfo.Weight = DbConstant.Default.WEIGHT_DEFAULT;
             user.UserInfo.EyeColourId = DbConstant.DefaultValueByte(DbConstant.EyeColour.AllEyeColours);

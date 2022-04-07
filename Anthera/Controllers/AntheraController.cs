@@ -1,5 +1,4 @@
 ﻿using Anthera_API.Extension;
-using Anthera_API.misc;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -17,7 +16,7 @@ namespace Anthera_API.Controllers
             }
             catch (Exception ex)
             {
-                new AntheraException().Error(ex, logger,  controllerName,  actionName,  httpActionName,  requestObject,
+                new AntheraException().Error(ex, logger, controllerName, actionName, httpActionName, requestObject,
                     out int statusCode,
                     out object msg);
 

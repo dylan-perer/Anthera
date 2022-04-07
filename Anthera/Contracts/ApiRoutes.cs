@@ -38,7 +38,7 @@
             public const string Smoking = "smoking";
             public const string HereTo = "hereto";
             public const string AboutMe = "aboutme";
-            public const string Relationship = "relationship"; 
+            public const string Relationship = "relationship";
             public const string ProfilePicture = "profilePicture";
             public const string Gallery = "gallery";
             public const string EducationLevel = "educationlevel";

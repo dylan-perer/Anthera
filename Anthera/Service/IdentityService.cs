@@ -2,18 +2,11 @@
 using Anthera_API.Contracts.v1;
 using Anthera_API.Data;
 using Anthera_API.Extension;
-using Anthera_API.misc;
 using Anthera_API.Models;
 using Anthera_API.Models.Enums;
-
-using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Configuration;
-using Microsoft.IdentityModel.Tokens;
 using System;
-using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Anthera_API.Service
@@ -101,7 +94,7 @@ namespace Anthera_API.Service
             {
                 throw new AntheraException().Throw("Sorry, something went wrong signing you up.");
             }
-            
+
         }
 
         public async Task SignoutAsync(User loggedUser, string refreshToken)
@@ -156,7 +149,7 @@ namespace Anthera_API.Service
         {
             //get role name form db
             var role = _dataContext.Role.FirstOrDefault(r => r.Id == user.RoleId);
-            if(role is null)
+            if (role is null)
             {
                 throw new AntheraException().Throw("Failed to find user's role.", isDevError: true);
             }

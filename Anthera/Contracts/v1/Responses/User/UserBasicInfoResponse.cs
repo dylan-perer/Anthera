@@ -16,7 +16,7 @@ namespace Anthera_API.Contracts.v1.Responses
         {
             Name = user.Name;
             Dob = user.UserInfo.Dob;
-            Gender = DbConstant.KeyToValueByte(user.UserInfo.GenderId, DbConstant.Gender.AllGenders); 
+            Gender = DbConstant.KeyToValueByte(user.UserInfo.GenderId, DbConstant.Gender.AllGenders);
             City = user.UserInfo.City;
             return this;
         }

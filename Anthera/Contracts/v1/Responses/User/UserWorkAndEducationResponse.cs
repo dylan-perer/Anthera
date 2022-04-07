@@ -1,8 +1,6 @@
 ﻿using Anthera_API.Data;
 using Anthera_API.Models;
 
-using System;
-
 namespace Anthera_API.Contracts.v1.Responses
 {
     public class UserWorkAndEducationResponse : IUserResponse

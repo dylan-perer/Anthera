@@ -18,7 +18,7 @@ namespace Anthera_API.Validation
                 var today = DateTime.UtcNow;
                 var dob = DateTime.Parse(value.ToString());
                 var oldestDob = DateTime.Now.AddYears(-99);
-                if(oldestDob > dob)
+                if (oldestDob > dob)
                 {
                     return new ValidationResult(AntheraConstant.Errors.Requests.InvalidMaxDob);
                 }

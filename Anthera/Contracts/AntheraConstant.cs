@@ -5,7 +5,7 @@
         public static string ERROR = "ERROR";
         public static string DEV_ERROR = "DEV_ERROR";
 
-        
+
 
         public static class Errors
         {
@@ -51,11 +51,11 @@
         {
             public static class User
             {
-                public const string SignedoutSuccessfully = "You are signed out."; 
+                public const string SignedoutSuccessfully = "You are signed out.";
                 public const int FileSize = 5000001;
                 public const int InterestMax = 25;
             }
-           
+
         }
 
     }

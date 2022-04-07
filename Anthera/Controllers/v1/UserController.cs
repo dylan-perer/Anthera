@@ -2,8 +2,6 @@
 using Anthera_API.Contracts.v1.Requests;
 using Anthera_API.Contracts.v1.Responses;
 using Anthera_API.Controllers.v1.Requests;
-using Anthera_API.Controllers.v1.Responses;
-using Anthera_API.Data;
 using Anthera_API.Extension;
 using Anthera_API.misc;
 using Anthera_API.Models;
@@ -17,7 +15,6 @@ using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace Anthera_API.Controllers
@@ -414,8 +411,8 @@ namespace Anthera_API.Controllers
         }
 
         [Authorize]
-        [HttpDelete(ApiRoutes.User.Gallery+"/{photoId}")]
-        public async Task<IActionResult> DeletePhotoAsync([FromRoute]int photoId)
+        [HttpDelete(ApiRoutes.User.Gallery + "/{photoId}")]
+        public async Task<IActionResult> DeletePhotoAsync([FromRoute] int photoId)
         {
             try
             {
@@ -578,12 +575,12 @@ namespace Anthera_API.Controllers
             }
         }
 
-        private string SaveFileOnServer(IFormFile file, string fileName=null)
+        private string SaveFileOnServer(IFormFile file, string fileName = null)
         {
             string directoryPath = Path.Combine(_webHostEnvironment.ContentRootPath, @"UploadedFiles/img");
             AntheraMisc.ValidateFile(file);
 
-            if(fileName == null)
+            if (fileName == null)
             {
                 fileName = Guid.NewGuid() + file.FileName;
             }
@@ -597,6 +594,6 @@ namespace Anthera_API.Controllers
             return fileName;
         }
 
-        
+
     }
 }

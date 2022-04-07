@@ -10,7 +10,6 @@ using Anthera_API.Models;
 using Anthera_API.Models.Enums;
 using Anthera_API.Service;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -32,7 +31,7 @@ namespace Anthera_API.Controllers.v1
 
 
         [HttpGet("ASS")]
-        public  IActionResult fuck()
+        public IActionResult fuck()
         {
             return Ok("FUK U");
         }
@@ -117,7 +116,7 @@ namespace Anthera_API.Controllers.v1
             }
             catch (Exception ex)
             {
-                new AntheraException().Error(ex, _logger, ApiRoutes.Identity.ControllerV1, ApiRoutes.Identity.RefreshToken, ApiRoutes.HTTP_ACTIONS.POST, 
+                new AntheraException().Error(ex, _logger, ApiRoutes.Identity.ControllerV1, ApiRoutes.Identity.RefreshToken, ApiRoutes.HTTP_ACTIONS.POST,
                                     refreshTokenRequest,
                                     out int statusCode,
                                     out object msg);

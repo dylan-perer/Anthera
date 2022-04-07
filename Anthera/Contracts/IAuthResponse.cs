@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Anthera_API.Contracts
+﻿namespace Anthera_API.Contracts
 {
     public interface IAuthResponse
     {

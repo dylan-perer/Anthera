@@ -1,5 +1,4 @@
-﻿using Anthera_API.Contracts;
-using Anthera_API.Models;
+﻿using Anthera_API.Models;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System;
@@ -7,7 +6,6 @@ using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Anthera_API.Service
 {
@@ -83,13 +81,14 @@ namespace Anthera_API.Service
             };
 
             JwtSecurityTokenHandler tokenHandler = new JwtSecurityTokenHandler();
-            
+
             try
             {
                 tokenHandler.ValidateToken(refreshToken, validationParameters, out SecurityToken validatedToken);
                 expire = validatedToken.ValidTo;
                 return true;
-            }catch
+            }
+            catch
             {
                 expire = DateTime.UtcNow;
                 return false;
