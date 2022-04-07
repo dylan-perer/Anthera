@@ -4,7 +4,7 @@ using Anthera_API.Contracts.v1.Responses;
 using Anthera_API.Controllers.v1.Requests;
 using Anthera_API.Extension;
 using Anthera_API.misc;
-using Anthera_API.Models_NEW;
+using Anthera_API.Models;
 
 using Anthera_API.Service;
 using Microsoft.AspNetCore.Authorization;

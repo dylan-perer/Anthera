@@ -1,4 +1,4 @@
-﻿using Anthera_API.Models_NEW;
+﻿using Anthera_API.Models;
 using System;
 
 namespace Anthera_API.Contracts.v1.Responses

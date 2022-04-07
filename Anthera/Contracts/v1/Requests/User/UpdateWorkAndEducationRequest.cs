@@ -1,6 +1,6 @@
 ﻿using Anthera_API.Contracts.v1;
-using Anthera_API.DataContext_NEW;
-using Anthera_API.Models_NEW;
+using Anthera_API.Data;
+using Anthera_API.Models;
 using Anthera_API.Validation;
 
 using System.ComponentModel.DataAnnotations;

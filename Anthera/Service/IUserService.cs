@@ -1,5 +1,5 @@
 ﻿using Anthera_API.Contracts.v1;
-using Anthera_API.Models_NEW;
+using Anthera_API.Models;
 
 using System.Collections.Generic;
 using System.Threading.Tasks;

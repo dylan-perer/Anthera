@@ -1,5 +1,5 @@
-﻿using Anthera_API.DataContext_NEW;
-using Anthera_API.Models_NEW;
+﻿using Anthera_API.Data;
+using Anthera_API.Models;
 
 namespace Anthera_API.Contracts.v1.Responses
 {
