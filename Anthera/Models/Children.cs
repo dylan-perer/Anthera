@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 // If you have enabled NRTs for your project, then un-comment the following line:
 // #nullable disable
 
-namespace Anthera_API.Models
+namespace Anthera_API.DELETE_Models
 {
     [Table("children")]
     public partial class Children

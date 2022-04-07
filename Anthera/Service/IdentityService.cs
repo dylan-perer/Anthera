@@ -1,9 +1,9 @@
 ﻿using Anthera_API.Contracts;
 using Anthera_API.Contracts.v1;
-using Anthera_API.Data;
+using Anthera_API.DELETE_Data;
 using Anthera_API.Extension;
-using Anthera_API.Models;
-using Anthera_API.Models.Enums;
+using Anthera_API.DELETE_Models;
+using Anthera_API.DELETE_Models.Enums;
 using System;
 using System.Linq;
 using System.Security.Claims;

@@ -1,11 +1,11 @@
-﻿using Anthera_API.Models;
+﻿using Anthera_API.DELETE_Models;
 using Microsoft.EntityFrameworkCore;
 
 // Code scaffolded by EF Core assumes nullable reference types (NRTs) are not used or disabled.
 // If you have enabled NRTs for your project, then un-comment the following line:
 // #nullable disable
 
-namespace Anthera_API.Data
+namespace Anthera_API.DELETE_Data
 {
     public partial class DataContext : DbContext
     {

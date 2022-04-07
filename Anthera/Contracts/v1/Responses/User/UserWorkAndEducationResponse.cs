@@ -1,5 +1,5 @@
-﻿using Anthera_API.Data;
-using Anthera_API.Models;
+﻿using Anthera_API.DELETE_Data;
+using Anthera_API.DELETE_Models;
 
 namespace Anthera_API.Contracts.v1.Responses
 {

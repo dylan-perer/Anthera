@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Reflection;
 
-namespace Anthera_API.Data
+namespace Anthera_API.DELETE_Data
 {
     public static class DbConstant
     {

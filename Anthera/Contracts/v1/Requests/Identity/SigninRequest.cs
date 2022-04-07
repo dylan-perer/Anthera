@@ -1,5 +1,5 @@
 ﻿using Anthera_API.Contracts.v1;
-using Anthera_API.Models;
+using Anthera_API.DELETE_Models;
 using System.ComponentModel.DataAnnotations;
 
 namespace Anthera_API.Controllers.v1.Requests

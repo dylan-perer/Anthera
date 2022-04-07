@@ -1,5 +1,5 @@
 ﻿using System;
-namespace Anthera_API.Data
+namespace Anthera_API.DELETE_Data
 {
     public class ErrorResult
     {

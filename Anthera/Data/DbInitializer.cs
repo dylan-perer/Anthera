@@ -1,10 +1,10 @@
-﻿using Anthera_API.Models;
+﻿using Anthera_API.DELETE_Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
 
-namespace Anthera_API.Data
+namespace Anthera_API.DELETE_Data
 {
     public class DbInitializer
     {

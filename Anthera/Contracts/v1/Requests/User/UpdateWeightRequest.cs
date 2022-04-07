@@ -1,4 +1,4 @@
-﻿using Anthera_API.Models;
+﻿using Anthera_API.DELETE_Models;
 
 using System.ComponentModel.DataAnnotations;
 
