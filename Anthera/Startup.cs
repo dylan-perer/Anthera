@@ -78,7 +78,7 @@ namespace Anthera
 
 
             //injecting database context
-            services.AddDbContext<DataContext>(options => options.UseMySql(Configuration.GetConnectionString("mysql")));
+            services.AddDbContext<DataContext>(options => options.UseMySql(Configuration.GetConnectionString("mysql-droplet")));
 
 
             //injecting jwt

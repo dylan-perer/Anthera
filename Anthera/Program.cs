@@ -1,6 +1,9 @@
 
+using Anthera_API.Data;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Serilog;
 
@@ -19,8 +22,16 @@ namespace Anthera
                         a.AddData(null);
 
                         var aa = DbConstant.Personality.AllPersonalities;*/
-            
-            CreateHostBuilder(args).Build().Run();
+
+            var host = CreateHostBuilder(args).Build();
+            var services = (IServiceScopeFactory)host.Services.GetService(typeof(IServiceScopeFactory));
+
+            using (var db = services.CreateScope().ServiceProvider.GetService<DataContext>())
+            {
+                db.Database.Migrate();
+            }
+
+            host.Run();
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
