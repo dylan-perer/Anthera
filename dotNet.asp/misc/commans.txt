@@ -1,0 +1,3 @@
+﻿Scaffold-DbContext "Data Source=.;Initial Catalog=Anthera;Integrated Security=True" Microsoft.EntityFrameWorkCore.SqlServer -outputdir Models -context DataContext -contextdir Data -DataAnnotations -Force
+
+Scaffold-DbContext "server=localhost;user=root;database=Anthera;password=root;port=3306" Pomelo.EntityFrameworkCore.MySql -outputdir Models_NEW -context dataContext -contextdir DataContext_NEW -DataAnnotations -Force
