@@ -1,11 +1,11 @@
-﻿using Anthera_API.Contracts;
-using Anthera_API.Contracts.v1;
-using Anthera_API.Models;
+﻿using Anthera.API.Contracts;
+using Anthera.API.Contracts.v1;
+using Anthera.API.Models;
 
 using System.Security.Claims;
 using System.Threading.Tasks;
 
-namespace Anthera_API.Service
+namespace Anthera.API.Service
 {
     public interface IIdentityService
     {

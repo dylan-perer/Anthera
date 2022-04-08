@@ -1,6 +1,6 @@
-using Anthera_API.Data;
-using Anthera_API.Service;
-using Anthera_API.Websocket.Chat;
+using Anthera.API.Data;
+using Anthera.API.Service;
+using Anthera.API.Websocket.Chat;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -78,7 +78,7 @@ namespace Anthera
 
 
             //injecting database context
-            services.AddDbContext<DataContext>(options => options.UseMySql(Configuration.GetConnectionString("mysql-droplet")));
+            services.AddDbContext<DataContext>(options => options.UseMySql(Configuration.GetConnectionString("mysql")));
 
 
             //injecting jwt
@@ -94,6 +94,13 @@ namespace Anthera
 
             //signal r
             services.AddSignalR();
+            services.AddCors(o => o.AddPolicy("CorsPolicy", builder =>
+            {
+                builder
+                    .AllowAnyMethod()
+                    .AllowAnyHeader()
+                    .AllowAnyOrigin();
+            }));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -121,6 +128,8 @@ namespace Anthera
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseCors("CorsPolicy");
 
             app.UseAuthentication();
 

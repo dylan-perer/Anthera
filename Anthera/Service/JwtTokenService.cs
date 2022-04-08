@@ -1,4 +1,4 @@
-﻿using Anthera_API.Models;
+﻿using Anthera.API.Models;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System;
@@ -7,7 +7,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 
-namespace Anthera_API.Service
+namespace Anthera.API.Service
 {
     public class JwtTokenService
     {

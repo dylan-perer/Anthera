@@ -7,16 +7,16 @@ EXPOSE 80
 
 FROM mcr.microsoft.com/dotnet/core/sdk:3.1 AS build
 WORKDIR /src
-COPY ["Anthera_API.csproj", "./"]
-RUN dotnet restore "./Anthera_API.csproj"
+COPY ["Anthera.API.csproj", "./"]
+RUN dotnet restore "./Anthera.API.csproj"
 COPY . .
-RUN dotnet build "Anthera_API.csproj" -c Release -o /app
+RUN dotnet build "Anthera.API.csproj" -c Release -o /app
 
 FROM build AS publish
-RUN dotnet publish "Anthera_API.csproj" -c Release -o /app
+RUN dotnet publish "Anthera.API.csproj" -c Release -o /app
 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app .
-ENTRYPOINT ["dotnet", "Anthera_API.dll"]
+ENTRYPOINT ["dotnet", "Anthera.API.dll"]
 

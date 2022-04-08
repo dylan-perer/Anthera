@@ -1,7 +1,7 @@
-﻿using Anthera_API.Contracts.v1;
-using Anthera_API.Data;
-using Anthera_API.Extension;
-using Anthera_API.Models;
+﻿using Anthera.API.Contracts.v1;
+using Anthera.API.Data;
+using Anthera.API.Extension;
+using Anthera.API.Models;
 
 
 using Microsoft.EntityFrameworkCore;
@@ -10,7 +10,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Anthera_API.Service
+namespace Anthera.API.Service
 {
     public class UserService : IUserService
     {

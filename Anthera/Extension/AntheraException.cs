@@ -1,8 +1,8 @@
-﻿using Anthera_API.misc;
+﻿using Anthera.API.misc;
 using Microsoft.Extensions.Logging;
 using System;
 
-namespace Anthera_API.Extension
+namespace Anthera.API.Extension
 {
     public class AntheraException
     {

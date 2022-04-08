@@ -1,5 +1,5 @@
 
-using Anthera_API.Data;
+using Anthera.API.Data;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;

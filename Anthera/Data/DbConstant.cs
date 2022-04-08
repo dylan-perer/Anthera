@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Reflection;
 
 
-namespace Anthera_API.Data
+namespace Anthera.API.Data
 {
     public static class DbConstant
     {

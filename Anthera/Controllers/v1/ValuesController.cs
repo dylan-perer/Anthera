@@ -1,7 +1,7 @@
-﻿using Anthera_API.Service;
+﻿using Anthera.API.Service;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Anthera_API.Controllers.v1
+namespace Anthera.API.Controllers.v1
 {
     [Route("api/[controller]")]
     [ApiController]

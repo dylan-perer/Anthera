@@ -1,7 +1,7 @@
-﻿using Anthera_API.Contracts.v1;
-using Anthera_API.Models;
+﻿using Anthera.API.Contracts.v1;
+using Anthera.API.Models;
 
-namespace Anthera_API.Controllers.v1.Responses
+namespace Anthera.API.Controllers.v1.Responses
 {
     public class UserDetailsResponse : IUserResponse
     {

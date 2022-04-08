@@ -1,9 +1,9 @@
-﻿using Anthera_API.Data;
-using Anthera_API.Models;
+﻿using Anthera.API.Data;
+using Anthera.API.Models;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Anthera_API.Service
+namespace Anthera.API.Service
 {
     public class DatabaseConstantService
     {

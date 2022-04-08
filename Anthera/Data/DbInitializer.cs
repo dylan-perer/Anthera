@@ -1,11 +1,11 @@
-﻿using Anthera_API.Models;
+﻿using Anthera.API.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
 
 
-namespace Anthera_API.Data
+namespace Anthera.API.Data
 {
     public class DbInitializer
     {

@@ -1,4 +1,4 @@
-﻿namespace Anthera_API.Service
+﻿namespace Anthera.API.Service
 {
     public class BCryptPasswordHasher : IPasswordHasher
     {

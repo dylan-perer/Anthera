@@ -1,4 +1,4 @@
-﻿namespace Anthera_API.misc
+﻿namespace Anthera.API.misc
 {
     public static class AntheraConstant
     {

@@ -1,4 +1,4 @@
-﻿namespace Anthera_API.Contracts
+﻿namespace Anthera.API.Contracts
 {
     public interface IAuthResponse
     {

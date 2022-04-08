@@ -1,6 +1,6 @@
-﻿using Anthera_API.Models;
+﻿using Anthera.API.Models;
 
-namespace Anthera_API.Contracts.v1
+namespace Anthera.API.Contracts.v1
 {
     public interface IUserRequest
     {

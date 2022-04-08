@@ -1,4 +1,4 @@
-﻿namespace Anthera_API.Contracts.v1.Responses
+﻿namespace Anthera.API.Contracts.v1.Responses
 {
     public class AuthResponse : IAuthResponse
     {

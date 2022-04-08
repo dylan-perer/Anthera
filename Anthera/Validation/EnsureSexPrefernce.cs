@@ -1,9 +1,9 @@
-﻿using Anthera_API.Data;
-using Anthera_API.misc;
+﻿using Anthera.API.Data;
+using Anthera.API.misc;
 
 using System.ComponentModel.DataAnnotations;
 
-namespace Anthera_API.Validation
+namespace Anthera.API.Validation
 {
     public class EnsureSexPrefernce : ValidationAttribute
     {

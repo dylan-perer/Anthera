@@ -1,8 +1,8 @@
-﻿using Anthera_API.Extension;
+﻿using Anthera.API.Extension;
 using Microsoft.AspNetCore.Http;
 using System;
 
-namespace Anthera_API.misc
+namespace Anthera.API.misc
 {
     public static class AntheraMisc
     {

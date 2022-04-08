@@ -1,8 +1,8 @@
-﻿using Anthera_API.misc;
+﻿using Anthera.API.misc;
 using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace Anthera_API.Validation
+namespace Anthera.API.Validation
 {
     public class EnusreDob : ValidationAttribute
     {

@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace Anthera_API.Migrations
+namespace Anthera.API.Migrations
 {
     public partial class seed : Migration
     {

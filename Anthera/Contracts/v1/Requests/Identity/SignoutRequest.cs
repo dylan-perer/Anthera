@@ -1,4 +1,4 @@
-﻿namespace Anthera_API.Contracts.v1.Requests
+﻿namespace Anthera.API.Contracts.v1.Requests
 {
     public class SignoutRequest
     {

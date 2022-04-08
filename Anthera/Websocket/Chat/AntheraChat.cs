@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.SignalR;
 using System.Threading.Tasks;
 
-namespace Anthera_API.Websocket.Chat
+namespace Anthera.API.Websocket.Chat
 {
 
     public class AntheraChat : Hub
@@ -15,10 +15,10 @@ namespace Anthera_API.Websocket.Chat
 
         public async Task JoinRoom(UserConnection userConnection)
         {
-            await Groups.AddToGroupAsync(Context.ConnectionId, userConnection.Channel);
+            await Groups.AddToGroupAsync(Context.ConnectionId, userConnection.Room);
 
-            await Clients.Group(userConnection.Channel)
-                .SendAsync("RecieveMessage", _antheraChatbot, $"{userConnection.User} has joined {userConnection.Channel}");
+            await Clients.Group(userConnection.Room)
+                .SendAsync("RecieveMessage", _antheraChatbot, $"{userConnection.User} has joined {userConnection.Room}");
         }
     }
 }

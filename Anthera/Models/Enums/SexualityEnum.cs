@@ -1,4 +1,4 @@
-﻿namespace Anthera_API.Models
+﻿namespace Anthera.API.Models
 {
     public enum SexualityEnum
     {

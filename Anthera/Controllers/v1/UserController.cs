@@ -1,12 +1,12 @@
-﻿using Anthera_API.Contracts.v1;
-using Anthera_API.Contracts.v1.Requests;
-using Anthera_API.Contracts.v1.Responses;
-using Anthera_API.Controllers.v1.Requests;
-using Anthera_API.Extension;
-using Anthera_API.misc;
-using Anthera_API.Models;
+﻿using Anthera.API.Contracts.v1;
+using Anthera.API.Contracts.v1.Requests;
+using Anthera.API.Contracts.v1.Responses;
+using Anthera.API.Controllers.v1.Requests;
+using Anthera.API.Extension;
+using Anthera.API.misc;
+using Anthera.API.Models;
 
-using Anthera_API.Service;
+using Anthera.API.Service;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -17,7 +17,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
 
-namespace Anthera_API.Controllers
+namespace Anthera.API.Controllers
 {
     [Route(ApiRoutes.User.ControllerV1)]
     [ApiController]

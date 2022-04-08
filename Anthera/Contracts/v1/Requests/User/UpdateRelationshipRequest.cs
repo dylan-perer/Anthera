@@ -1,8 +1,8 @@
-﻿using Anthera_API.Data;
-using Anthera_API.Models;
-using Anthera_API.Validation;
+﻿using Anthera.API.Data;
+using Anthera.API.Models;
+using Anthera.API.Validation;
 
-namespace Anthera_API.Contracts.v1.Requests
+namespace Anthera.API.Contracts.v1.Requests
 {
     public class UpdateRelationshipRequest : IUserRequest
     {

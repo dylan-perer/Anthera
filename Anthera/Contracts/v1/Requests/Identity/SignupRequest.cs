@@ -1,12 +1,12 @@
-﻿using Anthera_API.Contracts.v1;
-using Anthera_API.Data;
-using Anthera_API.Models;
-using Anthera_API.Validation;
+﻿using Anthera.API.Contracts.v1;
+using Anthera.API.Data;
+using Anthera.API.Models;
+using Anthera.API.Validation;
 
 using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace Anthera_API.Controllers.v1.Requests
+namespace Anthera.API.Controllers.v1.Requests
 {
     public class SignupRequest : IUserRequest
     {

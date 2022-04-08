@@ -1,10 +1,10 @@
-﻿using Anthera_API.Contracts.v1;
-using Anthera_API.Models;
+﻿using Anthera.API.Contracts.v1;
+using Anthera.API.Models;
 
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Anthera_API.Service
+namespace Anthera.API.Service
 {
     public interface IUserService
     {

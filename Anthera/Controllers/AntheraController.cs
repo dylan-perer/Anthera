@@ -1,10 +1,10 @@
-﻿using Anthera_API.Extension;
+﻿using Anthera.API.Extension;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Threading.Tasks;
 
-namespace Anthera_API.Controllers
+namespace Anthera.API.Controllers
 {
     public abstract class AntheraController
     {

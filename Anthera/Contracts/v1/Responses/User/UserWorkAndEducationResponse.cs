@@ -1,7 +1,7 @@
-﻿using Anthera_API.Data;
-using Anthera_API.Models;
+﻿using Anthera.API.Data;
+using Anthera.API.Models;
 
-namespace Anthera_API.Contracts.v1.Responses
+namespace Anthera.API.Contracts.v1.Responses
 {
     public class UserWorkAndEducationResponse : IUserResponse
     {

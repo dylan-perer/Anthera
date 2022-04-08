@@ -1,15 +1,15 @@
-﻿using Anthera_API.Contracts;
-using Anthera_API.Contracts.v1;
-using Anthera_API.Data;
-using Anthera_API.Extension;
-using Anthera_API.Models;
+﻿using Anthera.API.Contracts;
+using Anthera.API.Contracts.v1;
+using Anthera.API.Data;
+using Anthera.API.Extension;
+using Anthera.API.Models;
 
 using System;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
-namespace Anthera_API.Service
+namespace Anthera.API.Service
 {
     public class IdentityService : IIdentityService
     {
