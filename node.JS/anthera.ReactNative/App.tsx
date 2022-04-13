@@ -1,8 +1,13 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
-import FirstBootScreen from './Components/FirstBootScreen';
+import FirstBootScreen from './Components/Signup/FirstBootScreen';
 import {useFonts} from 'expo-font';
 import AppLoading from 'expo-app-loading';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator, TransitionPresets } from '@react-navigation/stack';
+import GenderScreen from './Components/UserInfo/GenderScreen';
+import {AntheraStyle} from './Constants/Styles/AntheraStyles';
+import SignupNavigator from './Components/Signup/SignupNavigator';
 
 export default function App() {
   console.log("hellpo");
@@ -13,11 +18,8 @@ export default function App() {
   if(!fontsLoded){
     return <AppLoading/>
   }
-
   return (
-    <View style={styles.container}>
-      <FirstBootScreen/>
-    </View>
+    <SignupNavigator/>
   );
 }
 
