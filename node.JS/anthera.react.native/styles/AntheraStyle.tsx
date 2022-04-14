@@ -9,6 +9,7 @@ const scale = (size:number) => width / guidelineBaseWidth * size;
 const verticalScale = (size:number) => height / guidelineBaseHeight * size;
 const moderateScale = (size:number, factor:number = 0.5) => size + ( scale(size) - size ) * factor;
 const isPhoneScreen = width <= 550?true:false;
+const isSmallPhoneScreen = width <=200?true:false;
 
 const AntheraStyle = {
     font : {
@@ -16,7 +17,9 @@ const AntheraStyle = {
         nuntito_SemiBold: "Nunito-SemiBold",
         nunito_regular: "Nunito-Regular",
         size:{
-            header: isPhoneScreen? scale(20): scale(13)
+            header: isPhoneScreen? scale(21): scale(13),
+            headerSmall: isPhoneScreen? scale(18): scale(11),
+            textMedium: isPhoneScreen? scale(15): scale(10),
         }
     },
     colour:{
@@ -24,7 +27,10 @@ const AntheraStyle = {
         Secondary: "#FBD3CD",
         dark: '#C28C84',
         TextGrey: "#545454",
-        BackgroundGrey: "#FFF"
+        TextGreyLight:"#6E6E6E",
+        BackgroundGrey: "#FFF",
+        error:'#ff5050',
+        bright:'#F6998C'
     }
 }
 
@@ -35,4 +41,4 @@ const screen={
 }
 
 
-export {AntheraStyle, screen, scale, verticalScale, moderateScale, isPhoneScreen}
+export {AntheraStyle, screen, scale, verticalScale, moderateScale, isPhoneScreen, isSmallPhoneScreen}
