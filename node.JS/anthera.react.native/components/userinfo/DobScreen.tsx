@@ -17,18 +17,20 @@ const DobScreen = ({navigation}: {navigation: any})=>{
         }
 
         if(isNaN(age)){
-            setError('Sorry, that is not a valid date! Try again.')
+            setError('Sorry, that is not a valid date!')
         }
-        if(age<18){
-            setError('Sorry, you must be older than 18 years old to join.')
+        else if (age<18){
+            setError('Sorry, you must be 18 or older to join.')
         }else if(age>99){
-            setError('Sorry, you must be less than 99 years old to join.')
+            setError('Sorry, your age must be less than 99 to join.')
+        }else{
+            navigation.navigate('HeretoScreen')
         }
 
     }
     return (
         <UserInfo
-            tilePrefix={'Nice, When is your '}
+            tilePrefix={'Sweet! When is your '}
             titleHighLighted={'birthday'}
             titlePostfix={'?'}
             hint={'This cannot be changed later.'}
@@ -36,7 +38,7 @@ const DobScreen = ({navigation}: {navigation: any})=>{
             onContinue={onContinue}
         >
 
-            <DateField onValue={(value:string)=>date.current=value} errorMsg={error}/>
+            <DateField onValue={(value:string)=>date.current=value} errorMsg={error} autoFocus={true}/>
         </UserInfo>
     )
 

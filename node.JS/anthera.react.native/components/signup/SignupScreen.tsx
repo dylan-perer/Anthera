@@ -17,12 +17,12 @@ const SignupScreen =({navigation}: {navigation: any})=>{
         </Animatable.View>
 
         <View style={styles.textContainer}>
-            <Animatable.Text animation={'fadeIn'} duration={6000} style={[styles.text, {marginRight:moderateScale(100)}]}>Hello there,</Animatable.Text>
-            <Animatable.Text animation={'fadeIn'} duration={6000} delay={2000} style={[styles.text, {marginLeft:moderateScale(100)}]}>Lets get you sorted.</Animatable.Text>
+            <Animatable.Text animation={'fadeIn'} duration={5000} style={[styles.text, {marginRight:moderateScale(100)}]}>Hello there,</Animatable.Text>
+            <Animatable.Text animation={'fadeIn'} duration={5000} delay={1400} style={[styles.text, {marginLeft:moderateScale(100)}]}>Lets get you sorted.</Animatable.Text>
         </View>
 
 
-        <Animatable.View animation={'fadeIn'} duration={2000} delay={4000}>
+        <Animatable.View animation={'fadeIn'} duration={2000} delay={3000}>
             <View style={styles.btnContainer}>
                 <TouchableOpacity style={styles.btn} onPress={()=>onGenderPress('NameScreen')}>
                     <Text style={styles.btnText}>Female</Text>
@@ -34,7 +34,7 @@ const SignupScreen =({navigation}: {navigation: any})=>{
         </Animatable.View>
 
         <TouchableOpacity style={styles.moreChoicesBtn}>
-            <Animatable.Text animation={"fadeIn"} duration={2000} delay={4500} style={styles.moreChoicesText}>More choices</Animatable.Text>
+            <Animatable.Text animation={"fadeIn"} duration={2000} delay={3500} style={styles.moreChoicesText}>More choices</Animatable.Text>
         </TouchableOpacity>
 
 
@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
     },
     btn:{
         borderWidth:1.5,
-        borderColor:AntheraStyle.colour.bright,
+        borderColor:AntheraStyle.colour.main,
         borderRadius: moderateScale(30),
         width:moderateScale(130),
         marginHorizontal:moderateScale(5)

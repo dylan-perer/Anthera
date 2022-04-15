@@ -21,10 +21,16 @@ const NameScreen = ({navigation}: {navigation: any})=>{
             titleHighLighted={'name'}
             titlePostfix={'?'}
             hint={'This is how others will see you.'}
-            onGoBack={()=>{navigation.navigate('DobScreen')}}
+            onGoBack={()=>{navigation.navigate('SignupScreen')}}
             onContinue={onContinue}
         >
-            <InputField showCharacterCounter={true} maxValueCounter={14} errorMsg={error} onChange={(text:string)=>{value.current=text}}/>
+            <InputField
+                showCharacterCounter={true}
+                maxValueCounter={14}
+                errorMsg={error}
+                onChange={(text:string)=>{value.current=text}}
+                autoFocus={true}
+            />
         </UserInfo>
     )
 }

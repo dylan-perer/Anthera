@@ -1,6 +1,6 @@
 import {StyleSheet, Text, TextInput, View, ViewStyle} from "react-native";
 import {AntheraStyle, moderateScale} from "../../styles/AntheraStyle";
-import {useRef, useState} from "react";
+import {useEffect, useRef, useState} from "react";
 import * as Animatable from 'react-native-animatable';
 import InlineError from "./InlineError";
 
@@ -14,6 +14,9 @@ export type InputFieldProps = {
     maxValueCounter:number,
     errorMsg:string,
     onChange?:any
+    isErrorAlignCenter?:boolean
+    autoFocus?:boolean,
+    secureTextEntry?:boolean
 }
 
 const InputField = (props:InputFieldProps)=>{
@@ -25,16 +28,18 @@ const InputField = (props:InputFieldProps)=>{
         props.onChange(text);
         characterCounter.current=text.length;
     }
-    return <View style={[styles.inputWrapper, props.counterStyle]}>
+    return <View style={[styles.inputWrapper, props.containerStyle]}>
         <TextInput
+            secureTextEntry={props.secureTextEntry}
             value={currentText}
             maxLength={props.maxValueCounter}
             onChangeText={(text)=>onChangeText(text)}
             style={[styles.input, props.textStyle]}
             textAlign={props.textAlign?props.textAlign:'center'}
             placeholder={props.placeholder?props.placeholder:'Jane'}
-            autoFocus={true}/>
-        <View style={styles.errorAndCounterContainer}>
+            autoFocus={props.autoFocus}
+        />
+        <View style={[styles.errorAndCounterContainer, props.isErrorAlignCenter?{justifyContent: 'center'}:{}]}>
             {props.showCharacterCounter && <Text style={[styles.letterCount, props.counterStyle]}>
                 {characterCounter.current}/{props.maxValueCounter} </Text>}
 

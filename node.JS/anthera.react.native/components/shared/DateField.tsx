@@ -7,6 +7,7 @@ import InlineError from "./InlineError";
 type DateFieldProps = {
     errorMsg:string,
     onValue:any
+    autoFocus?:boolean
 }
 
 const DateField = (props:DateFieldProps)=>{
@@ -51,88 +52,94 @@ const DateField = (props:DateFieldProps)=>{
     }
     return( <>
     <View style={styles.inputBorder}>
-        <TextInput
-            placeholder={'D'}
-            maxLength={1}
-            keyboardType={'numeric'}
-            ref={d1}
-            selectTextOnFocus={true}
-            style={[styles.input]}
-            onChangeText={(text)=>{setFocus(text,d1Value,d2, null)}}/>
+            <TextInput
+                autoFocus={props.autoFocus}
+                placeholder={'D'}
+                maxLength={1}
+                keyboardType={'numeric'}
+                ref={d1}
+                selectTextOnFocus={true}
+                style={[styles.input]}
+                onChangeText={(text)=>{setFocus(text,d1Value,d2, null)}}/>
 
-        <TextInput placeholder={'D'}
-                   maxLength={1}
-                   keyboardType={'numeric'}
-                   selectTextOnFocus={true}
-                   style={[styles.input, styles.inputEnd]}
-                   ref={d2}
-                   onKeyPress={({ nativeEvent }) => {setFocusOnBackspace(nativeEvent,d1)}}
-                   onChangeText={(text)=>{setFocus(text,d2Value,m1, d1)}}/>
+            <TextInput
+                placeholder={'D'}
+                maxLength={1}
+                keyboardType={'numeric'}
+                selectTextOnFocus={true}
+                style={[styles.input]}
+                ref={d2}
+                onKeyPress={({ nativeEvent }) => {setFocusOnBackspace(nativeEvent,d1)}}
+                onChangeText={(text)=>{setFocus(text,d2Value,m1, d1)}}/>
 
-        <TextInput
-            placeholder={'M'}
-            maxLength={1}
-            selectTextOnFocus={true}
-            keyboardType={'numeric'}
-            style={[styles.input]}
-            onKeyPress={({ nativeEvent }) => {setFocusOnBackspace(nativeEvent,d2)}}
-            ref={m1} onChangeText={(text)=>{setFocus(text,m1Value, m2, d2)}}/>
+            <Text style={[styles.input, styles.inputEnd]}>-</Text>
 
-
-        <TextInput
-            placeholder={'M'}
-            maxLength={1}
-            keyboardType={'numeric'}
-            selectTextOnFocus={true}
-            style={[styles.input, styles.inputEnd]}
-            ref={m2}
-            onKeyPress={({ nativeEvent }) => {setFocusOnBackspace(nativeEvent,m1)}}
-            onChangeText={(text)=>{setFocus(text,m2Value, y1, m1)}}/>
+            <TextInput
+                placeholder={'M'}
+                maxLength={1}
+                selectTextOnFocus={true}
+                keyboardType={'numeric'}
+                style={[styles.input]}
+                onKeyPress={({ nativeEvent }) => {setFocusOnBackspace(nativeEvent,d2)}}
+                ref={m1} onChangeText={(text)=>{setFocus(text,m1Value, m2, d2)}}/>
 
 
-        <TextInput
-            placeholder={'Y'}
-            maxLength={1}
-            keyboardType={'numeric'}
-            selectTextOnFocus={true}
-            style={[styles.input]}
-            ref={y1}
-            onKeyPress={({ nativeEvent }) => {setFocusOnBackspace(nativeEvent,m2)}}
-            onChangeText={(text)=>{setFocus(text,y1Value, y2, m2)}} />
+            <TextInput
+                placeholder={'M'}
+                maxLength={1}
+                keyboardType={'numeric'}
+                selectTextOnFocus={true}
+                style={[styles.input]}
+                ref={m2}
+                onKeyPress={({ nativeEvent }) => {setFocusOnBackspace(nativeEvent,m1)}}
+                onChangeText={(text)=>{setFocus(text,m2Value, y1, m1)}}/>
 
-        <TextInput
-            placeholder={'Y'}
-            maxLength={1}
-            keyboardType={'numeric'}
-            selectTextOnFocus={true}
-            style={[styles.input]}
-            ref={y2}
-            onKeyPress={({ nativeEvent }) => {setFocusOnBackspace(nativeEvent,y1)}}
-            onChangeText={(text)=>{setFocus(text,y2Value, y3, y1)}}/>
 
-        <TextInput
-            placeholder={'Y'}
-            maxLength={1}
-            keyboardType={'numeric'}
-            style={[styles.input]}
-            selectTextOnFocus={true}
-            ref={y3}
-            onKeyPress={({ nativeEvent }) => {setFocusOnBackspace(nativeEvent,y2)}}
-            onChangeText={(text)=>{setFocus(text,y3Value, y4, y2)}}/>
+            <Text style={[styles.input, styles.inputEnd]}>-</Text>
 
-        <TextInput
-            placeholder={'Y'}
-            maxLength={1}
-            keyboardType={'numeric'}
-            style={[styles.input]}
-            selectTextOnFocus={true}
-            ref={y4}
-            onKeyPress={({ nativeEvent }) => {setFocusOnBackspace(nativeEvent,y3)}}
-            onChangeText={(text)=>{setFocus(text, y4Value,null, y3)}}/>
-    </View>
-            <View style={styles.errorAndCounterContainer}>
-                {props.errorMsg!=''? <InlineError errorMsg={props.errorMsg} style={{alignSelf:'center'}}/>:<></>}
-            </View>
+            <TextInput
+                placeholder={'Y'}
+                maxLength={1}
+                keyboardType={'numeric'}
+                selectTextOnFocus={true}
+                style={[styles.input]}
+                ref={y1}
+                onKeyPress={({ nativeEvent }) => {setFocusOnBackspace(nativeEvent,m2)}}
+                onChangeText={(text)=>{setFocus(text,y1Value, y2, m2)}} />
+
+            <TextInput
+                placeholder={'Y'}
+                maxLength={1}
+                keyboardType={'numeric'}
+                selectTextOnFocus={true}
+                style={[styles.input]}
+                ref={y2}
+                onKeyPress={({ nativeEvent }) => {setFocusOnBackspace(nativeEvent,y1)}}
+                onChangeText={(text)=>{setFocus(text,y2Value, y3, y1)}}/>
+
+            <TextInput
+                placeholder={'Y'}
+                maxLength={1}
+                keyboardType={'numeric'}
+                style={[styles.input]}
+                selectTextOnFocus={true}
+                ref={y3}
+                onKeyPress={({ nativeEvent }) => {setFocusOnBackspace(nativeEvent,y2)}}
+                onChangeText={(text)=>{setFocus(text,y3Value, y4, y2)}}/>
+
+            <TextInput
+                placeholder={'Y'}
+                maxLength={1}
+                keyboardType={'numeric'}
+                style={[styles.input]}
+                selectTextOnFocus={true}
+                ref={y4}
+                onKeyPress={({ nativeEvent }) => {setFocusOnBackspace(nativeEvent,y3)}}
+                onChangeText={(text)=>{setFocus(text, y4Value,null, y3)}}/>
+        </View>
+        <View style={styles.errorAndCounterContainer}>
+            {props.errorMsg!=''? <InlineError errorMsg={props.errorMsg} style={{alignSelf:'center'}}/>:<></>}
+        </View>
     </>
     );
 }
@@ -152,8 +159,31 @@ const styles = StyleSheet.create({
         fontSize: AntheraStyle.font.size.textMedium
     },
     inputEnd:{
-      marginRight:moderateScale(20)
+      marginHorizontal:moderateScale(5)
     },
-    errorAndCounterContainer:{},
+    separator:{
+
+    },
+    labelContainer:{
+        flexDirection:'row',
+        justifyContent:'space-between',
+        width:moderateScale(180),
+        alignSelf:'center'
+    },
+    label:{
+        fontFamily:AntheraStyle.font.nunito_regular,
+        color:AntheraStyle.colour.TextGrey,
+        fontSize: AntheraStyle.font.size.textSmall,
+    },
+    labelDay:{
+
+    },
+    labelMonth:{
+
+    },
+    labelYear:{
+
+    },
+    errorAndCounterContainer:{}
 });
 export default DateField;

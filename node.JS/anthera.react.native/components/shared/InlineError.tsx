@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
     errorAndCounterContainer:{},
     errorText:{
         fontFamily:AntheraStyle.font.nuntito_SemiBold,
-        fontSize: isPhoneScreen? scale(9.5): scale(6.5),
+        fontSize: isPhoneScreen? scale(11.5): scale(7.5),
         color: AntheraStyle.colour.error,
     }
 });

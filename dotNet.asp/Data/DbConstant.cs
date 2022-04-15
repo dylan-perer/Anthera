@@ -120,8 +120,8 @@ namespace Anthera.API.Data
         public static class HereTo
         {
             public static readonly string Chat = "I'm here to chat";
-            public static readonly string Date = "I'm Here to date";
-            public static readonly string Relationship = "I'm here for a relationship";
+            public static readonly string Date = "I'm here to date";
+            public static readonly string Relationship = "I'm ready for an relationship";
 
             public static readonly string[] AllHereTotypes = ToArray(typeof(HereTo));
         }

@@ -1,4 +1,5 @@
 import { Dimensions } from 'react-native';
+import calculateColorContrast from "../misc/ColorCalcuator";
 const { width, height } = Dimensions.get('window');
 
 //Guideline sizes are based on standard ~5" screen mobile device
@@ -9,8 +10,9 @@ const scale = (size:number) => width / guidelineBaseWidth * size;
 const verticalScale = (size:number) => height / guidelineBaseHeight * size;
 const moderateScale = (size:number, factor:number = 0.5) => size + ( scale(size) - size ) * factor;
 const isPhoneScreen = width <= 550?true:false;
-const isSmallPhoneScreen = width <=200?true:false;
+const isSmallPhoneScreen = height<=600?true:false;
 
+let mainColor = '#F4AEA4';
 const AntheraStyle = {
     font : {
         questrial: "Questrial-Regular",
@@ -19,18 +21,24 @@ const AntheraStyle = {
         size:{
             header: isPhoneScreen? scale(21): scale(13),
             headerSmall: isPhoneScreen? scale(18): scale(11),
-            textMedium: isPhoneScreen? scale(15): scale(10),
+            textMedium: isPhoneScreen? scale(17): scale(10),
+            subHeader: isPhoneScreen? scale(15.5): scale(9),
+            textSmall: isPhoneScreen? scale(14): scale(8),
+            textVerySmall: isPhoneScreen? scale(13.5): scale(7.5),
         }
     },
     colour:{
-        main: "#F4AEA4",
+        main: "#F39D93",
         Secondary: "#FBD3CD",
         dark: '#C28C84',
+        // main: mainColor,
+        // Secondary: calculateColorContrast(mainColor, -10),
+        // dark: calculateColorContrast(mainColor, +10),
         TextGrey: "#545454",
         TextGreyLight:"#6E6E6E",
-        BackgroundGrey: "#FFF",
+        BackgroundGrey:'#fff',// "#F3F3F3",
         error:'#ff5050',
-        bright:'#F6998C'
+        bright:'#FC8C7D'
     }
 }
 
