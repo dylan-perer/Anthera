@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "anthera.react.native",
-    "slug": "anthera.react.native",
+    "name": "anthera_react_native",
+    "slug": "anthera_react_native",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -23,7 +23,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "package": "com.aaronp1707.anthera.react.native"
     },
     "web": {
       "favicon": "./assets/favicon.png"

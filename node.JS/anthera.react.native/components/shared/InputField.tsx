@@ -1,49 +1,50 @@
 import {StyleSheet, Text, TextInput, View, ViewStyle} from "react-native";
 import {AntheraStyle, moderateScale} from "../../styles/AntheraStyle";
-import {useEffect, useRef, useState} from "react";
-import * as Animatable from 'react-native-animatable';
+import {useRef, useState} from "react";
 import InlineError from "./InlineError";
 
 export type InputFieldProps = {
     textAlign?: any,
-    placeholder?:string,
-    containerStyle?:ViewStyle,
+    placeholder?: string,
+    containerStyle?: ViewStyle,
     textStyle?: ViewStyle,
-    counterStyle?:ViewStyle,
-    showCharacterCounter:boolean,
-    maxValueCounter:number,
-    errorMsg:string,
-    onChange?:any
-    isErrorAlignCenter?:boolean
-    autoFocus?:boolean,
-    secureTextEntry?:boolean
+    counterStyle?: ViewStyle,
+    showCharacterCounter: boolean,
+    maxValueCounter: number,
+    errorMsg: string,
+    onChange?: any
+    isErrorAlignCenter?: boolean
+    autoFocus?: boolean,
+    secureTextEntry?: boolean,
+    isAutoCorrect?: boolean
 }
 
-const InputField = (props:InputFieldProps)=>{
+const InputField = (props: InputFieldProps) => {
     const characterCounter = useRef(0);
     const [currentText, setCurrentText] = useState('');
 
-    const onChangeText=(text:string)=>{
+    const onChangeText = (text: string) => {
         setCurrentText(text);
         props.onChange(text);
-        characterCounter.current=text.length;
+        characterCounter.current = text.length;
     }
     return <View style={[styles.inputWrapper, props.containerStyle]}>
         <TextInput
             secureTextEntry={props.secureTextEntry}
             value={currentText}
             maxLength={props.maxValueCounter}
-            onChangeText={(text)=>onChangeText(text)}
+            onChangeText={(text) => onChangeText(text)}
             style={[styles.input, props.textStyle]}
-            textAlign={props.textAlign?props.textAlign:'center'}
-            placeholder={props.placeholder?props.placeholder:'Jane'}
+            textAlign={props.textAlign ? props.textAlign : 'center'}
+            placeholder={props.placeholder ? props.placeholder : 'Jane'}
             autoFocus={props.autoFocus}
+            keyboardType={props.isAutoCorrect?undefined:"visible-password"}
         />
-        <View style={[styles.errorAndCounterContainer, props.isErrorAlignCenter?{justifyContent: 'center'}:{}]}>
+        <View style={[styles.errorAndCounterContainer, props.isErrorAlignCenter ? {justifyContent: 'center'} : {}]}>
             {props.showCharacterCounter && <Text style={[styles.letterCount, props.counterStyle]}>
                 {characterCounter.current}/{props.maxValueCounter} </Text>}
 
-            {props.errorMsg!=''? <InlineError errorMsg={props.errorMsg}/>:<></>}
+            <InlineError errorMsg={props.errorMsg}/>
         </View>
 
     </View>
@@ -56,33 +57,33 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
-    input:{
-        borderBottomWidth:1,
-        paddingTop:moderateScale(10),
-        borderColor:AntheraStyle.colour.TextGrey,
-        fontSize:moderateScale(16.5),
-        width:'100%',
+    input: {
+        borderBottomWidth: 1,
+        paddingTop: moderateScale(10),
+        borderColor: AntheraStyle.colour.TextGrey,
+        fontSize: moderateScale(16.5),
+        width: '100%',
     },
-    errorAndCounterContainer:{
-        flexDirection:'row',
-        justifyContent:'space-between',
-        width:'100%'
+    errorAndCounterContainer: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        width: '100%'
     },
-    letterCount:{
-        alignSelf:'flex-end',
-        fontFamily:AntheraStyle.font.nuntito_SemiBold,
-        color:AntheraStyle.colour.TextGreyLight,
+    letterCount: {
+        alignSelf: 'flex-end',
+        fontFamily: AntheraStyle.font.nuntito_SemiBold,
+        color: AntheraStyle.colour.TextGreyLight,
         fontSize: moderateScale(10.5)
     },
-    inputWrapper:{
-        alignSelf:'center',
-        flexDirection:'column',
-        justifyContent:'center',
-        alignItems:'center',
-        width:moderateScale(300),
+    inputWrapper: {
+        alignSelf: 'center',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: moderateScale(300),
     },
-    errorText:{
-        fontFamily:AntheraStyle.font.nuntito_SemiBold,
+    errorText: {
+        fontFamily: AntheraStyle.font.nuntito_SemiBold,
         fontSize: moderateScale(12),
         color: AntheraStyle.colour.error,
     }

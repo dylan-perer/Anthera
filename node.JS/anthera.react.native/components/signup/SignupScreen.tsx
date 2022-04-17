@@ -1,14 +1,36 @@
 import {StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import LogoWithName from "../../assets/svgs/LogoWithName";
 import * as Animatable from 'react-native-animatable';
-import {AntheraStyle, moderateScale, scale, screen, verticalScale} from "../../styles/AntheraStyle";
+import {AntheraStyle, moderateScale, scale, screen, screenDeviation, verticalScale} from "../../styles/AntheraStyle";
 import {UserInfoScreens} from "./SignupNavigator";
+import {useRef} from "react";
+import BottomModal from "../shared/BottomModal";
+import SearchInput from "../shared/SearchInput";
+import List from "../shared/List";
+import SearchList from "../shared/SearchList";
 
 const SignupScreen =({navigation}: {navigation: any})=>{
+    const searchListRef = useRef<BottomModal>();
+    const genderValueRef = useRef<string>();
 
     const onGenderPress = (screenName: UserInfoScreens)=>{
         navigation.navigate(screenName)
     }
+
+    const DATA = [
+        {
+            id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
+            title: 'First Item',
+        },
+        {
+            id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
+            title: 'Second Item',
+        },
+        {
+            id: '58694a0f-3da1-471f-bd96-145571e29d72',
+            title: 'Third Item',
+        },
+    ];
 
     return <View style={styles.container}>
 
@@ -33,7 +55,15 @@ const SignupScreen =({navigation}: {navigation: any})=>{
             </View>
         </Animatable.View>
 
-        <TouchableOpacity style={styles.moreChoicesBtn}>
+        <TouchableOpacity style={styles.moreChoicesBtn} onPress={()=>searchListRef.current?.show()}>
+            <SearchList
+                modalRef={(ref)=>searchListRef.current=ref}
+                data={DATA}
+                onSearchValueChange={(text)=>{}}
+                onCancel={()=>searchListRef.current?.close()}
+                keyExtractor={(item) => item.id}
+                itemTemplate={(item)=><TouchableOpacity><Text>{item.id} {item.title}</Text></TouchableOpacity>}
+            />
             <Animatable.Text animation={"fadeIn"} duration={2000} delay={3500} style={styles.moreChoicesText}>More choices</Animatable.Text>
         </TouchableOpacity>
 
@@ -84,15 +114,19 @@ const styles = StyleSheet.create({
         alignSelf:'center',
         color:AntheraStyle.colour.main
     },
+    bottomModal:{
+        maxWidth:screenDeviation(350,320,280),
+    }
+    ,
     moreChoicesBtn:{
         marginTop:verticalScale(20),
         alignItems:'center'
     },
     moreChoicesText:{
         fontFamily:AntheraStyle.font.nuntito_SemiBold,
-        fontSize:AntheraStyle.font.size.headerSmall,
-        color:AntheraStyle.colour.main
-    }
+        fontSize:AntheraStyle.font.size.textMedium,
+        color:AntheraStyle.colour.mid
+    },
 });
 
 export default SignupScreen;

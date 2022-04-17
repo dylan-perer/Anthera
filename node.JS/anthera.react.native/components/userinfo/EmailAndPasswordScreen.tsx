@@ -2,7 +2,14 @@ import UserInfo from "./UserInfo";
 import {StyleSheet, View} from "react-native";
 import InputField from "../shared/InputField";
 import {useRef, useState} from "react";
-import {AntheraStyle, isPhoneScreen, isSmallPhoneScreen, moderateScale, verticalScale} from "../../styles/AntheraStyle";
+import {
+    AntheraStyle,
+    isPhoneScreen,
+    isSmallPhoneScreen,
+    moderateScale,
+    screenDeviation,
+    verticalScale
+} from "../../styles/AntheraStyle";
 
 const EmailAndPasswordScreen = ({navigation}:{navigation:any})=>{
     const [errorEmail, setErrorEmail] = useState('');
@@ -55,6 +62,7 @@ const EmailAndPasswordScreen = ({navigation}:{navigation:any})=>{
                 textStyle={styles.input}
                 placeholder={'password'}
                 isErrorAlignCenter={true}
+                isAutoCorrect={true}
             />
         </View>
     </UserInfo>
@@ -66,21 +74,22 @@ const validateEmail = (email:string) => {
             /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
         );
 };
+
 const styles = StyleSheet.create({
     input:{
         borderBottomWidth:0
     },
     inputEmailContainer:{
-        backgroundColor:'#fff',
         borderRadius:moderateScale(40),
     },
     inputContainerPassword:{
         marginTop:verticalScale(20),
         borderRadius:moderateScale(40),
-        backgroundColor:'#fff'
     },
     continueBtn:{
-        marginTop: isSmallPhoneScreen? verticalScale(10):isPhoneScreen? verticalScale(30):verticalScale(70)
+        marginTop: screenDeviation(10,30,70)
     }
 });
+
+
 export default EmailAndPasswordScreen;

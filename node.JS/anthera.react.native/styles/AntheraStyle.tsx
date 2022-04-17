@@ -1,4 +1,4 @@
-import { Dimensions } from 'react-native';
+import { Dimensions, Platform } from 'react-native';
 import calculateColorContrast from "../misc/ColorCalcuator";
 const { width, height } = Dimensions.get('window');
 
@@ -11,7 +11,12 @@ const verticalScale = (size:number) => height / guidelineBaseHeight * size;
 const moderateScale = (size:number, factor:number = 0.5) => size + ( scale(size) - size ) * factor;
 const isPhoneScreen = width <= 550?true:false;
 const isSmallPhoneScreen = height<=600?true:false;
-
+const screenDeviation=(onSmallPhoneScreen:number, onPhoneScreen:number, onLargeScreen:number)=>{
+    return isSmallPhoneScreen? verticalScale(onSmallPhoneScreen):isPhoneScreen? verticalScale(onPhoneScreen):verticalScale(onLargeScreen);
+}
+const onPlatform = (ios:number, android:number)=>{
+    return Platform.OS === 'ios'? ios: android
+}
 let mainColor = '#F4AEA4';
 const AntheraStyle = {
     font : {
@@ -20,17 +25,20 @@ const AntheraStyle = {
         nunito_regular: "Nunito-Regular",
         size:{
             header: isPhoneScreen? scale(21): scale(13),
+            headerMedium: isPhoneScreen? scale(18.5): scale(13),
             headerSmall: isPhoneScreen? scale(18): scale(11),
             textMedium: isPhoneScreen? scale(17): scale(10),
             subHeader: isPhoneScreen? scale(15.5): scale(9),
             textSmall: isPhoneScreen? scale(14): scale(8),
-            textVerySmall: isPhoneScreen? scale(13.5): scale(7.5),
+            textVerySmall: isPhoneScreen? scale(13): scale(7.5),
         }
     },
     colour:{
-        main: "#F39D93",
-        Secondary: "#FBD3CD",
-        dark: '#C28C84',
+        main: "#1778F2",
+        Secondary: "#D4E3FF",
+        dark: '#1C58C4',
+        mid:'#649CFF',
+        light:'#E0D7FC',
         // main: mainColor,
         // Secondary: calculateColorContrast(mainColor, -10),
         // dark: calculateColorContrast(mainColor, +10),
@@ -49,4 +57,4 @@ const screen={
 }
 
 
-export {AntheraStyle, screen, scale, verticalScale, moderateScale, isPhoneScreen, isSmallPhoneScreen}
+export {AntheraStyle, screen, scale, verticalScale, moderateScale, isPhoneScreen, isSmallPhoneScreen,screenDeviation,onPlatform}

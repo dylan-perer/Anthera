@@ -1,7 +1,7 @@
 import {
     Keyboard,
     KeyboardAvoidingView,
-    Platform,
+    Platform, SafeAreaView,
     ScrollView,
     StyleSheet,
     Text,
@@ -16,7 +16,7 @@ import {
     isSmallPhoneScreen,
     moderateScale,
     scale,
-    screen,
+    screen, screenDeviation,
     verticalScale
 } from "../../styles/AntheraStyle";
 import * as Animatable from 'react-native-animatable';
@@ -41,10 +41,15 @@ export type UserInfoProps={
 
 const UserInfo = (props:UserInfoProps)=>{
 
-    return  <ScrollView
+    return  <SafeAreaView>
+    <ScrollView
                 style={styles.container}
                 keyboardShouldPersistTaps='always'>
-                 <CustomIcon styleContainer={{marginTop:verticalScale(50)}} onPress={props.onGoBack}  Svg={<BackIcon {...styles.backIcon}/>}/>
+                 <CustomIcon
+                     styleContainer={{marginTop:isSmallPhoneScreen? verticalScale(24):isPhoneScreen? verticalScale(32):verticalScale(30)}}
+                     onPress={props.onGoBack}
+                     Svg={<BackIcon {...styles.backIcon}/>}
+                 />
 
                 <View style={styles.titleWrapper}>
                     <Animatable.Text style={styles.titleContainer} animation={'fadeIn'} duration={2000}>
@@ -64,6 +69,7 @@ const UserInfo = (props:UserInfoProps)=>{
                 </TouchableOpacity>
 
     </ScrollView>
+    </SafeAreaView>
 }
 
 
@@ -72,8 +78,8 @@ const styles = StyleSheet.create({
     container: {
     },
     backIcon:{
-        width:isSmallPhoneScreen? verticalScale(24):isPhoneScreen? verticalScale(28):verticalScale(30),
-        height:isSmallPhoneScreen? verticalScale(24):isPhoneScreen? verticalScale(28):verticalScale(30),
+        width:isSmallPhoneScreen? verticalScale(24):isPhoneScreen? verticalScale(24):verticalScale(26),
+        height:isSmallPhoneScreen? verticalScale(24):isPhoneScreen? verticalScale(24):verticalScale(26),
     },
     titleWrapper:{
         marginTop:isSmallPhoneScreen? verticalScale(1):isPhoneScreen? verticalScale(10):verticalScale(20),
@@ -86,7 +92,7 @@ const styles = StyleSheet.create({
     },
     title:{
         fontFamily:AntheraStyle.font.nuntito_SemiBold,
-        fontSize:AntheraStyle.font.size.header,
+        fontSize:AntheraStyle.font.size.headerMedium,
     },
     hintText:{
         fontFamily:AntheraStyle.font.nuntito_SemiBold,
@@ -99,7 +105,7 @@ const styles = StyleSheet.create({
         borderRadius:moderateScale(30),
         backgroundColor:AntheraStyle.colour.main,
         width:moderateScale(250),
-        height:verticalScale(45),
+        height:screenDeviation(55,45,50),
         justifyContent:'center',
         alignItems:'center',
         alignSelf:'center',

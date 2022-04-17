@@ -10,8 +10,8 @@ const ProfilePictureScreen=({navigation}:{navigation:any})=>{
 
     return <UserInfo
         tilePrefix={'Nice one! Now all we need to is to add a '}
-        titleHighLighted={'profile '}
-        titlePostfix={'picture.'}
+        titleHighLighted={'profile picture'}
+        titlePostfix={'.'}
         hint={'Choose your best! You can add more or change photos later.'}
         onContinue={onContinue}
         onGoBack={()=>navigation.navigate('EmailAndPasswordScreen')}>

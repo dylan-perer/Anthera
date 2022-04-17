@@ -1,26 +1,25 @@
 import {StyleSheet, TouchableOpacity, ViewStyle} from "react-native";
-import {moderateScale, verticalScale} from "../../styles/AntheraStyle";
-import BackIcon from "../../assets/svgs/BackIcon";
+import {moderateScale} from "../../styles/AntheraStyle";
 
-export type CustomIconProps= {
+export type CustomIconProps = {
     Svg: JSX.Element,
-    onPress:  () => any,
+    onPress: () => any,
     styleContainer: ViewStyle,
 }
 
-const CustomIcon=(props:CustomIconProps)=>{
-    return <TouchableOpacity onPress={props.onPress} style={[styles.touchable,props.styleContainer]}>
+const CustomIcon = (props: CustomIconProps) => {
+    return <TouchableOpacity onPress={props.onPress} style={[styles.touchable, props.styleContainer]}>
         {props.Svg}
     </TouchableOpacity>
 }
 
 const styles = StyleSheet.create({
-    touchable:{
-        width:moderateScale(50),
-        height:moderateScale(50),
-        borderRadius:moderateScale(40),
-        alignItems:'center',
-        justifyContent:'center'
+    touchable: {
+        width: moderateScale(50),
+        height: moderateScale(50),
+        borderRadius: moderateScale(40),
+        alignItems: 'center',
+        justifyContent: 'center'
     },
 });
 

@@ -9,10 +9,11 @@ const NameScreen = ({navigation}: {navigation: any})=>{
     const value = useRef<string>();
 
     const onContinue=()=>{
+        setError('');
         if(value.current!=null && value.current.length > 1){
             navigation.navigate('DobScreen');
         }else{
-            setError('Sorry, name is too short!');
+            setError('Sorry, name is too short.');
         }
     }
     return (

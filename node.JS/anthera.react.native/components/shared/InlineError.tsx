@@ -1,20 +1,27 @@
 import * as Animatable from "react-native-animatable";
-import {StyleSheet, ViewStyle} from "react-native";
-import {AntheraStyle, moderateScale, isPhoneScreen, scale} from "../../styles/AntheraStyle";
+import {StyleSheet, Text, ViewStyle} from "react-native";
+import {AntheraStyle, isPhoneScreen, scale} from "../../styles/AntheraStyle";
 
 type InlineErrorProps = {
-    style?:ViewStyle,
+    style?: ViewStyle,
     errorMsg: string,
 }
-const InlineError = (props:InlineErrorProps)=>{
-    return <Animatable.Text animation={"shake"}  duration={2000} style={[styles.errorText, props.style]}>{props.errorMsg}</Animatable.Text>
+const InlineError = (props: InlineErrorProps) => {
+    if (props.errorMsg)
+        return <Animatable.Text
+            animation={"fadeIn"}
+            duration={1500}
+            style={[styles.errorText, props.style]}>{props.errorMsg}
+        </Animatable.Text>
+
+    return <Text style={[styles.errorText, {opacity:0}]}>reserved error space</Text>
 }
 
 const styles = StyleSheet.create({
-    errorAndCounterContainer:{},
-    errorText:{
-        fontFamily:AntheraStyle.font.nuntito_SemiBold,
-        fontSize: isPhoneScreen? scale(11.5): scale(7.5),
+    errorAndCounterContainer: {},
+    errorText: {
+        fontFamily: AntheraStyle.font.nuntito_SemiBold,
+        fontSize: isPhoneScreen ? scale(11.5) : scale(7.5),
         color: AntheraStyle.colour.error,
     }
 });

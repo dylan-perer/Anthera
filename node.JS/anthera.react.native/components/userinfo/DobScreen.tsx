@@ -2,6 +2,7 @@ import {StyleSheet, Text, View} from "react-native";
 import UserInfo from "./UserInfo";
 import DateField from "../shared/DateField";
 import {useRef, useState} from "react";
+import {verticalScale} from "../../styles/AntheraStyle";
 
 const DobScreen = ({navigation}: {navigation: any})=>{
     const [error, setError] = useState('');
@@ -17,7 +18,7 @@ const DobScreen = ({navigation}: {navigation: any})=>{
         }
 
         if(isNaN(age)){
-            setError('Sorry, that is not a valid date!')
+            setError('Sorry, that is not a valid date.')
         }
         else if (age<18){
             setError('Sorry, you must be 18 or older to join.')
@@ -38,7 +39,7 @@ const DobScreen = ({navigation}: {navigation: any})=>{
             onContinue={onContinue}
         >
 
-            <DateField onValue={(value:string)=>date.current=value} errorMsg={error} autoFocus={true}/>
+            <DateField styleContainer={styles.dateContainer} onValue={(value:string)=>date.current=value} errorMsg={error} autoFocus={true}/>
         </UserInfo>
     )
 
@@ -57,6 +58,8 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
+    dateContainer:{
+    }
 });
 
 export default DobScreen;
