@@ -4,7 +4,7 @@ import RadioBtn from "../shared/RadioBtn";
 import Coffee from "../../assets/svgs/Coffee";
 import Chat from "../../assets/svgs/Chat";
 import Heart from "../../assets/svgs/heart";
-import {AntheraStyle, isPhoneScreen, moderateScale} from "../../styles/AntheraStyle";
+import {AntheraStyle, isPhoneScreen, moderateScale, screenDeviation} from "../../styles/AntheraStyle";
 import {useRef, useState} from "react";
 
 
@@ -36,7 +36,7 @@ const SexPreferenceScreen=({navigation}:{navigation:any})=>{
             titlePostfix={'to?'}
             onContinue={()=>{onContinue()}}
             onGoBack={()=>{navigation.navigate('HeretoScreen')}}>
-            <View style={{alignSelf:'center'}}>
+            <View style={[{alignSelf:'center'},{marginTop: screenDeviation(20,0,0)}]}>
                 <RadioBtn style={styles.radioBtnContainer}
                           setSelected={setRadioBtn1} value={'men'}
                           onPress={(val)=>{onPress(val,setRadioBtn1)}}

@@ -1,6 +1,13 @@
 import {StyleSheet, Text, TextInput, View} from "react-native";
 import UserInfo from "./UserInfo";
-import {AntheraStyle, isPhoneScreen, moderateScale, scale, verticalScale} from "../../styles/AntheraStyle";
+import {
+    AntheraStyle,
+    isPhoneScreen,
+    moderateScale,
+    scale,
+    screenDeviation,
+    verticalScale
+} from "../../styles/AntheraStyle";
 import InputField from "../shared/InputField";
 import {useRef, useState} from "react";
 import RadioBtn from "../shared/RadioBtn";
@@ -33,14 +40,14 @@ const HeretoScreen = ({navigation}: {navigation: any})=>{
     }
     return (
         <UserInfo
-            tilePrefix={'Great! You are '}
+            tilePrefix={'Nice! You are '}
             titleHighLighted={'here '}
             titlePostfix={'to?'}
             hint={'This can always be changed later!'}
             onGoBack={()=>{navigation.navigate('DobScreen')}}
             onContinue={onContinue}
         >
-            <View style={{alignSelf:'center'}}>
+            <View style={[{alignSelf:'center'},{marginTop: screenDeviation(20,0,0)}]}>
                 <RadioBtn style={styles.radioBtnContainer}
                           setSelected={setRadioBtn1} value={'I\'m here to date'}
                           onPress={(val)=>{onPress(val,setRadioBtn1)}}

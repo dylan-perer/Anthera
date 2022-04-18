@@ -34,16 +34,22 @@ const AntheraStyle = {
         }
     },
     colour:{
-        main: "#1778F2",
+        main: "#2170FC",
+        // main: "#1778F2",
         Secondary: "#D4E3FF",
+        accent:'#FFB4F3',
         dark: '#1C58C4',
         mid:'#649CFF',
+        veryLightGrey:'#ebebeb',
         light:'#E0D7FC',
         // main: mainColor,
         // Secondary: calculateColorContrast(mainColor, -10),
         // dark: calculateColorContrast(mainColor, +10),
+        IconGrey:'#7C7C7C',
+        IconGreyLight:'#CCCCCC',
         TextGrey: "#545454",
         TextGreyLight:"#6E6E6E",
+        TextGreyVeryLight:'#949494',
         BackgroundGrey:'#fff',// "#F3F3F3",
         error:'#ff5050',
         bright:'#FC8C7D'

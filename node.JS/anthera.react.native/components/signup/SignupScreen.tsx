@@ -8,6 +8,7 @@ import BottomModal from "../shared/BottomModal";
 import SearchInput from "../shared/SearchInput";
 import List from "../shared/List";
 import SearchList from "../shared/SearchList";
+import AppButton from "../shared/AppButton";
 
 const SignupScreen =({navigation}: {navigation: any})=>{
     const searchListRef = useRef<BottomModal>();
@@ -46,25 +47,45 @@ const SignupScreen =({navigation}: {navigation: any})=>{
 
         <Animatable.View animation={'fadeIn'} duration={2000} delay={3000}>
             <View style={styles.btnContainer}>
-                <TouchableOpacity style={styles.btn} onPress={()=>onGenderPress('NameScreen')}>
-                    <Text style={styles.btnText}>Female</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.btn} onPress={()=>onGenderPress('NameScreen')}>
-                    <Text style={styles.btnText}>Male</Text>
-                </TouchableOpacity>
+                <AppButton
+                    onPress={()=>onGenderPress('NameScreen')}
+
+                    width={{smallScreen:140,phoneScreen:125,largeScreen:140}}
+                    height={{smallScreen:45,phoneScreen:35,largeScreen:35}}
+
+                    shadowPos_X={0}
+                    shadowPos_Y={screenDeviation(4,5,5)}
+
+                    btnStyle={{borderColor:AntheraStyle.colour.accent}}
+                    textStyle={{color:AntheraStyle.colour.accent}}
+
+                    text={'Female'}
+                />
+
+                <AppButton
+                    onPress={()=>onGenderPress('NameScreen')}
+
+                    width={{smallScreen:140,phoneScreen:125,largeScreen:140}}
+                    height={{smallScreen:45,phoneScreen:35,largeScreen:35}}
+
+                    shadowPos_X={0}
+                    shadowPos_Y={screenDeviation(4,5,5)}
+
+                    text={'Male'}
+                />
             </View>
         </Animatable.View>
 
         <TouchableOpacity style={styles.moreChoicesBtn} onPress={()=>searchListRef.current?.show()}>
-            <SearchList
-                modalRef={(ref)=>searchListRef.current=ref}
-                data={DATA}
-                onSearchValueChange={(text)=>{}}
-                onCancel={()=>searchListRef.current?.close()}
-                keyExtractor={(item) => item.id}
-                itemTemplate={(item)=><TouchableOpacity><Text>{item.id} {item.title}</Text></TouchableOpacity>}
-            />
-            <Animatable.Text animation={"fadeIn"} duration={2000} delay={3500} style={styles.moreChoicesText}>More choices</Animatable.Text>
+        <SearchList
+            modalRef={(ref)=>searchListRef.current=ref}
+            data={DATA}
+            onSearchValueChange={(text)=>{}}
+            onCancel={()=>searchListRef.current?.close()}
+            keyExtractor={(item) => item.id}
+            itemTemplate={(item)=><TouchableOpacity><Text>{item.id} {item.title}</Text></TouchableOpacity>}
+        />
+        <Animatable.Text animation={"fadeIn"} duration={2000} delay={3500} style={styles.moreChoicesText}>More choices</Animatable.Text>
         </TouchableOpacity>
 
 
@@ -94,30 +115,13 @@ const styles = StyleSheet.create({
         fontSize:AntheraStyle.font.size.header
     },
     btnContainer: {
-        width:screen.width,
         flexDirection:'row',
-        alignItems:'center',
-        justifyContent:'center',
+        justifyContent:'space-between',
+        alignContent:'center',
         marginTop:verticalScale(60),
-    },
-    btn:{
-        borderWidth:1.5,
-        borderColor:AntheraStyle.colour.main,
-        borderRadius: moderateScale(30),
-        width:moderateScale(130),
-        marginHorizontal:moderateScale(5)
-    },
-    btnText:{
-        fontFamily:AntheraStyle.font.nuntito_SemiBold,
-        fontSize:AntheraStyle.font.size.headerSmall,
-        paddingVertical:moderateScale(7),
         alignSelf:'center',
-        color:AntheraStyle.colour.main
+        width:screenDeviation(290,260,300),
     },
-    bottomModal:{
-        maxWidth:screenDeviation(350,320,280),
-    }
-    ,
     moreChoicesBtn:{
         marginTop:verticalScale(20),
         alignItems:'center'

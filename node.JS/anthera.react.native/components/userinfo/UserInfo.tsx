@@ -25,6 +25,7 @@ import CustomIcon from "../shared/CustomIcon";
 import InputField from "../shared/InputField";
 import {Formik} from "formik";
 import {useState} from "react";
+import AppButton from "../shared/AppButton";
 
 export type UserInfoProps={
     tilePrefix:string,
@@ -64,10 +65,21 @@ const UserInfo = (props:UserInfoProps)=>{
 
                 {props.children}
 
-                <TouchableOpacity disabled={props.isContinueDisabled} onPress={props.onContinue} style={[styles.continueBtn,props.btnStyle]}>
-                    <Text style={styles.continueBtnText}>Continue</Text>
-                </TouchableOpacity>
+                <View style={{flexDirection:'row', justifyContent:'center', marginVertical:screenDeviation(35,80,80)}}>
+                <AppButton
+                    width={{smallScreen:250,phoneScreen:250,largeScreen:250}}
+                    height={{smallScreen:55, phoneScreen:45, largeScreen:50}}
 
+                    text={'Continue'}
+
+                    shadowPos_X={0}
+                    shadowPos_Y={screenDeviation(5,5,5)}
+
+                    btnStyle={{backgroundColor:AntheraStyle.colour.main, alignSelf:'center'}}
+                    textStyle={{color:'#fff'}}
+
+                    onPress={props.onContinue}/>
+                </View>
     </ScrollView>
     </SafeAreaView>
 }
@@ -78,8 +90,8 @@ const styles = StyleSheet.create({
     container: {
     },
     backIcon:{
-        width:isSmallPhoneScreen? verticalScale(24):isPhoneScreen? verticalScale(24):verticalScale(26),
-        height:isSmallPhoneScreen? verticalScale(24):isPhoneScreen? verticalScale(24):verticalScale(26),
+        width:isSmallPhoneScreen? verticalScale(26):isPhoneScreen? verticalScale(24):verticalScale(26),
+        height:isSmallPhoneScreen? verticalScale(26):isPhoneScreen? verticalScale(24):verticalScale(26),
     },
     titleWrapper:{
         marginTop:isSmallPhoneScreen? verticalScale(1):isPhoneScreen? verticalScale(10):verticalScale(20),
@@ -109,7 +121,7 @@ const styles = StyleSheet.create({
         justifyContent:'center',
         alignItems:'center',
         alignSelf:'center',
-        marginTop: isSmallPhoneScreen? verticalScale(35):verticalScale(80)
+        marginTop: screenDeviation(35,80,80)
     },
     continueBtnText:{
         color: '#fff',

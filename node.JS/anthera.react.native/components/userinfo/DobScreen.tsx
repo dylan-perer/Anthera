@@ -2,7 +2,7 @@ import {StyleSheet, Text, View} from "react-native";
 import UserInfo from "./UserInfo";
 import DateField from "../shared/DateField";
 import {useRef, useState} from "react";
-import {verticalScale} from "../../styles/AntheraStyle";
+import {screenDeviation, verticalScale} from "../../styles/AntheraStyle";
 
 const DobScreen = ({navigation}: {navigation: any})=>{
     const [error, setError] = useState('');
@@ -31,15 +31,20 @@ const DobScreen = ({navigation}: {navigation: any})=>{
     }
     return (
         <UserInfo
-            tilePrefix={'Sweet! When is your '}
+            tilePrefix={'When is your '}
             titleHighLighted={'birthday'}
             titlePostfix={'?'}
             hint={'This cannot be changed later.'}
             onGoBack={()=>{navigation.navigate('NameScreen')}}
             onContinue={onContinue}
+            btnStyle={{marginTop: screenDeviation(45,80,85)}}
         >
 
-            <DateField styleContainer={styles.dateContainer} onValue={(value:string)=>date.current=value} errorMsg={error} autoFocus={true}/>
+            <DateField
+                styleContainer={{marginTop: screenDeviation(35,30,30)}}
+                onValue={(value:string)=>date.current=value}
+                errorMsg={error}
+                autoFocus={true}/>
         </UserInfo>
     )
 
@@ -58,8 +63,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
-    dateContainer:{
-    }
 });
 
 export default DobScreen;

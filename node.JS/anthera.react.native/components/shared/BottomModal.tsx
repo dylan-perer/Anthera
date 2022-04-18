@@ -2,9 +2,10 @@ import React, {Component} from 'react';
 import {Modal, SafeAreaView, StatusBar, StyleSheet, TouchableWithoutFeedback, View, ViewStyle} from 'react-native';
 import {AntheraStyle, onPlatform, screen, screenDeviation, verticalScale} from "../../styles/AntheraStyle";
 
+
 type BottomModalProps = {
     children:JSX.Element,
-    style?:ViewStyle
+    style?:(ViewStyle | undefined)[]
 }
 type BottomModalSate = {
     show: boolean,

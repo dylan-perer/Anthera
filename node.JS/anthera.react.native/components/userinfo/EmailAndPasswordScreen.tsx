@@ -31,7 +31,7 @@ const EmailAndPasswordScreen = ({navigation}:{navigation:any})=>{
         }
         navigation.navigate('ProfilePictureScreen');
     }
-    return <UserInfo tilePrefix={'Awesome! Now for your '}
+    return <UserInfo tilePrefix={'Now for an '}
                      titleHighLighted={'email '}
                      titlePostfix={'and '}
                      titleHighLightedEnd={'password.'}

@@ -1,12 +1,15 @@
 import {createStackNavigator, TransitionPresets} from "@react-navigation/stack";
 import SignupScreen from './SignupScreen';
-import {AntheraStyle} from "../../styles/AntheraStyle";
+import {AntheraStyle, moderateScale} from "../../styles/AntheraStyle";
 import NameScreen from "../userinfo/NameScreen";
 import DobScreen from "../userinfo/DobScreen";
 import HeretoScreen from "../userinfo/HeretoScreen";
 import SexPreferenceScreen from "../userinfo/SexPreferenceScreen";
 import EmailAndPasswordScreen from "../userinfo/EmailAndPasswordScreen";
 import ProfilePictureScreen from "../userinfo/ProfilePictureScreen";
+import VideoCell from "../shared/Test";
+import {StyleSheet} from "react-native";
+import AppButton from "../shared/AppButton";
 
 export type UserInfoScreens = 'SignupScreen' | 'GenderScreen' | 'NameScreen' | 'DobScreen' | 'HereToScreen' | 'None'
 
@@ -17,7 +20,7 @@ export type StackParamList ={
     HeretoScreen:undefined,
     SexPreferenceScreen:undefined,
     EmailAndPasswordScreen:undefined,
-    ProfilePictureScreen:undefined
+    ProfilePictureScreen:undefined,
 }
 const SignupNavigator =()=>{
     const Stack = createStackNavigator<StackParamList>();
@@ -38,5 +41,7 @@ const SignupNavigator =()=>{
         <Stack.Screen name='ProfilePictureScreen' component={ProfilePictureScreen}/>
     </Stack.Navigator>
 }
+
+
 
 export default SignupNavigator;

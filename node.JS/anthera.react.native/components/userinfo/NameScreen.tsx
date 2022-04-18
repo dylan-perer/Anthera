@@ -1,6 +1,13 @@
 import {StyleSheet, Text, TextInput, View} from "react-native";
 import UserInfo from "./UserInfo";
-import {AntheraStyle, moderateScale, scale, verticalScale} from "../../styles/AntheraStyle";
+import {
+    AntheraStyle,
+    isSmallPhoneScreen,
+    moderateScale,
+    scale,
+    screenDeviation,
+    verticalScale
+} from "../../styles/AntheraStyle";
 import InputField from "../shared/InputField";
 import {useRef, useState} from "react";
 
@@ -18,12 +25,13 @@ const NameScreen = ({navigation}: {navigation: any})=>{
     }
     return (
         <UserInfo
-            tilePrefix={'Okay first, what is your '}
+            tilePrefix={'First, What\'s is your '}
             titleHighLighted={'name'}
             titlePostfix={'?'}
             hint={'This is how others will see you.'}
             onGoBack={()=>{navigation.navigate('SignupScreen')}}
             onContinue={onContinue}
+            btnStyle={{marginTop: screenDeviation(45,80,80)}}
         >
             <InputField
                 showCharacterCounter={true}
@@ -31,6 +39,7 @@ const NameScreen = ({navigation}: {navigation: any})=>{
                 errorMsg={error}
                 onChange={(text:string)=>{value.current=text}}
                 autoFocus={true}
+                containerStyle={{marginTop: screenDeviation(35,20,20)}}
             />
         </UserInfo>
     )
