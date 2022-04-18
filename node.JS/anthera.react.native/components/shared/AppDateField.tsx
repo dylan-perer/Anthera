@@ -1,7 +1,7 @@
 import {StyleSheet, Text, TextInput, View, ViewStyle} from "react-native";
 import {AntheraStyle, moderateScale} from "../../styles/AntheraStyle";
 import {useRef} from "react";
-import InlineError from "./InlineError";
+import AppError from "./AppError";
 
 type DateFieldProps = {
     errorMsg: string
@@ -10,7 +10,7 @@ type DateFieldProps = {
     styleContainer?: ViewStyle
 }
 
-const DateField = (props: DateFieldProps) => {
+const AppDateField = (props: DateFieldProps) => {
     const d1: any = useRef();
     const d1Value: any = useRef();
 
@@ -168,7 +168,7 @@ const DateField = (props: DateFieldProps) => {
                     }}/>
             </View>
             <View style={styles.errorAndCounterContainer}>
-                <InlineError errorMsg={props.errorMsg} style={{alignSelf: 'center'}}/>
+                <AppError errorMsg={props.errorMsg} style={{alignSelf: 'center'}}/>
             </View>
         </>
     );
@@ -205,4 +205,4 @@ const styles = StyleSheet.create({
     labelYear: {},
     errorAndCounterContainer: {}
 });
-export default DateField;
+export default AppDateField;

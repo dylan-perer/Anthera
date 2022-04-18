@@ -12,7 +12,7 @@ type SearchInputProps={
 }
 type SearchInputStates={
 }
-class SearchInput extends Component<SearchInputProps,SearchInputStates>{
+class AppSearchInput extends Component<SearchInputProps,SearchInputStates>{
     state:SearchInputStates={
     }
 
@@ -79,4 +79,4 @@ const styles = StyleSheet.create({
         color:AntheraStyle.colour.main,
     }
 })
-export default SearchInput;
+export default AppSearchInput;

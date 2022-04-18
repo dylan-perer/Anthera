@@ -1,6 +1,6 @@
 import UserInfo from "./UserInfo";
 import {StyleSheet, Text, View} from "react-native";
-import RadioBtn from "../shared/RadioBtn";
+import AppRadioBtn from "../../components/shared/AppRadioBtn";
 import Coffee from "../../assets/svgs/Coffee";
 import Chat from "../../assets/svgs/Chat";
 import Heart from "../../assets/svgs/heart";
@@ -37,37 +37,37 @@ const SexPreferenceScreen=({navigation}:{navigation:any})=>{
             onContinue={()=>{onContinue()}}
             onGoBack={()=>{navigation.navigate('HeretoScreen')}}>
             <View style={[{alignSelf:'center'},{marginTop: screenDeviation(20,0,0)}]}>
-                <RadioBtn style={styles.radioBtnContainer}
-                          setSelected={setRadioBtn1} value={'men'}
-                          onPress={(val)=>{onPress(val,setRadioBtn1)}}
-                          isSelected={radioBtn1}>
+                <AppRadioBtn style={styles.radioBtnContainer}
+                             setSelected={setRadioBtn1} value={'men'}
+                             onPress={(val)=>{onPress(val,setRadioBtn1)}}
+                             isSelected={radioBtn1}>
                     <View style={styles.itemContainer}>
                         <View style={styles.textWrapper}>
                             <Text style={styles.subHeader}>To people looking for women.</Text>
                         </View>
                     </View>
-                </RadioBtn>
-                <RadioBtn style={styles.radioBtnContainer}
-                          setSelected={setRadioBtn2}
-                          value={'women'}
-                          onPress={(val)=>{onPress(val,setRadioBtn2)}}  isSelected={radioBtn2}>
+                </AppRadioBtn>
+                <AppRadioBtn style={styles.radioBtnContainer}
+                             setSelected={setRadioBtn2}
+                             value={'women'}
+                             onPress={(val)=>{onPress(val,setRadioBtn2)}} isSelected={radioBtn2}>
                     <View style={styles.itemContainer}>
                         <View style={styles.textWrapper}>
                             <Text style={styles.subHeader}>To people looking for men.</Text>
                         </View>
                     </View>
-                </RadioBtn>
-                <RadioBtn style={styles.radioBtnContainer}
-                          setSelected={setRadioBtn3}
-                          value={'both'}
-                          onPress={(val)=>{onPress(val,setRadioBtn3)}}
-                          isSelected={radioBtn3}>
+                </AppRadioBtn>
+                <AppRadioBtn style={styles.radioBtnContainer}
+                             setSelected={setRadioBtn3}
+                             value={'both'}
+                             onPress={(val)=>{onPress(val,setRadioBtn3)}}
+                             isSelected={radioBtn3}>
                     <View style={styles.itemContainer}>
                         <View style={styles.textWrapper}>
                             <Text style={styles.subHeader}>To people looking for both women and men.</Text>
                         </View>
                     </View>
-                </RadioBtn>
+                </AppRadioBtn>
             </View>
         </UserInfo>
 }

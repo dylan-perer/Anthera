@@ -1,38 +1,38 @@
 import React, {Component} from 'react';
 import {StyleSheet, Text, TouchableOpacity, View, ViewStyle} from 'react-native';
-import List from "./List";
-import BottomModal from "./BottomModal";
-import SearchInput from "./SearchInput";
+import AppList from "./AppList";
+import AppBottomModal from "./AppBottomModal";
+import AppSearchInput from "./AppSearchInput";
 import {screenDeviation} from "../../styles/AntheraStyle";
-import bottomModal from "./BottomModal";
+import bottomModal from "./AppBottomModal";
 
 type SearchListProps={
     data:any,
-    modalRef:(ref:BottomModal)=>void,
+    modalRef:(ref:AppBottomModal)=>void,
     modalStyle?:ViewStyle,
     onCancel:()=>void,
     onSearchValueChange:(text:string)=>void,
     itemTemplate:({item}:any)=>JSX.Element,
     keyExtractor: (item:any)=>any
 }
-class SearchList extends Component<SearchListProps> {
+class AppSearchList extends Component<SearchListProps> {
     render() {
         return (
-            <BottomModal ref={(ref:BottomModal)=>this.props.modalRef(ref)} style={[styles.bottomModal, this.props.modalStyle]}>
+            <AppBottomModal ref={(ref:AppBottomModal)=>this.props.modalRef(ref)} style={[styles.bottomModal, this.props.modalStyle]}>
                 <>
-                    <SearchInput
+                    <AppSearchInput
                         isCancelBtn={true}
                         onCancel={this.props.onCancel}
                         onValueChange={(text => this.props.onSearchValueChange(text))}
                     />
 
-                    <List
+                    <AppList
                         data={this.props.data}
                         keyExtractor={this.props.keyExtractor}
                         itemTemplate={this.props.itemTemplate}>
-                    </List>
+                    </AppList>
                 </>
-            </BottomModal>
+            </AppBottomModal>
         );
     }
 }
@@ -42,4 +42,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default SearchList;
+export default AppSearchList;

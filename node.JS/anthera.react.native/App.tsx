@@ -1,7 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import {SafeAreaView, StyleSheet, Text, View} from 'react-native';
 import {NavigationContainer} from "@react-navigation/native";
-import SignupNavigator from "./components/signup/SignupNavigator";
+import SignupNavigator from "./components/navigators/SignupNavigator";
 import {useFonts} from "expo-font";
 import AppLoading from "expo-app-loading";
 
@@ -10,6 +10,7 @@ export default function App() {
     'Questrial-Regular': require('./assets/fonts/Questrial-Regular.ttf'),
     'Nunito-SemiBold': require('./assets/fonts/Nunito-SemiBold.ttf'),
     'Nunito-Regular': require('./assets/fonts/Nunito-Regular.ttf'),
+    'Nunito-Bold': require('./assets/fonts/Nunito-Bold.ttf'),
   });
 
   if(!fontsLoaded){

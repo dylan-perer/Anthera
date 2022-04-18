@@ -9,7 +9,7 @@ import {
     TouchableWithoutFeedback,
     View, ViewStyle
 } from "react-native";
-import {UserInfoScreens} from "../signup/SignupNavigator";
+import {UserInfoScreens} from "../../components/navigators/SignupNavigator";
 import {
     AntheraStyle,
     isPhoneScreen,
@@ -21,11 +21,11 @@ import {
 } from "../../styles/AntheraStyle";
 import * as Animatable from 'react-native-animatable';
 import BackIcon from "../../assets/svgs/BackIcon";
-import CustomIcon from "../shared/CustomIcon";
-import InputField from "../shared/InputField";
+import AppSvgIcon from "../../components/shared/AppSvgIcon";
+import AppInputField from "../../components/shared/AppInputField";
 import {Formik} from "formik";
 import {useState} from "react";
-import AppButton from "../shared/AppButton";
+import AppButton from "../../components/shared/AppButton";
 
 export type UserInfoProps={
     tilePrefix:string,
@@ -46,7 +46,7 @@ const UserInfo = (props:UserInfoProps)=>{
     <ScrollView
                 style={styles.container}
                 keyboardShouldPersistTaps='always'>
-                 <CustomIcon
+                 <AppSvgIcon
                      styleContainer={{marginTop:isSmallPhoneScreen? verticalScale(24):isPhoneScreen? verticalScale(32):verticalScale(30)}}
                      onPress={props.onGoBack}
                      Svg={<BackIcon {...styles.backIcon}/>}
@@ -55,9 +55,9 @@ const UserInfo = (props:UserInfoProps)=>{
                 <View style={styles.titleWrapper}>
                     <Animatable.Text style={styles.titleContainer} animation={'fadeIn'} duration={2000}>
                         <Text style={styles.title}>{props.tilePrefix}</Text>
-                        <Text style={[styles.title, {color:AntheraStyle.colour.main}]}>{props.titleHighLighted}</Text>
+                        <Text style={[styles.title]}>{props.titleHighLighted}</Text>
                         <Text style={styles.title}>{props.titlePostfix}</Text>
-                        <Text style={[styles.title, {color:AntheraStyle.colour.main}]}>{props.titleHighLightedEnd}</Text>
+                        <Text style={[styles.title]}>{props.titleHighLightedEnd}</Text>
                     </Animatable.Text>
 
                     {props.hint && <Animatable.Text style={styles.hintText} animation={'fadeIn'} delay={500} duration={2000} >{props.hint}</Animatable.Text>}
@@ -65,7 +65,7 @@ const UserInfo = (props:UserInfoProps)=>{
 
                 {props.children}
 
-                <View style={{flexDirection:'row', justifyContent:'center', marginVertical:screenDeviation(35,80,80)}}>
+                <View style={[{flexDirection:'row', justifyContent:'center', marginVertical:screenDeviation(35,80,80)}, props.btnStyle]}>
                 <AppButton
                     width={{smallScreen:250,phoneScreen:250,largeScreen:250}}
                     height={{smallScreen:55, phoneScreen:45, largeScreen:50}}
@@ -75,7 +75,7 @@ const UserInfo = (props:UserInfoProps)=>{
                     shadowPos_X={0}
                     shadowPos_Y={screenDeviation(5,5,5)}
 
-                    btnStyle={{backgroundColor:AntheraStyle.colour.main, alignSelf:'center'}}
+                    btnStyle={[{backgroundColor:AntheraStyle.colour.main, alignSelf:'center'}]}
                     textStyle={{color:'#fff'}}
 
                     onPress={props.onContinue}/>
@@ -103,8 +103,9 @@ const styles = StyleSheet.create({
         flexDirection:'row'
     },
     title:{
-        fontFamily:AntheraStyle.font.nuntito_SemiBold,
+        fontFamily:AntheraStyle.font.nunito_Bold,
         fontSize:AntheraStyle.font.size.headerMedium,
+        color:AntheraStyle.colour.TextGrey
     },
     hintText:{
         fontFamily:AntheraStyle.font.nuntito_SemiBold,

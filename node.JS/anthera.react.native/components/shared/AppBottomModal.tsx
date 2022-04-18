@@ -11,7 +11,7 @@ type BottomModalSate = {
     show: boolean,
 }
 
-class BottomModal extends Component<BottomModalProps, BottomModalSate> {
+class AppBottomModal extends Component<BottomModalProps, BottomModalSate> {
     state: BottomModalSate = {
         show: false,
     }
@@ -50,4 +50,4 @@ const styles = StyleSheet.create({
         backgroundColor:AntheraStyle.colour.BackgroundGrey,
     }
 })
-export default BottomModal;
+export default AppBottomModal;

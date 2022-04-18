@@ -2,16 +2,16 @@ import {StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import LogoWithName from "../../assets/svgs/LogoWithName";
 import * as Animatable from 'react-native-animatable';
 import {AntheraStyle, moderateScale, scale, screen, screenDeviation, verticalScale} from "../../styles/AntheraStyle";
-import {UserInfoScreens} from "./SignupNavigator";
+import {UserInfoScreens} from "../../components/navigators/SignupNavigator";
 import {useRef} from "react";
-import BottomModal from "../shared/BottomModal";
-import SearchInput from "../shared/SearchInput";
-import List from "../shared/List";
-import SearchList from "../shared/SearchList";
-import AppButton from "../shared/AppButton";
+import AppBottomModal from "../../components/shared/AppBottomModal";
+import AppSearchInput from "../../components/shared/AppSearchInput";
+import AppList from "../../components/shared/AppList";
+import AppSearchList from "../../components/shared/AppSearchList";
+import AppButton from "../../components/shared/AppButton";
 
 const SignupScreen =({navigation}: {navigation: any})=>{
-    const searchListRef = useRef<BottomModal>();
+    const searchListRef = useRef<AppBottomModal>();
     const genderValueRef = useRef<string>();
 
     const onGenderPress = (screenName: UserInfoScreens)=>{
@@ -51,12 +51,12 @@ const SignupScreen =({navigation}: {navigation: any})=>{
                     onPress={()=>onGenderPress('NameScreen')}
 
                     width={{smallScreen:140,phoneScreen:125,largeScreen:140}}
-                    height={{smallScreen:45,phoneScreen:35,largeScreen:35}}
+                    height={{smallScreen:45,phoneScreen:38,largeScreen:35}}
 
                     shadowPos_X={0}
                     shadowPos_Y={screenDeviation(4,5,5)}
 
-                    btnStyle={{borderColor:AntheraStyle.colour.accent}}
+                    btnStyle={[{borderColor:AntheraStyle.colour.accent}]}
                     textStyle={{color:AntheraStyle.colour.accent}}
 
                     text={'Female'}
@@ -66,7 +66,7 @@ const SignupScreen =({navigation}: {navigation: any})=>{
                     onPress={()=>onGenderPress('NameScreen')}
 
                     width={{smallScreen:140,phoneScreen:125,largeScreen:140}}
-                    height={{smallScreen:45,phoneScreen:35,largeScreen:35}}
+                    height={{smallScreen:45,phoneScreen:38,largeScreen:35}}
 
                     shadowPos_X={0}
                     shadowPos_Y={screenDeviation(4,5,5)}
@@ -77,7 +77,7 @@ const SignupScreen =({navigation}: {navigation: any})=>{
         </Animatable.View>
 
         <TouchableOpacity style={styles.moreChoicesBtn} onPress={()=>searchListRef.current?.show()}>
-        <SearchList
+        <AppSearchList
             modalRef={(ref)=>searchListRef.current=ref}
             data={DATA}
             onSearchValueChange={(text)=>{}}

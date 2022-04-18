@@ -1,6 +1,6 @@
 import UserInfo from "./UserInfo";
 import {StyleSheet, View} from "react-native";
-import InputField from "../shared/InputField";
+import AppInputField from "../../components/shared/AppInputField";
 import {useRef, useState} from "react";
 import {
     AntheraStyle,
@@ -40,7 +40,7 @@ const EmailAndPasswordScreen = ({navigation}:{navigation:any})=>{
                      btnStyle={styles.continueBtn}
                      onGoBack={()=>{navigation.navigate('SexPreferenceScreen')}}>
         <View>
-            <InputField
+            <AppInputField
                 showCharacterCounter={false}
                 onChange={(value:string)=>emailValue.current=value}
                 maxValueCounter={255}
@@ -52,7 +52,7 @@ const EmailAndPasswordScreen = ({navigation}:{navigation:any})=>{
                 autoFocus={true}
 
             />
-            <InputField
+            <AppInputField
                 secureTextEntry={true}
                 showCharacterCounter={false}
                 onChange={(value:string)=>passwordValue.current=value}

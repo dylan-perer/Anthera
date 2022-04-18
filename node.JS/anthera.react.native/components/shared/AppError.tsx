@@ -6,11 +6,11 @@ type InlineErrorProps = {
     style?: ViewStyle,
     errorMsg: string,
 }
-const InlineError = (props: InlineErrorProps) => {
+const AppError = (props: InlineErrorProps) => {
     if (props.errorMsg)
         return <Animatable.Text
             animation={"fadeIn"}
-            duration={1500}
+            duration={1000}
             style={[styles.errorText, props.style]}>{props.errorMsg}
         </Animatable.Text>
 
@@ -26,4 +26,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default InlineError;
+export default AppError;

@@ -1,6 +1,6 @@
 import {StyleSheet, Text, View} from "react-native";
 import UserInfo from "./UserInfo";
-import DateField from "../shared/DateField";
+import AppDateField from "../../components/shared/AppDateField";
 import {useRef, useState} from "react";
 import {screenDeviation, verticalScale} from "../../styles/AntheraStyle";
 
@@ -40,7 +40,7 @@ const DobScreen = ({navigation}: {navigation: any})=>{
             btnStyle={{marginTop: screenDeviation(45,80,85)}}
         >
 
-            <DateField
+            <AppDateField
                 styleContainer={{marginTop: screenDeviation(35,30,30)}}
                 onValue={(value:string)=>date.current=value}
                 errorMsg={error}

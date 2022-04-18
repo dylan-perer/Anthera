@@ -23,6 +23,7 @@ const AntheraStyle = {
         questrial: "Questrial-Regular",
         nuntito_SemiBold: "Nunito-SemiBold",
         nunito_regular: "Nunito-Regular",
+        nunito_Bold:"Nunito-Bold",
         size:{
             header: isPhoneScreen? scale(21): scale(13),
             headerMedium: isPhoneScreen? scale(18.5): scale(13),
@@ -51,7 +52,7 @@ const AntheraStyle = {
         TextGreyLight:"#6E6E6E",
         TextGreyVeryLight:'#949494',
         BackgroundGrey:'#fff',// "#F3F3F3",
-        error:'#ff5050',
+        error:'#ff4d4d',
         bright:'#FC8C7D'
     }
 }

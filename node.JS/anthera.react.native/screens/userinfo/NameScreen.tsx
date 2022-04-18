@@ -8,7 +8,7 @@ import {
     screenDeviation,
     verticalScale
 } from "../../styles/AntheraStyle";
-import InputField from "../shared/InputField";
+import AppInputField from "../../components/shared/AppInputField";
 import {useRef, useState} from "react";
 
 const NameScreen = ({navigation}: {navigation: any})=>{
@@ -33,7 +33,7 @@ const NameScreen = ({navigation}: {navigation: any})=>{
             onContinue={onContinue}
             btnStyle={{marginTop: screenDeviation(45,80,80)}}
         >
-            <InputField
+            <AppInputField
                 showCharacterCounter={true}
                 maxValueCounter={14}
                 errorMsg={error}

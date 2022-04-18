@@ -7,7 +7,7 @@ export type CustomIconProps = {
     styleContainer: ViewStyle,
 }
 
-const CustomIcon = (props: CustomIconProps) => {
+const AppSvgIcon = (props: CustomIconProps) => {
     return <TouchableOpacity onPress={props.onPress} style={[styles.touchable, props.styleContainer]}>
         {props.Svg}
     </TouchableOpacity>
@@ -23,4 +23,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default CustomIcon;
+export default AppSvgIcon;

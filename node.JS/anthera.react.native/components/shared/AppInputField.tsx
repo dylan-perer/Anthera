@@ -1,7 +1,7 @@
 import {StyleSheet, Text, TextInput, View, ViewStyle} from "react-native";
 import {AntheraStyle, moderateScale} from "../../styles/AntheraStyle";
 import {useRef, useState} from "react";
-import InlineError from "./InlineError";
+import AppError from "./AppError";
 
 export type InputFieldProps = {
     textAlign?: any,
@@ -19,7 +19,7 @@ export type InputFieldProps = {
     isAutoCorrect?: boolean
 }
 
-const InputField = (props: InputFieldProps) => {
+const AppInputField = (props: InputFieldProps) => {
     const characterCounter = useRef(0);
     const [currentText, setCurrentText] = useState('');
 
@@ -44,7 +44,7 @@ const InputField = (props: InputFieldProps) => {
             {props.showCharacterCounter && <Text style={[styles.letterCount, props.counterStyle]}>
                 {characterCounter.current}/{props.maxValueCounter} </Text>}
 
-            <InlineError errorMsg={props.errorMsg}/>
+            <AppError errorMsg={props.errorMsg}/>
         </View>
 
     </View>
@@ -90,4 +90,4 @@ const styles = StyleSheet.create({
 });
 
 
-export default InputField;
+export default AppInputField;

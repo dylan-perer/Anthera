@@ -17,7 +17,7 @@ type AppButtonProps={
     shadowPos_Y:number,
     onPress:()=>void,
     textStyle?:TextStyle,
-    btnStyle?:ViewStyle,
+    btnStyle?:(ViewStyle | undefined)[],
     isDebug?:boolean
 }
 
@@ -28,8 +28,8 @@ const AppButton = (props:AppButtonProps)=>{
         height:screenDeviation(props.height.smallScreen-7, props.height.phoneScreen-6, props.height.largeScreen-9),
         color:props.isDebug? "#000": '#919191',
         border: 10,
-        radius: 10,
-        opacity:0.19,
+        radius: 15,
+        opacity:0.2,
         x:props.shadowPos_X,
         y:props.shadowPos_Y,
     }

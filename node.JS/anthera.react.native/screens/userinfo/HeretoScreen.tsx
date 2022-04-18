@@ -8,9 +8,9 @@ import {
     screenDeviation,
     verticalScale
 } from "../../styles/AntheraStyle";
-import InputField from "../shared/InputField";
+import AppInputField from "../../components/shared/AppInputField";
 import {useRef, useState} from "react";
-import RadioBtn from "../shared/RadioBtn";
+import AppRadioBtn from "../../components/shared/AppRadioBtn";
 import Coffee from "../../assets/svgs/Coffee";
 import Heart from "../../assets/svgs/heart";
 import Chat from "../../assets/svgs/Chat";
@@ -48,10 +48,10 @@ const HeretoScreen = ({navigation}: {navigation: any})=>{
             onContinue={onContinue}
         >
             <View style={[{alignSelf:'center'},{marginTop: screenDeviation(20,0,0)}]}>
-                <RadioBtn style={styles.radioBtnContainer}
-                          setSelected={setRadioBtn1} value={'I\'m here to date'}
-                          onPress={(val)=>{onPress(val,setRadioBtn1)}}
-                          isSelected={radioBtn1}>
+                <AppRadioBtn style={styles.radioBtnContainer}
+                             setSelected={setRadioBtn1} value={'I\'m here to date'}
+                             onPress={(val)=>{onPress(val,setRadioBtn1)}}
+                             isSelected={radioBtn1}>
                     <View style={styles.itemContainer}>
                         <View style={styles.textWrapper}>
                             <Text style={styles.subHeader}>I'm here to date</Text>
@@ -59,11 +59,11 @@ const HeretoScreen = ({navigation}: {navigation: any})=>{
                         </View>
                         <Coffee {...styles.svg}/>
                     </View>
-                </RadioBtn>
-                <RadioBtn style={styles.radioBtnContainer}
-                          setSelected={setRadioBtn2}
-                          value={'I\'m here to chat'}
-                          onPress={(val)=>{onPress(val,setRadioBtn2)}}  isSelected={radioBtn2}>
+                </AppRadioBtn>
+                <AppRadioBtn style={styles.radioBtnContainer}
+                             setSelected={setRadioBtn2}
+                             value={'I\'m here to chat'}
+                             onPress={(val)=>{onPress(val,setRadioBtn2)}} isSelected={radioBtn2}>
                     <View style={styles.itemContainer}>
                         <View style={styles.textWrapper}>
                             <Text style={styles.subHeader}>I'm here to chat</Text>
@@ -71,12 +71,12 @@ const HeretoScreen = ({navigation}: {navigation: any})=>{
                         </View>
                         <Chat {...styles.svg}/>
                     </View>
-                </RadioBtn>
-                <RadioBtn style={styles.radioBtnContainer}
-                          setSelected={setRadioBtn3}
-                          value={'I\'m ready for an relationship'}
-                          onPress={(val)=>{onPress(val,setRadioBtn3)}}
-                          isSelected={radioBtn3}>
+                </AppRadioBtn>
+                <AppRadioBtn style={styles.radioBtnContainer}
+                             setSelected={setRadioBtn3}
+                             value={'I\'m ready for an relationship'}
+                             onPress={(val)=>{onPress(val,setRadioBtn3)}}
+                             isSelected={radioBtn3}>
                     <View style={styles.itemContainer}>
                         <View style={styles.textWrapper}>
                             <Text style={styles.subHeader}>I'm ready for an relationship</Text>
@@ -84,7 +84,7 @@ const HeretoScreen = ({navigation}: {navigation: any})=>{
                         </View>
                         <Heart {...styles.svg}/>
                     </View>
-                </RadioBtn>
+                </AppRadioBtn>
             </View>
         </UserInfo>
     )
@@ -100,7 +100,7 @@ const styles = StyleSheet.create({
     radioBtnContainer:{
         borderRadius:moderateScale(12),
         borderWidth:moderateScale(1),
-        borderColor:AntheraStyle.colour.main,
+        borderColor:AntheraStyle.colour.accent,
         paddingHorizontal:moderateScale(10),
         paddingVertical:moderateScale(12),
         marginBottom:moderateScale(10)

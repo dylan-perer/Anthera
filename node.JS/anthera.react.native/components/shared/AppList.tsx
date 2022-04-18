@@ -10,7 +10,7 @@ type ListStates={
 }
 
 
-class List extends Component<ListProps,ListStates> {
+class AppList extends Component<ListProps,ListStates> {
     state:ListStates={
     }
 
@@ -40,4 +40,4 @@ const styles = StyleSheet.create({
         fontSize: 24,
     },
 });
-export default List;
+export default AppList;

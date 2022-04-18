@@ -1,13 +1,12 @@
 import {createStackNavigator, TransitionPresets} from "@react-navigation/stack";
-import SignupScreen from './SignupScreen';
+import SignupScreen from '../../screens/signup/SignupScreen';
 import {AntheraStyle, moderateScale} from "../../styles/AntheraStyle";
-import NameScreen from "../userinfo/NameScreen";
-import DobScreen from "../userinfo/DobScreen";
-import HeretoScreen from "../userinfo/HeretoScreen";
-import SexPreferenceScreen from "../userinfo/SexPreferenceScreen";
-import EmailAndPasswordScreen from "../userinfo/EmailAndPasswordScreen";
-import ProfilePictureScreen from "../userinfo/ProfilePictureScreen";
-import VideoCell from "../shared/Test";
+import NameScreen from "../../screens/userinfo/NameScreen";
+import DobScreen from "../../screens/userinfo/DobScreen";
+import HeretoScreen from "../../screens/userinfo/HeretoScreen";
+import SexPreferenceScreen from "../../screens/userinfo/SexPreferenceScreen";
+import EmailAndPasswordScreen from "../../screens/userinfo/EmailAndPasswordScreen";
+import ProfilePictureScreen from "../../screens/userinfo/ProfilePictureScreen";
 import {StyleSheet} from "react-native";
 import AppButton from "../shared/AppButton";
 
