@@ -4,6 +4,7 @@ import {NavigationContainer} from "@react-navigation/native";
 import SignupNavigator from "./components/navigators/SignupNavigator";
 import {useFonts} from "expo-font";
 import AppLoading from "expo-app-loading";
+import {AntherContextProvider} from "./contexts/AntheraContext";
 
 export default function App() {
   let [fontsLoaded, error]=useFonts({
@@ -17,10 +18,12 @@ export default function App() {
     return <AppLoading/>;
   }
   return (
-      <NavigationContainer>
-          <StatusBar style='auto'/>
-          <SignupNavigator/>
-      </NavigationContainer>
+      <AntherContextProvider>
+        <NavigationContainer>
+            <StatusBar style='auto'/>
+            <SignupNavigator/>
+        </NavigationContainer>
+      </AntherContextProvider>
   );
 }
 

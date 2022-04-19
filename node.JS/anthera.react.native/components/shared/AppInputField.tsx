@@ -16,12 +16,13 @@ export type InputFieldProps = {
     isErrorAlignCenter?: boolean
     autoFocus?: boolean,
     secureTextEntry?: boolean,
-    isAutoCorrect?: boolean
+    isAutoCorrect?: boolean,
+    value?: string
 }
 
 const AppInputField = (props: InputFieldProps) => {
     const characterCounter = useRef(0);
-    const [currentText, setCurrentText] = useState('');
+    const [currentText, setCurrentText] = useState(props.value?props.value:'');
 
     const onChangeText = (text: string) => {
         setCurrentText(text);
@@ -30,6 +31,7 @@ const AppInputField = (props: InputFieldProps) => {
     }
     return <View style={[styles.inputWrapper, props.containerStyle]}>
         <TextInput
+            defaultValue={props.value?props.value:undefined}
             secureTextEntry={props.secureTextEntry}
             value={currentText}
             maxLength={props.maxValueCounter}

@@ -1,33 +1,46 @@
 import {StyleSheet, Text, View} from "react-native";
 import UserInfo from "./UserInfo";
 import AppDateField from "../../components/shared/AppDateField";
-import {useRef, useState} from "react";
+import {useContext, useRef, useState} from "react";
 import {screenDeviation, verticalScale} from "../../styles/AntheraStyle";
+import {NativeStackScreenProps} from "@react-navigation/native-stack";
+import {StackParamList} from "../../components/navigators/SignupNavigator";
+import {UserInfoContext} from "../../contexts/UserInfoContext";
 
-const DobScreen = ({navigation}: {navigation: any})=>{
+const DobScreen = ({route, navigation}:NativeStackScreenProps<StackParamList, 'DobScreen'>)=>{
     const [error, setError] = useState('');
-    const date = useRef<string>()
+    const userInfoContext = useContext(UserInfoContext);
 
     const onContinue=()=>{
         setError('');
 
         let age = NaN;
 
-        if(date.current!=null){
-            age = calculateAge(new Date(date.current));
+        if(userInfoContext!=null){
+            if(userInfoContext.dob!=undefined){
+                age = calculateAge(new Date(userInfoContext.dob));
+            }
+            if(isNaN(age)){
+                setError('Sorry, that is not a valid date.');
+                return;
+            }
+            if (age<18) {
+                setError('Sorry, you must be 18 or older to join.');
+                return;
+            }
+            if(age>99) {
+                setError('Sorry, your age must be less than 99 to join.');
+                return;
+            }
+            console.log(userInfoContext);
+            navigation.navigate('HeretoScreen');
         }
 
-        if(isNaN(age)){
-            setError('Sorry, that is not a valid date.')
+    }
+    const setDob =(value:string)=>{
+        if(userInfoContext!=null){
+            userInfoContext.dob = value;
         }
-        else if (age<18){
-            setError('Sorry, you must be 18 or older to join.')
-        }else if(age>99){
-            setError('Sorry, your age must be less than 99 to join.')
-        }else{
-            navigation.navigate('HeretoScreen')
-        }
-
     }
     return (
         <UserInfo
@@ -41,8 +54,9 @@ const DobScreen = ({navigation}: {navigation: any})=>{
         >
 
             <AppDateField
+                value={error==''?userInfoContext?.dob:undefined}
                 styleContainer={{marginTop: screenDeviation(35,30,30)}}
-                onValue={(value:string)=>date.current=value}
+                onValue={setDob}
                 errorMsg={error}
                 autoFocus={true}/>
         </UserInfo>

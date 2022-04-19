@@ -2,10 +2,22 @@ import UserInfo from "./UserInfo";
 import FemaleAvatar from "../../assets/svgs/FemaleAvatar";
 import {StyleSheet, TouchableOpacity} from "react-native";
 import {isPhoneScreen, isSmallPhoneScreen, moderateScale, screenDeviation} from "../../styles/AntheraStyle";
+import {NativeStackScreenProps} from "@react-navigation/native-stack";
+import {StackParamList} from "../../components/navigators/SignupNavigator";
+import {signupAsync, SignupRequest} from "../../api/AntheraApi";
+import {useContext} from "react";
+import {UserInfoContext} from "../../contexts/UserInfoContext";
 
-const ProfilePictureScreen=({navigation}:{navigation:any})=>{
-    const onContinue = () => {
+const ProfilePictureScreen=({route, navigation}:NativeStackScreenProps<StackParamList, 'ProfilePictureScreen'>)=>{
+    const userInfoContext = useContext(UserInfoContext);
 
+    const onContinue = async () => {
+        const signupRequest:SignupRequest={
+            ...userInfoContext,
+            confirmPassword:userInfoContext?.password
+        }
+        console.log(signupRequest)
+        await signupAsync(signupRequest);
     }
 
     return <UserInfo
@@ -15,6 +27,8 @@ const ProfilePictureScreen=({navigation}:{navigation:any})=>{
         hint={'Choose your best! You can add more or change photos later.'}
         onContinue={onContinue}
         onGoBack={()=>navigation.navigate('EmailAndPasswordScreen')}
+        btnText={'Complete'}
+        titleContainerStyle={{alignItems:'flex-start'}}
         btnStyle={{marginTop: screenDeviation(60,65,80)}}
     >
         <TouchableOpacity style={styles.profilePictureContainer}>

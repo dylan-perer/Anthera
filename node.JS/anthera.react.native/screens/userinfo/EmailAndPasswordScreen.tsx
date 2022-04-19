@@ -1,7 +1,7 @@
 import UserInfo from "./UserInfo";
 import {StyleSheet, View} from "react-native";
 import AppInputField from "../../components/shared/AppInputField";
-import {useRef, useState} from "react";
+import {useContext, useRef, useState} from "react";
 import {
     AntheraStyle,
     isPhoneScreen,
@@ -10,26 +10,45 @@ import {
     screenDeviation,
     verticalScale
 } from "../../styles/AntheraStyle";
+import {SignupRequest} from "../../api/AntheraApi";
+import {NativeStackScreenProps} from "@react-navigation/native-stack";
+import {StackParamList} from "../../components/navigators/SignupNavigator";
+import {UserInfoContext} from "../../contexts/UserInfoContext";
 
-const EmailAndPasswordScreen = ({navigation}:{navigation:any})=>{
+const EmailAndPasswordScreen = ({route, navigation}:NativeStackScreenProps<StackParamList, 'EmailAndPasswordScreen'>)=>{
     const [errorEmail, setErrorEmail] = useState('');
-    const emailValue = useRef<string>('');
 
     const [errorPassword, setErrorPassword] = useState('');
-    const passwordValue = useRef<string>('');
+
+    const userInfoContext = useContext(UserInfoContext);
 
     const onContinue = ()=>{
         setErrorPassword('');
         setErrorEmail('');
-        if(emailValue.current?.length==0 || emailValue.current!=null && !validateEmail(emailValue.current)){
-            setErrorEmail('Sorry, email is not valid!');
-            return;
+        if(userInfoContext!=null){
+            if(userInfoContext.emailAddress?.length==0 || userInfoContext.emailAddress!=undefined && !validateEmail(userInfoContext.emailAddress)){
+                setErrorEmail('Sorry, email is not valid!');
+                return;
+            }
+            if(userInfoContext.password?.length==0 || userInfoContext.password!=undefined && userInfoContext.password.length<6){
+                setErrorPassword('Sorry, password must be at least 6 characters long!');
+                return;
+            }
+
+            console.log(userInfoContext)
+            navigation.navigate('ProfilePictureScreen');
         }
-        if(passwordValue.current?.length==0 || passwordValue.current!=null && passwordValue.current.length<6){
-            setErrorPassword('Sorry, password must be at least 6 characters long!');
-            return;
+    }
+    const setEmailAddress=(value:string)=>{
+        if(userInfoContext!=null){
+            userInfoContext.emailAddress=value;
         }
-        navigation.navigate('ProfilePictureScreen');
+    }
+
+    const setPassword=(value:string)=>{
+        if(userInfoContext!=null){
+            userInfoContext.password=value;
+        }
     }
     return <UserInfo tilePrefix={'Now for an '}
                      titleHighLighted={'email '}
@@ -41,8 +60,9 @@ const EmailAndPasswordScreen = ({navigation}:{navigation:any})=>{
                      onGoBack={()=>{navigation.navigate('SexPreferenceScreen')}}>
         <View>
             <AppInputField
+                value={userInfoContext?.emailAddress}
                 showCharacterCounter={false}
-                onChange={(value:string)=>emailValue.current=value}
+                onChange={setEmailAddress}
                 maxValueCounter={255}
                 errorMsg={errorEmail}
                 containerStyle={styles.inputEmailContainer}
@@ -50,12 +70,12 @@ const EmailAndPasswordScreen = ({navigation}:{navigation:any})=>{
                 placeholder={'email'}
                 isErrorAlignCenter={true}
                 autoFocus={true}
-
             />
             <AppInputField
+                value={userInfoContext?.password}
                 secureTextEntry={true}
                 showCharacterCounter={false}
-                onChange={(value:string)=>passwordValue.current=value}
+                onChange={setPassword}
                 maxValueCounter={255}
                 errorMsg={errorPassword}
                 containerStyle={styles.inputContainerPassword}

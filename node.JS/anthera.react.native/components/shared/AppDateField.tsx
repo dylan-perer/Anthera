@@ -8,6 +8,7 @@ type DateFieldProps = {
     onValue: any
     autoFocus?: boolean
     styleContainer?: ViewStyle
+    value?: string
 }
 
 const AppDateField = (props: DateFieldProps) => {
@@ -53,6 +54,7 @@ const AppDateField = (props: DateFieldProps) => {
     return (<>
             <View style={[styles.inputBorder, props.styleContainer]}>
                 <TextInput
+                    defaultValue={props.value?props.value[8]:undefined}
                     autoFocus={props.autoFocus}
                     placeholder={'D'}
                     maxLength={1}
@@ -65,6 +67,7 @@ const AppDateField = (props: DateFieldProps) => {
                     }}/>
 
                 <TextInput
+                    defaultValue={props.value?props.value[9]:undefined}
                     placeholder={'D'}
                     maxLength={1}
                     keyboardType={'numeric'}
@@ -81,6 +84,7 @@ const AppDateField = (props: DateFieldProps) => {
                 <Text style={[styles.input, styles.inputEnd]}>-</Text>
 
                 <TextInput
+                    defaultValue={props.value?props.value[5]:undefined}
                     placeholder={'M'}
                     maxLength={1}
                     selectTextOnFocus={true}
@@ -95,6 +99,7 @@ const AppDateField = (props: DateFieldProps) => {
 
 
                 <TextInput
+                    defaultValue={props.value?props.value[6]:undefined}
                     placeholder={'M'}
                     maxLength={1}
                     keyboardType={'numeric'}
@@ -112,6 +117,7 @@ const AppDateField = (props: DateFieldProps) => {
                 <Text style={[styles.input, styles.inputEnd]}>-</Text>
 
                 <TextInput
+                    defaultValue={props.value?props.value[0]:undefined}
                     placeholder={'Y'}
                     maxLength={1}
                     keyboardType={'numeric'}
@@ -126,6 +132,7 @@ const AppDateField = (props: DateFieldProps) => {
                     }}/>
 
                 <TextInput
+                    defaultValue={props.value?props.value[1]:undefined}
                     placeholder={'Y'}
                     maxLength={1}
                     keyboardType={'numeric'}
@@ -140,6 +147,7 @@ const AppDateField = (props: DateFieldProps) => {
                     }}/>
 
                 <TextInput
+                    defaultValue={props.value?props.value[2]:undefined}
                     placeholder={'Y'}
                     maxLength={1}
                     keyboardType={'numeric'}
@@ -154,6 +162,7 @@ const AppDateField = (props: DateFieldProps) => {
                     }}/>
 
                 <TextInput
+                    defaultValue={props.value?props.value[3]:undefined}
                     placeholder={'Y'}
                     maxLength={1}
                     keyboardType={'numeric'}

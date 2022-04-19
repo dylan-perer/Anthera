@@ -1,26 +1,33 @@
-import {StyleSheet, Text, TextInput, View} from "react-native";
+import {StyleSheet} from "react-native";
 import UserInfo from "./UserInfo";
 import {
-    AntheraStyle,
-    isSmallPhoneScreen,
-    moderateScale,
-    scale,
     screenDeviation,
-    verticalScale
 } from "../../styles/AntheraStyle";
 import AppInputField from "../../components/shared/AppInputField";
-import {useRef, useState} from "react";
+import {useContext, useRef, useState} from "react";
+import {StackParamList} from "../../components/navigators/SignupNavigator";
+import {NativeStackScreenProps} from "@react-navigation/native-stack";
+import {UserInfoContext} from "../../contexts/UserInfoContext";
 
-const NameScreen = ({navigation}: {navigation: any})=>{
+const NameScreen = ({route, navigation}:NativeStackScreenProps<StackParamList, 'NameScreen'>)=>{
     const [error, setError] = useState('');
-    const value = useRef<string>();
+    const userInfoContext = useContext(UserInfoContext);
 
     const onContinue=()=>{
         setError('');
-        if(value.current!=null && value.current.length > 1){
-            navigation.navigate('DobScreen');
-        }else{
-            setError('Sorry, name is too short.');
+        if(userInfoContext?.name!=undefined){
+            if(userInfoContext?.name.length > 1){
+                console.log(userInfoContext.gender)
+                navigation.navigate('DobScreen');
+            }else{
+                setError('Sorry, name is too short.');
+            }
+        }
+
+    }
+    const setName =(value:string)=>{
+        if(userInfoContext!=null){
+            userInfoContext.name = value
         }
     }
     return (
@@ -34,10 +41,11 @@ const NameScreen = ({navigation}: {navigation: any})=>{
             btnStyle={{marginTop: screenDeviation(45,80,80)}}
         >
             <AppInputField
+                value={userInfoContext?.name?userInfoContext.name:undefined}
                 showCharacterCounter={true}
                 maxValueCounter={14}
                 errorMsg={error}
-                onChange={(text:string)=>{value.current=text}}
+                onChange={setName}
                 autoFocus={true}
                 containerStyle={{marginTop: screenDeviation(35,20,20)}}
             />

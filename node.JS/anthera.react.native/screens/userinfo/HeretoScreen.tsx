@@ -8,39 +8,51 @@ import {
     screenDeviation,
     verticalScale
 } from "../../styles/AntheraStyle";
-import AppInputField from "../../components/shared/AppInputField";
-import {useRef, useState} from "react";
+import {useContext, useRef, useState} from "react";
 import AppRadioBtn from "../../components/shared/AppRadioBtn";
 import Coffee from "../../assets/svgs/Coffee";
 import Heart from "../../assets/svgs/heart";
 import Chat from "../../assets/svgs/Chat";
+import {SignupRequest} from "../../api/AntheraApi";
+import {NativeStackScreenProps} from "@react-navigation/native-stack";
+import {StackParamList} from "../../components/navigators/SignupNavigator";
+import {UserInfoContext} from "../../contexts/UserInfoContext";
 
-const HeretoScreen = ({navigation}: {navigation: any})=>{
-    const value = useRef<string>();
-
-    const [radioBtn1, setRadioBtn1] = useState(false);
-    const [radioBtn2, setRadioBtn2] = useState(false);
-    const [radioBtn3, setRadioBtn3] = useState(false);
-
-    const onContinue=()=>{
-        if(value.current!=null){
-            console.log(value.current)
-
-            navigation.navigate('SexPreferenceScreen')
-        }
+const HeretoScreen = ({route, navigation}:NativeStackScreenProps<StackParamList, 'HeretoScreen'>)=>{
+    const hereToOptions = {
+        date: 'I\'m here to date',
+        chat: 'I\'m here to chat',
+        relationship: 'I\'m ready for an relationship'
     }
 
-    const onPress=(val:string,state:any)=>{
-        value.current=val
-        setRadioBtn1(false);
-        setRadioBtn2(false);
-        setRadioBtn3(false);
+    const userInfoContext = useContext(UserInfoContext);
 
-        state(true)
+    const [radioBtn1, setRadioBtn1] = useState(userInfoContext?.hereTo==hereToOptions.date?true:false);
+    const [radioBtn2, setRadioBtn2] = useState(userInfoContext?.hereTo==hereToOptions.chat?true:false);
+    const [radioBtn3, setRadioBtn3] = useState(userInfoContext?.hereTo==hereToOptions.relationship?true:false);
+
+
+    const onContinue=()=> {
+        if(userInfoContext!=null){
+            navigation.navigate('SexPreferenceScreen');
+
+        }
+    }
+    const onPress=(val:string,state:any)=>{
+        if(userInfoContext!=null)
+        {
+            userInfoContext.hereTo=val;
+
+            setRadioBtn1(false);
+            setRadioBtn2(false);
+            setRadioBtn3(false);
+
+            state(true)
+        }
     }
     return (
         <UserInfo
-            tilePrefix={'Nice! You are '}
+            tilePrefix={'You are '}
             titleHighLighted={'here '}
             titlePostfix={'to?'}
             hint={'This can always be changed later!'}
@@ -49,7 +61,8 @@ const HeretoScreen = ({navigation}: {navigation: any})=>{
         >
             <View style={[{alignSelf:'center'},{marginTop: screenDeviation(20,0,0)}]}>
                 <AppRadioBtn style={styles.radioBtnContainer}
-                             setSelected={setRadioBtn1} value={'I\'m here to date'}
+                             setSelected={setRadioBtn1}
+                             value={hereToOptions.date}
                              onPress={(val)=>{onPress(val,setRadioBtn1)}}
                              isSelected={radioBtn1}>
                     <View style={styles.itemContainer}>
@@ -62,8 +75,9 @@ const HeretoScreen = ({navigation}: {navigation: any})=>{
                 </AppRadioBtn>
                 <AppRadioBtn style={styles.radioBtnContainer}
                              setSelected={setRadioBtn2}
-                             value={'I\'m here to chat'}
-                             onPress={(val)=>{onPress(val,setRadioBtn2)}} isSelected={radioBtn2}>
+                             value={hereToOptions.chat}
+                             onPress={(val)=>{onPress(val,setRadioBtn2)}}
+                             isSelected={radioBtn2}>
                     <View style={styles.itemContainer}>
                         <View style={styles.textWrapper}>
                             <Text style={styles.subHeader}>I'm here to chat</Text>
@@ -74,7 +88,7 @@ const HeretoScreen = ({navigation}: {navigation: any})=>{
                 </AppRadioBtn>
                 <AppRadioBtn style={styles.radioBtnContainer}
                              setSelected={setRadioBtn3}
-                             value={'I\'m ready for an relationship'}
+                             value={hereToOptions.relationship}
                              onPress={(val)=>{onPress(val,setRadioBtn3)}}
                              isSelected={radioBtn3}>
                     <View style={styles.itemContainer}>

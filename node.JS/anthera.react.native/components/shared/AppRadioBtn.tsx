@@ -1,6 +1,7 @@
 import {StyleSheet, TouchableOpacity, View, ViewStyle} from "react-native";
 import {AntheraStyle, moderateScale} from "../../styles/AntheraStyle";
 import * as Animatable from 'react-native-animatable';
+import {bool} from "yup";
 
 type RadioBtnProps = {
     children: JSX.Element,
@@ -8,10 +9,10 @@ type RadioBtnProps = {
     value: string,
     onPress: (value: string) => void,
     isSelected?: boolean,
-    setSelected: any
+    setSelected: any,
+    default?:boolean;
 }
 const AppRadioBtn = (props: RadioBtnProps) => {
-
     return <TouchableOpacity style={[styles.container, props.style]} onPress={() => {
 
         if (!props.isSelected) {
@@ -19,6 +20,7 @@ const AppRadioBtn = (props: RadioBtnProps) => {
         } else {
             props.onPress('');
         }
+
     }}>
         <View style={styles.btnContainer}>
             {props.isSelected &&

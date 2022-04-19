@@ -30,11 +30,12 @@ namespace Anthera.API.Controllers.v1
         }
 
 
-        [HttpGet("ASS")]
-        public IActionResult fuck()
+        [HttpGet("serverstatus")]
+        public IActionResult ServerStatus()
         {
-            return Ok("FUK U");
+            return Ok("Ok");
         }
+
         [HttpPost(ApiRoutes.Identity.Signup)]
         public async Task<IActionResult> SignupAsync([FromBody] SignupRequest signupRequest)
         {

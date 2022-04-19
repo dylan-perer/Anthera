@@ -37,7 +37,9 @@ export type UserInfoProps={
     onContinue: ()=>void,
     onGoBack: ()=>void,
     isContinueDisabled?:boolean,
-    btnStyle?:ViewStyle
+    btnStyle?:ViewStyle,
+    btnText?:string,
+    titleContainerStyle?:ViewStyle
 }
 
 const UserInfo = (props:UserInfoProps)=>{
@@ -52,7 +54,7 @@ const UserInfo = (props:UserInfoProps)=>{
                      Svg={<BackIcon {...styles.backIcon}/>}
                  />
 
-                <View style={styles.titleWrapper}>
+                <View style={[styles.titleWrapper, props.titleContainerStyle]}>
                     <Animatable.Text style={styles.titleContainer} animation={'fadeIn'} duration={2000}>
                         <Text style={styles.title}>{props.tilePrefix}</Text>
                         <Text style={[styles.title]}>{props.titleHighLighted}</Text>
@@ -70,7 +72,7 @@ const UserInfo = (props:UserInfoProps)=>{
                     width={{smallScreen:250,phoneScreen:250,largeScreen:250}}
                     height={{smallScreen:55, phoneScreen:45, largeScreen:50}}
 
-                    text={'Continue'}
+                    text={props.btnText?props.btnText:'Continue'}
 
                     shadowPos_X={0}
                     shadowPos_Y={screenDeviation(5,5,5)}
@@ -97,6 +99,7 @@ const styles = StyleSheet.create({
         marginTop:isSmallPhoneScreen? verticalScale(1):isPhoneScreen? verticalScale(10):verticalScale(20),
         marginHorizontal:verticalScale(20),
         alignSelf:'center',
+        alignItems:'center',
         marginBottom:isSmallPhoneScreen? verticalScale(8):isPhoneScreen? verticalScale(28):verticalScale(30),
     },
     titleContainer:{

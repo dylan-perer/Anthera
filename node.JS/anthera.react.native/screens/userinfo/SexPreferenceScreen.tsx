@@ -1,34 +1,41 @@
 import UserInfo from "./UserInfo";
 import {StyleSheet, Text, View} from "react-native";
 import AppRadioBtn from "../../components/shared/AppRadioBtn";
-import Coffee from "../../assets/svgs/Coffee";
-import Chat from "../../assets/svgs/Chat";
-import Heart from "../../assets/svgs/heart";
 import {AntheraStyle, isPhoneScreen, moderateScale, screenDeviation} from "../../styles/AntheraStyle";
-import {useRef, useState} from "react";
+import {useContext, useState} from "react";
+import {NativeStackScreenProps} from "@react-navigation/native-stack";
+import {StackParamList} from "../../components/navigators/SignupNavigator";
+import {UserInfoContext} from "../../contexts/UserInfoContext";
 
+const SexPreferenceScreen=({route, navigation}:NativeStackScreenProps<StackParamList, 'SexPreferenceScreen'>)=>{
+    const userInfoContext = useContext(UserInfoContext);
 
-const SexPreferenceScreen=({navigation}:{navigation:any})=>{
-    const value = useRef<string>();
+    const sexPreferenceOptions ={
+        men:'men',
+        women:'women',
+        both:'both'
+    }
 
-    const [radioBtn1, setRadioBtn1] = useState(false);
-    const [radioBtn2, setRadioBtn2] = useState(false);
-    const [radioBtn3, setRadioBtn3] = useState(false);
+    const [radioBtn1, setRadioBtn1] = useState(userInfoContext?.SexPreference==sexPreferenceOptions.men?true:false);
+    const [radioBtn2, setRadioBtn2] = useState(userInfoContext?.SexPreference==sexPreferenceOptions.women?true:false);
+    const [radioBtn3, setRadioBtn3] = useState(userInfoContext?.SexPreference==sexPreferenceOptions.both?true:false);
+
 
     const onContinue=()=>{
-        if(value.current!=null){
-            console.log(value.current)
-            navigation.navigate('EmailAndPasswordScreen')
+        if(userInfoContext?.SexPreference!= undefined){
+            navigation.navigate('EmailAndPasswordScreen');
         }
     }
 
     const onPress=(val:string,state:any)=>{
-        value.current=val
-        setRadioBtn1(false);
-        setRadioBtn2(false);
-        setRadioBtn3(false);
+        if(userInfoContext!=null){
+            userInfoContext.SexPreference=val
+            setRadioBtn1(false);
+            setRadioBtn2(false);
+            setRadioBtn3(false);
 
-        state(true)
+            state(true)
+        }
     }
         return <UserInfo
             tilePrefix={'Nearly there! Who do you want to be '}
@@ -38,7 +45,8 @@ const SexPreferenceScreen=({navigation}:{navigation:any})=>{
             onGoBack={()=>{navigation.navigate('HeretoScreen')}}>
             <View style={[{alignSelf:'center'},{marginTop: screenDeviation(20,0,0)}]}>
                 <AppRadioBtn style={styles.radioBtnContainer}
-                             setSelected={setRadioBtn1} value={'men'}
+                             setSelected={setRadioBtn1}
+                             value={sexPreferenceOptions.men}
                              onPress={(val)=>{onPress(val,setRadioBtn1)}}
                              isSelected={radioBtn1}>
                     <View style={styles.itemContainer}>
@@ -49,7 +57,7 @@ const SexPreferenceScreen=({navigation}:{navigation:any})=>{
                 </AppRadioBtn>
                 <AppRadioBtn style={styles.radioBtnContainer}
                              setSelected={setRadioBtn2}
-                             value={'women'}
+                             value={sexPreferenceOptions.women}
                              onPress={(val)=>{onPress(val,setRadioBtn2)}} isSelected={radioBtn2}>
                     <View style={styles.itemContainer}>
                         <View style={styles.textWrapper}>
@@ -59,7 +67,7 @@ const SexPreferenceScreen=({navigation}:{navigation:any})=>{
                 </AppRadioBtn>
                 <AppRadioBtn style={styles.radioBtnContainer}
                              setSelected={setRadioBtn3}
-                             value={'both'}
+                             value={sexPreferenceOptions.both}
                              onPress={(val)=>{onPress(val,setRadioBtn3)}}
                              isSelected={radioBtn3}>
                     <View style={styles.itemContainer}>
