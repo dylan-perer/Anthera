@@ -1,4 +1,4 @@
-import {StyleSheet, Text, TextInput, View, ViewStyle} from "react-native";
+import {StyleSheet, Text, TextInput, TextInputProps, View, ViewStyle} from "react-native";
 import {AntheraStyle, moderateScale} from "../../styles/AntheraStyle";
 import {useRef, useState} from "react";
 import AppError from "./AppError";
@@ -17,7 +17,9 @@ export type InputFieldProps = {
     autoFocus?: boolean,
     secureTextEntry?: boolean,
     isAutoCorrect?: boolean,
-    value?: string
+    isEmail?:boolean,
+    value?: string,
+    capitalize?:boolean
 }
 
 const AppInputField = (props: InputFieldProps) => {
@@ -40,7 +42,8 @@ const AppInputField = (props: InputFieldProps) => {
             textAlign={props.textAlign ? props.textAlign : 'center'}
             placeholder={props.placeholder ? props.placeholder : 'Jane'}
             autoFocus={props.autoFocus}
-            keyboardType={props.isAutoCorrect?undefined:"visible-password"}
+            keyboardType={props.isEmail?"email-address":props.isAutoCorrect?undefined:"visible-password"}
+            autoCapitalize={props.capitalize?'sentences':'none'}
         />
         <View style={[styles.errorAndCounterContainer, props.isErrorAlignCenter ? {justifyContent: 'center'} : {}]}>
             {props.showCharacterCounter && <Text style={[styles.letterCount, props.counterStyle]}>

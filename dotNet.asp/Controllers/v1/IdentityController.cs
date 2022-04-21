@@ -13,6 +13,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
+using System.Diagnostics;
 using System.Threading.Tasks;
 
 namespace Anthera.API.Controllers.v1
@@ -61,6 +62,8 @@ namespace Anthera.API.Controllers.v1
 
                 return StatusCode(statusCode, msg);
             }
+
+            Debug.WriteLine(signupRequest);
         }
 
         [HttpPost(ApiRoutes.Identity.Signin)]

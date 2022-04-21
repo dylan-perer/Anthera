@@ -25,7 +25,7 @@ namespace Anthera.API.Validation
             string strValue = value as string;
             foreach (var hereTo in DbConstant.HereTo.AllHereTotypes)
             {
-                if (hereTo.ToLower().Equals(strValue.ToLower()))
+                if (hereTo != null && hereTo.ToLower().Equals(strValue.ToLower()))
                 {
                     return true;
                 }

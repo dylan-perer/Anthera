@@ -358,9 +358,19 @@ namespace Anthera.API.Controllers
             }
         }
 
+/*        [Authorize]
+        [HttpPost(ApiRoutes.User.ProfilePicture+'2')]
+        public async Task<IActionResult>
+         UpdateProfilePictureAsync2([FromBody] IFormFile file)
+        {
+
+            new MultipartFormDataStreamProvider()
+        }*/
+
         [Authorize]
         [HttpPost(ApiRoutes.User.ProfilePicture)]
-        public async Task<IActionResult> UpdateProfilePictureAsync(IFormFile file)
+        public async Task<IActionResult> 
+            UpdateProfilePictureAsync(IFormFile file)
         {
             if (file is null)
             {

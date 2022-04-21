@@ -25,7 +25,7 @@ namespace Anthera.API.Validation
             string strValue = value as string;
             foreach (var gender in DbConstant.Gender.AllGenders)
             {
-                if (gender.ToLower().Equals(strValue.ToLower()))
+                if (gender != null && gender.ToLower().Equals(strValue.ToLower()))
                 {
                     return true;
                 }

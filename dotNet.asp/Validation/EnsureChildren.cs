@@ -23,9 +23,9 @@ namespace Anthera.API.Validation
         public override bool IsValid(object value)
         {
             string strValue = value as string;
-            foreach (var children in DbConstant.Children.AllChildrenTypes)
+            foreach ( var children in DbConstant.Children.AllChildrenTypes)
             {
-                if (children.ToLower().Equals(strValue.ToLower()))
+                if (children !=null && children.ToLower().Equals(strValue.ToLower()))
                 {
                     return true;
                 }

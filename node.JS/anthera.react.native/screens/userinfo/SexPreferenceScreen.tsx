@@ -11,8 +11,8 @@ const SexPreferenceScreen=({route, navigation}:NativeStackScreenProps<StackParam
     const userInfoContext = useContext(UserInfoContext);
 
     const sexPreferenceOptions ={
-        men:'men',
-        women:'women',
+        men:'male',
+        women:'female',
         both:'both'
     }
 

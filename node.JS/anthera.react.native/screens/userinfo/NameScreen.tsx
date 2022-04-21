@@ -41,6 +41,7 @@ const NameScreen = ({route, navigation}:NativeStackScreenProps<StackParamList, '
             btnStyle={{marginTop: screenDeviation(45,80,80)}}
         >
             <AppInputField
+                capitalize={true}
                 value={userInfoContext?.name?userInfoContext.name:undefined}
                 showCharacterCounter={true}
                 maxValueCounter={14}

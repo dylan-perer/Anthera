@@ -10,7 +10,7 @@ import {
     screenDeviation,
     verticalScale
 } from "../../styles/AntheraStyle";
-import {SignupRequest} from "../../api/AntheraApi";
+import {signupAsync, SignupRequest} from "../../api/AntheraApi";
 import {NativeStackScreenProps} from "@react-navigation/native-stack";
 import {StackParamList} from "../../components/navigators/SignupNavigator";
 import {UserInfoContext} from "../../contexts/UserInfoContext";
@@ -22,7 +22,7 @@ const EmailAndPasswordScreen = ({route, navigation}:NativeStackScreenProps<Stack
 
     const userInfoContext = useContext(UserInfoContext);
 
-    const onContinue = ()=>{
+    const onContinue = async ()=>{
         setErrorPassword('');
         setErrorEmail('');
         if(userInfoContext!=null){
@@ -35,7 +35,7 @@ const EmailAndPasswordScreen = ({route, navigation}:NativeStackScreenProps<Stack
                 return;
             }
 
-            console.log(userInfoContext)
+
             navigation.navigate('ProfilePictureScreen');
         }
     }
@@ -48,6 +48,7 @@ const EmailAndPasswordScreen = ({route, navigation}:NativeStackScreenProps<Stack
     const setPassword=(value:string)=>{
         if(userInfoContext!=null){
             userInfoContext.password=value;
+            userInfoContext.confirmPassword=value
         }
     }
     return <UserInfo tilePrefix={'Now for an '}
@@ -60,6 +61,7 @@ const EmailAndPasswordScreen = ({route, navigation}:NativeStackScreenProps<Stack
                      onGoBack={()=>{navigation.navigate('SexPreferenceScreen')}}>
         <View>
             <AppInputField
+                isEmail={true}
                 value={userInfoContext?.emailAddress}
                 showCharacterCounter={false}
                 onChange={setEmailAddress}

@@ -4,17 +4,17 @@
     {
 
         public string AccessToken { set; get; }
-        public string RefrehToken { set; get; }
+        public string RefreshToken { set; get; }
 
         public string GetRefreshToken()
         {
-            return RefrehToken;
+            return RefreshToken;
         }
 
         public void SetTokens(string acessToken, string refreshToken)
         {
             AccessToken = acessToken;
-            RefrehToken = refreshToken;
+            RefreshToken = refreshToken;
         }
     }
 }

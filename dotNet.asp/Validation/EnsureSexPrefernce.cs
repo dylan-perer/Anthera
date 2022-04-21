@@ -25,7 +25,7 @@ namespace Anthera.API.Validation
             string strValue = value as string;
             foreach (var sexPref in DbConstant.PreferenceSex.AllPreferenceSexes)
             {
-                if (sexPref.ToLower().Equals(strValue.ToLower()))
+                if (sexPref!=null && sexPref.ToLower().Equals(strValue.ToLower()))
                 {
                     return true;
                 }

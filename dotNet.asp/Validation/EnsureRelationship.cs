@@ -25,7 +25,7 @@ namespace Anthera.API.Validation
             string strValue = value as string;
             foreach (var relationship in DbConstant.Relationship.AllRelationshipTypes)
             {
-                if (relationship.ToLower().Equals(strValue.ToLower()))
+                if (relationship != null && relationship.ToLower().Equals(strValue.ToLower()))
                 {
                     return true;
                 }

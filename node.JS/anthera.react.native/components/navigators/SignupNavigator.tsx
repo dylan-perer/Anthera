@@ -10,6 +10,7 @@ import ProfilePictureScreen from "../../screens/userinfo/ProfilePictureScreen";
 import {StyleSheet} from "react-native";
 import AppButton from "../shared/AppButton";
 import {UserInfoContextProvider} from "../../contexts/UserInfoContext";
+import AppCamera from "../shared/AppCamera";
 
 export type UserInfoScreens = 'SignupScreen' | 'GenderScreen' | 'NameScreen' | 'DobScreen' | 'HereToScreen' | 'None'
 
@@ -21,6 +22,7 @@ export type StackParamList ={
     SexPreferenceScreen:undefined,
     EmailAndPasswordScreen:undefined,
     ProfilePictureScreen:undefined,
+    Cammera:undefined
 }
 const SignupNavigator =()=>{
     const Stack = createStackNavigator<StackParamList>();
@@ -40,6 +42,7 @@ const SignupNavigator =()=>{
             <Stack.Screen name='SexPreferenceScreen' component={SexPreferenceScreen}/>
             <Stack.Screen name='EmailAndPasswordScreen' component={EmailAndPasswordScreen}/>
             <Stack.Screen name='ProfilePictureScreen' component={ProfilePictureScreen}/>
+            <Stack.Screen name='Cammera' component={AppCamera}/>
         </Stack.Navigator>
     </UserInfoContextProvider>
 }

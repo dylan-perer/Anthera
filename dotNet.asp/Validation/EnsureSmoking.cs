@@ -25,7 +25,7 @@ namespace Anthera.API.Validation
             string strValue = value as string;
             foreach (var smoking in DbConstant.Smoking.AllSmokingTypes)
             {
-                if (smoking.ToLower().Equals(strValue.ToLower()))
+                if (smoking != null && smoking.ToLower().Equals(strValue.ToLower()))
                 {
                     return true;
                 }

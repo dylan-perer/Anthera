@@ -9,14 +9,24 @@ import AppSearchInput from "../../components/shared/AppSearchInput";
 import AppList from "../../components/shared/AppList";
 import AppSearchList from "../../components/shared/AppSearchList";
 import AppButton from "../../components/shared/AppButton";
-import {signupAsync, identityApi, SignupRequest} from "../../api/AntheraApi";
+import {signupAsync, identityApi, SignupRequest, signinAsync, SigninRequest} from "../../api/AntheraApi";
 import {NativeStackScreenProps} from "@react-navigation/native-stack";
 import {UserInfoContext} from "../../contexts/UserInfoContext";
 
 const SignupScreen =({route, navigation}:NativeStackScreenProps<StackParamList, 'SignupScreen'>)=>{
     // console.log(context)
     const searchListRef = useRef<AppBottomModal>();
-    const userInfoContext = useContext(UserInfoContext)
+    const userInfoContext = useContext(UserInfoContext);
+
+    useEffect(()=>{
+        (async ()=>{
+            // const signin:SigninRequest={
+            //     emailAddress:"test@emaiaaal.com",
+            //     password:"test123a4"
+            // }
+            // console.log(await signinAsync(signin));
+        })();
+    },[])
 
     const onGenderPress = (screenName: UserInfoScreens, gender:string)=>{
         if(userInfoContext!=null){

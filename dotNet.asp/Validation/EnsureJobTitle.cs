@@ -25,7 +25,7 @@ namespace Anthera.API.Validation
             string strValue = value as string;
             foreach (var jobTitle in DbConstant.JobTitle.JobTitiles)
             {
-                if (jobTitle.ToLower().Equals(strValue.ToLower()))
+                if (jobTitle != null && jobTitle.ToLower().Equals(strValue.ToLower()))
                 {
                     return true;
                 }
