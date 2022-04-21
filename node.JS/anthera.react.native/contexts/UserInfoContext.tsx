@@ -9,7 +9,9 @@ type UserInfo={
     emailAddress?: string,
     SexPreference?: string,
     password?: string,
-    confirmPassword?: string
+    confirmPassword?: string,
+    profilePictureUrl?:string,
+    emailDuplicateError?:string
 }
 
 type UserInfoProps={

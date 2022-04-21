@@ -4,7 +4,7 @@ import {AntheraStyle, isPhoneScreen, scale} from "../../styles/AntheraStyle";
 
 type InlineErrorProps = {
     style?: ViewStyle,
-    errorMsg: string,
+    errorMsg: string | undefined,
 }
 const AppError = (props: InlineErrorProps) => {
     if (props.errorMsg)

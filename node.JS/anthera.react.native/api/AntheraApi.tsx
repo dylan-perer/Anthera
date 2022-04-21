@@ -107,14 +107,22 @@ const uploadImgAsync= async (imgUri:string,authToken:string)=>{
 
         },
     });
-    if(response.status===200){
-        const jsonPostData1 = await response.json();
-        console.log(jsonPostData1)
 
-    }else{
-        const jsonPostData = await response.json();
-        console.log(jsonPostData)
+    let httpRes:AntheraResponse={
+        statusCode:response.status,
+        errorMsg:undefined,
+        response:await response.json()
     }
+
+    return httpRes;
+    // if(response.status===200){
+    //     const jsonPostData1 = await response.json();
+    //     console.log(jsonPostData1)
+    //
+    // }else{
+    //     const jsonPostData = await response.json();
+    //     console.log(jsonPostData)
+    // }
 }
 
 export type SignupRequest = {

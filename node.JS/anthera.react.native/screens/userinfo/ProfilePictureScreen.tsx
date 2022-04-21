@@ -1,6 +1,6 @@
 import UserInfo from "./UserInfo";
 import FemaleAvatar from "../../assets/svgs/FemaleAvatar";
-import {StyleSheet, Text, TouchableOpacity, View} from "react-native";
+import {Image, StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import {
     AntheraStyle,
     isPhoneScreen,
@@ -11,7 +11,7 @@ import {
 import {NativeStackScreenProps} from "@react-navigation/native-stack";
 import {StackParamList} from "../../components/navigators/SignupNavigator";
 import {AntheraResponse, signupAsync, SignupRequest, uploadImgAsync} from "../../api/AntheraApi";
-import {useContext, useRef} from "react";
+import {useContext, useRef, useState} from "react";
 import {UserInfoContext} from "../../contexts/UserInfoContext";
 import AppSemiBottomModal from "../../components/shared/AppSemiBottomModal";
 import RBSheet from "react-native-raw-bottom-sheet";
@@ -20,12 +20,17 @@ import CameraIcon from "../../assets/svgs/icons/CameraIcon";
 import ImageBrowseIcon from "../../assets/svgs/icons/ImageBrowseIcon";
 import * as ImagePicker from "expo-image-picker";
 import {AntherContext} from "../../contexts/AntheraContext";
+import AppError from "../../components/shared/AppError";
+import {DuplicateEmail} from "../../api/ApiConstants";
 
 const ProfilePictureScreen=({route, navigation}:NativeStackScreenProps<StackParamList, 'ProfilePictureScreen'>)=>{
     const userInfoContext = useContext(UserInfoContext);
     const antheraContext = useContext(AntherContext);
+
+    const [picture, setPicture] = useState<string|undefined>(userInfoContext?.profilePictureUrl?userInfoContext.profilePictureUrl:undefined);
+    const [error, setError] = useState<string>();
+
     const semiBottomModalRef = useRef<RBSheet>();
-    const pictureUri = useRef<string>();
 
     const onContinue = async () => {
         //sign up user
@@ -33,19 +38,29 @@ const ProfilePictureScreen=({route, navigation}:NativeStackScreenProps<StackPara
             ...userInfoContext
         }
 
-        if(antheraContext!=null){
-            const res:AntheraResponse = await signupAsync(signup, antheraContext);
-            console.log(res);
-            console.log(antheraContext);
+        if(antheraContext!=null && userInfoContext!=null){
+            const signupRes:AntheraResponse = await signupAsync(signup, antheraContext);
             const token = antheraContext.token;
 
+            if(signupRes.statusCode!=200){
+                if(signupRes.errorMsg==DuplicateEmail){
+                    userInfoContext.emailDuplicateError="Sorry, account with this email already exists."
+                    navigation.navigate('EmailAndPasswordScreen',{p:'error'});
+                }
+                setError('Sorry, something went wrong signing you up.');
+                return;
+            }
+
             //upload picture
-            if(pictureUri.current!=undefined && token!=null){
-                await uploadImgAsync(pictureUri.current,token);
+            if(userInfoContext.profilePictureUrl && token!=null){
+                const uploadRes = await uploadImgAsync(userInfoContext.profilePictureUrl, token);
+
+                if(uploadRes.statusCode!=200){
+                    setError('Sorry, something went wrong uploading your photo.');
+                    return;
+                }
             }
         }
-
-
     }
 
     const openCameraTakePicture = async ()=>{
@@ -58,7 +73,12 @@ const ProfilePictureScreen=({route, navigation}:NativeStackScreenProps<StackPara
             return;
         }
 
-        pictureUri.current= result.uri;
+        if(userInfoContext!=null){
+            userInfoContext.profilePictureUrl=result.uri;
+            setPicture(result.uri);
+        }
+
+        semiBottomModalRef.current?.close();
     }
 
     return <UserInfo
@@ -74,8 +94,11 @@ const ProfilePictureScreen=({route, navigation}:NativeStackScreenProps<StackPara
     >
         <>
         <TouchableOpacity style={styles.profilePictureContainer} onPress={()=>semiBottomModalRef.current?.open()}>
-            <FemaleAvatar {...styles.svg}/>
+            {picture == undefined && <FemaleAvatar {...styles.svg}/>}
+            {picture && <Image source={{uri:picture}} style={[styles.svg, {borderRadius:moderateScale(100)}]}/>}
         </TouchableOpacity>
+
+        <AppError errorMsg={error} style={{alignSelf:'center'}}/>
 
         <AppSemiBottomModal
             setRef={(ref: RBSheet)=>{semiBottomModalRef.current=ref}}

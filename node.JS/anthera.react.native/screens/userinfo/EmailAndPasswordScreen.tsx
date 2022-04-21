@@ -1,7 +1,7 @@
 import UserInfo from "./UserInfo";
 import {StyleSheet, View} from "react-native";
 import AppInputField from "../../components/shared/AppInputField";
-import {useContext, useRef, useState} from "react";
+import {useContext, useEffect, useRef, useState} from "react";
 import {
     AntheraStyle,
     isPhoneScreen,
@@ -14,13 +14,18 @@ import {signupAsync, SignupRequest} from "../../api/AntheraApi";
 import {NativeStackScreenProps} from "@react-navigation/native-stack";
 import {StackParamList} from "../../components/navigators/SignupNavigator";
 import {UserInfoContext} from "../../contexts/UserInfoContext";
+import {useIsFocused} from "@react-navigation/native";
 
 const EmailAndPasswordScreen = ({route, navigation}:NativeStackScreenProps<StackParamList, 'EmailAndPasswordScreen'>)=>{
-    const [errorEmail, setErrorEmail] = useState('');
-
-    const [errorPassword, setErrorPassword] = useState('');
 
     const userInfoContext = useContext(UserInfoContext);
+    const isFocused = useIsFocused();
+    const [errorEmail, setErrorEmail] = useState('');
+    const [errorPassword, setErrorPassword] = useState('');
+
+    useEffect(()=>{
+        setErrorEmail(userInfoContext?.emailDuplicateError?userInfoContext.emailDuplicateError:'');
+    },[isFocused])
 
     const onContinue = async ()=>{
         setErrorPassword('');
