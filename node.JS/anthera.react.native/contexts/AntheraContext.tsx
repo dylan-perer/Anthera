@@ -7,10 +7,12 @@ export type AntherContextInfo={
     name:string|null,
     emailAddress:string|null,
     role:string|null,
+    setIsUserLogged:React.Dispatch<React.SetStateAction<boolean>> | undefined
 }
 
 type AntheraContextProps={
-    children?:JSX.Element
+    children?:JSX.Element,
+    setIsUserLogged: React.Dispatch<React.SetStateAction<boolean>>
 }
 export const AntherContext = createContext<AntherContextInfo|null>(null);
 
@@ -21,8 +23,10 @@ export class AntherContextProvider extends Component<AntheraContextProps,AntherC
         id:null,
         name:null,
         emailAddress:null,
-        role:null
+        role:null,
+        setIsUserLogged:this.props.setIsUserLogged
     }
+
     render() {
         return (
             <AntherContext.Provider value={this.state}>

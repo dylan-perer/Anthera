@@ -14,7 +14,7 @@ const AppError = (props: InlineErrorProps) => {
             style={[styles.errorText, props.style]}>{props.errorMsg}
         </Animatable.Text>
 
-    return <Text style={[styles.errorText, {opacity:0}]}>reserved error space</Text>
+    return <Text style={[styles.errorText,props.style, {opacity:0}]}>reserved error space</Text>
 }
 
 const styles = StyleSheet.create({

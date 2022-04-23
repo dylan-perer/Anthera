@@ -8,6 +8,7 @@ import {
 // @ts-ignore
 import {BoxShadow} from 'react-native-shadow'
 import {AntheraStyle, moderateScale, screenDeviation, verticalScale} from "../../styles/AntheraStyle";
+import LottieView from 'lottie-react-native';
 
 type AppButtonProps={
     width:{smallScreen:number, phoneScreen:number, largeScreen:number}
@@ -18,7 +19,8 @@ type AppButtonProps={
     onPress:()=>void,
     textStyle?:TextStyle,
     btnStyle?:(ViewStyle | undefined)[],
-    isDebug?:boolean
+    isDebug?:boolean,
+    isLoading?:boolean
 }
 
 const AppButton = (props:AppButtonProps)=>{
@@ -41,7 +43,10 @@ const AppButton = (props:AppButtonProps)=>{
                     style={[styles.btn, {
                         width: screenDeviation(props.width.smallScreen,props.width.phoneScreen, props.width.largeScreen),
                         height: screenDeviation(props.height.smallScreen, props.height.phoneScreen, props.height.largeScreen)}, props.btnStyle]} >
-                    <Text style={[styles.btnText,props.textStyle]}>{props.text}</Text>
+                    {!props.isLoading && <Text style={[styles.btnText,props.textStyle]}>{props.text}</Text>}
+                    {props.isLoading && <View style={styles.loadingContainer}>
+                        <LottieView source={require('../../assets/lottie/CircularLoadingSpinner.json')} loop={true} autoPlay={true}/>
+                    </View>}
                 </TouchableOpacity>
             </BoxShadow>
         </View>
@@ -62,6 +67,13 @@ const styles = StyleSheet.create({
         fontSize:AntheraStyle.font.size.headerSmall,
         alignSelf:'center',
         color:AntheraStyle.colour.main,
-    }})
+    },
+    loadingContainer:{
+        width:screenDeviation(100,85,80),
+        height:screenDeviation(100,85,80),
+        alignSelf:'center'
+    }
+
+})
 
 export default AppButton;

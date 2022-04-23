@@ -39,11 +39,11 @@ export type UserInfoProps={
     isContinueDisabled?:boolean,
     btnStyle?:ViewStyle,
     btnText?:string,
-    titleContainerStyle?:ViewStyle
+    titleContainerStyle?:ViewStyle,
+    isLoading?:boolean
 }
 
 const UserInfo = (props:UserInfoProps)=>{
-
     return  <SafeAreaView>
     <ScrollView
                 style={styles.container}
@@ -72,13 +72,15 @@ const UserInfo = (props:UserInfoProps)=>{
                     width={{smallScreen:250,phoneScreen:250,largeScreen:250}}
                     height={{smallScreen:55, phoneScreen:45, largeScreen:50}}
 
-                    text={props.btnText?props.btnText:'Continue'}
+                    text={props.btnText?props.btnText:'continue'}
 
                     shadowPos_X={0}
                     shadowPos_Y={screenDeviation(5,5,5)}
 
                     btnStyle={[{backgroundColor:AntheraStyle.colour.main, alignSelf:'center'}]}
                     textStyle={{color:'#fff'}}
+
+                    isLoading={props.isLoading}
 
                     onPress={props.onContinue}/>
                 </View>

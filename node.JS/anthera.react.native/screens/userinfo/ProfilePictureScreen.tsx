@@ -30,9 +30,13 @@ const ProfilePictureScreen=({route, navigation}:NativeStackScreenProps<StackPara
     const [picture, setPicture] = useState<string|undefined>(userInfoContext?.profilePictureUrl?userInfoContext.profilePictureUrl:undefined);
     const [error, setError] = useState<string>();
 
+    const [isLoading, setIsLoading] = useState<boolean>();
+
     const semiBottomModalRef = useRef<RBSheet>();
 
     const onContinue = async () => {
+
+        setIsLoading(true);
         //sign up user
         const signup:SignupRequest={
             ...userInfoContext
@@ -45,9 +49,10 @@ const ProfilePictureScreen=({route, navigation}:NativeStackScreenProps<StackPara
             if(signupRes.statusCode!=200){
                 if(signupRes.errorMsg==DuplicateEmail){
                     userInfoContext.emailDuplicateError="Sorry, account with this email already exists."
-                    navigation.navigate('EmailAndPasswordScreen',{p:'error'});
+                    navigation.navigate('EmailAndPasswordScreen');
                 }
                 setError('Sorry, something went wrong signing you up.');
+                setIsLoading(false);
                 return;
             }
 
@@ -57,8 +62,15 @@ const ProfilePictureScreen=({route, navigation}:NativeStackScreenProps<StackPara
 
                 if(uploadRes.statusCode!=200){
                     setError('Sorry, something went wrong uploading your photo.');
+                    setIsLoading(false);
                     return;
                 }
+            }
+
+            setIsLoading(false);
+
+            if(antheraContext.setIsUserLogged){
+                antheraContext.setIsUserLogged(true);
             }
         }
     }
@@ -88,9 +100,10 @@ const ProfilePictureScreen=({route, navigation}:NativeStackScreenProps<StackPara
         hint={'Choose your best! You can add more or change photos later.'}
         onContinue={onContinue}
         onGoBack={()=>navigation.navigate('EmailAndPasswordScreen')}
-        btnText={'Complete'}
+        btnText={'create'}
         titleContainerStyle={{alignItems:'flex-start'}}
-        btnStyle={{marginTop: screenDeviation(60,65,80)}}
+        btnStyle={{marginTop: screenDeviation(40,45,60)}}
+        isLoading={isLoading}
     >
         <>
         <TouchableOpacity style={styles.profilePictureContainer} onPress={()=>semiBottomModalRef.current?.open()}>
@@ -98,7 +111,7 @@ const ProfilePictureScreen=({route, navigation}:NativeStackScreenProps<StackPara
             {picture && <Image source={{uri:picture}} style={[styles.svg, {borderRadius:moderateScale(100)}]}/>}
         </TouchableOpacity>
 
-        <AppError errorMsg={error} style={{alignSelf:'center'}}/>
+        <AppError errorMsg={error} style={{alignSelf:'center', marginTop:screenDeviation(20,20,20)}}/>
 
         <AppSemiBottomModal
             setRef={(ref: RBSheet)=>{semiBottomModalRef.current=ref}}

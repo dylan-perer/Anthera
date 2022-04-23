@@ -7,8 +7,6 @@ import HeretoScreen from "../../screens/userinfo/HeretoScreen";
 import SexPreferenceScreen from "../../screens/userinfo/SexPreferenceScreen";
 import EmailAndPasswordScreen from "../../screens/userinfo/EmailAndPasswordScreen";
 import ProfilePictureScreen from "../../screens/userinfo/ProfilePictureScreen";
-import {StyleSheet} from "react-native";
-import AppButton from "../shared/AppButton";
 import {UserInfoContextProvider} from "../../contexts/UserInfoContext";
 import AppCamera from "../shared/AppCamera";
 
@@ -22,13 +20,12 @@ export type StackParamList ={
     SexPreferenceScreen:undefined,
     EmailAndPasswordScreen:undefined,
     ProfilePictureScreen:undefined,
-    Cammera:undefined
 }
 const SignupNavigator =()=>{
     const Stack = createStackNavigator<StackParamList>();
 
     return <UserInfoContextProvider>
-        <Stack.Navigator initialRouteName='SignupScreen' screenOptions={{
+        <Stack.Navigator initialRouteName='ProfilePictureScreen' screenOptions={{
             headerShown: false,
             cardStyle: { padding:0, margin:0, backgroundColor: AntheraStyle.colour.BackgroundGrey },
             // gestureEnabled: true,
@@ -42,7 +39,6 @@ const SignupNavigator =()=>{
             <Stack.Screen name='SexPreferenceScreen' component={SexPreferenceScreen}/>
             <Stack.Screen name='EmailAndPasswordScreen' component={EmailAndPasswordScreen}/>
             <Stack.Screen name='ProfilePictureScreen' component={ProfilePictureScreen}/>
-            <Stack.Screen name='Cammera' component={AppCamera}/>
         </Stack.Navigator>
     </UserInfoContextProvider>
 }

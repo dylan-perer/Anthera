@@ -1,24 +1,22 @@
-import {StyleSheet, Text, TextInput, View} from "react-native";
+import {StyleSheet, Text, View} from "react-native";
 import UserInfo from "./UserInfo";
 import {
     AntheraStyle,
     isPhoneScreen,
     moderateScale,
-    scale,
     screenDeviation,
-    verticalScale
 } from "../../styles/AntheraStyle";
-import {useContext, useRef, useState} from "react";
+import {useContext, useState} from "react";
 import AppRadioBtn from "../../components/shared/AppRadioBtn";
 import Coffee from "../../assets/svgs/Coffee";
 import Heart from "../../assets/svgs/heart";
 import Chat from "../../assets/svgs/Chat";
-import {SignupRequest} from "../../api/AntheraApi";
 import {NativeStackScreenProps} from "@react-navigation/native-stack";
 import {StackParamList} from "../../components/navigators/SignupNavigator";
 import {UserInfoContext} from "../../contexts/UserInfoContext";
 
 const HeretoScreen = ({route, navigation}:NativeStackScreenProps<StackParamList, 'HeretoScreen'>)=>{
+
     const hereToOptions = {
         date: 'I\'m here to date',
         chat: 'I\'m here to chat',
@@ -35,9 +33,9 @@ const HeretoScreen = ({route, navigation}:NativeStackScreenProps<StackParamList,
     const onContinue=()=> {
         if(userInfoContext!=null){
             navigation.navigate('SexPreferenceScreen');
-
         }
     }
+
     const onPress=(val:string,state:any)=>{
         if(userInfoContext!=null)
         {
@@ -50,6 +48,7 @@ const HeretoScreen = ({route, navigation}:NativeStackScreenProps<StackParamList,
             state(true)
         }
     }
+
     return (
         <UserInfo
             tilePrefix={'You are '}
@@ -60,11 +59,13 @@ const HeretoScreen = ({route, navigation}:NativeStackScreenProps<StackParamList,
             onContinue={onContinue}
         >
             <View style={[{alignSelf:'center'},{marginTop: screenDeviation(20,0,0)}]}>
+
                 <AppRadioBtn style={styles.radioBtnContainer}
                              setSelected={setRadioBtn1}
                              value={hereToOptions.date}
                              onPress={(val)=>{onPress(val,setRadioBtn1)}}
                              isSelected={radioBtn1}>
+
                     <View style={styles.itemContainer}>
                         <View style={styles.textWrapper}>
                             <Text style={styles.subHeader}>I'm here to date</Text>
@@ -73,11 +74,13 @@ const HeretoScreen = ({route, navigation}:NativeStackScreenProps<StackParamList,
                         <Coffee {...styles.svg}/>
                     </View>
                 </AppRadioBtn>
+
                 <AppRadioBtn style={styles.radioBtnContainer}
                              setSelected={setRadioBtn2}
                              value={hereToOptions.chat}
                              onPress={(val)=>{onPress(val,setRadioBtn2)}}
                              isSelected={radioBtn2}>
+
                     <View style={styles.itemContainer}>
                         <View style={styles.textWrapper}>
                             <Text style={styles.subHeader}>I'm here to chat</Text>
@@ -86,11 +89,13 @@ const HeretoScreen = ({route, navigation}:NativeStackScreenProps<StackParamList,
                         <Chat {...styles.svg}/>
                     </View>
                 </AppRadioBtn>
+
                 <AppRadioBtn style={styles.radioBtnContainer}
                              setSelected={setRadioBtn3}
                              value={hereToOptions.relationship}
                              onPress={(val)=>{onPress(val,setRadioBtn3)}}
                              isSelected={radioBtn3}>
+
                     <View style={styles.itemContainer}>
                         <View style={styles.textWrapper}>
                             <Text style={styles.subHeader}>I'm ready for an relationship</Text>
@@ -99,6 +104,7 @@ const HeretoScreen = ({route, navigation}:NativeStackScreenProps<StackParamList,
                         <Heart {...styles.svg}/>
                     </View>
                 </AppRadioBtn>
+
             </View>
         </UserInfo>
     )
@@ -114,7 +120,7 @@ const styles = StyleSheet.create({
     radioBtnContainer:{
         borderRadius:moderateScale(12),
         borderWidth:moderateScale(1),
-        borderColor:AntheraStyle.colour.accent,
+        borderColor:AntheraStyle.colour.mid,
         paddingHorizontal:moderateScale(10),
         paddingVertical:moderateScale(12),
         marginBottom:moderateScale(10)

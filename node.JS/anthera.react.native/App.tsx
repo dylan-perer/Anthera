@@ -4,7 +4,9 @@ import {NavigationContainer} from "@react-navigation/native";
 import SignupNavigator from "./components/navigators/SignupNavigator";
 import {useFonts} from "expo-font";
 import AppLoading from "expo-app-loading";
-import {AntherContextProvider} from "./contexts/AntheraContext";
+import {AntherContext, AntherContextProvider} from "./contexts/AntheraContext";
+import AppNavigator from "./components/navigators/AppNavigator";
+import {useContext, useState} from "react";
 
 export default function App() {
   let [fontsLoaded, error]=useFonts({
@@ -14,18 +16,32 @@ export default function App() {
     'Nunito-Bold': require('./assets/fonts/Nunito-Bold.ttf'),
   });
 
-  if(!fontsLoaded){
+    const antheraContext = useContext(AntherContext);
+    const [isUserLogged, setIsUserLogged] = useState<boolean>(antheraContext?.token?true:false);
+
+    if(!fontsLoaded){
     return <AppLoading/>;
   }
-  return (
-      <AntherContextProvider>
+
+    const handleNavigators = ()=>{
+        // if(isUserLogged){
+        //     return  <AppNavigator/>
+        // }else{
+        //     return  <SignupNavigator/>
+        // }
+        return  <AppNavigator/>
+    }
+
+    return (
+      <AntherContextProvider setIsUserLogged={setIsUserLogged}>
         <NavigationContainer>
             <StatusBar style='auto'/>
-            <SignupNavigator/>
+            {handleNavigators()}
         </NavigationContainer>
       </AntherContextProvider>
   );
 }
+
 
 const styles = StyleSheet.create({
   container: {
